@@ -1,0 +1,33 @@
+.skill-section {
+  padding: 40px 20px;
+}
+
+.skill-section-dark {
+  background: #1f1f1f;
+}
+
+.skill-section-light {
+  background: #fff;
+}
+
+.skill-card {
+  border-radius: 8px;
+}
+
+.skill-card-dark {
+  background: #2c2c2c;
+  color: #fff;
+}
+
+.skill-card-light {
+  background: #f5f5f5;
+  color: #000;
+}
+
+.skill-text-dark {
+  color: #ccc;
+}
+
+.skill-text-light {
+  color: #333;
+}

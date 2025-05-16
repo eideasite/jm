@@ -1,0 +1,109 @@
+/* Grid layout for project cards */
+.projects-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+  padding: 20px;
+}
+
+/* Base card styling with glass-like soft background */
+.project-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 24px;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(6px);
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  min-height: 350px;
+}
+
+/* Card hover effect */
+.project-card:hover {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Card headings */
+.project-card h3,
+.project-card .ant-typography strong {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #141414;
+}
+
+/* General text */
+.project-card .ant-typography {
+  color: #444;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* Icon and text alignment */
+.project-card .ant-typography svg {
+  vertical-align: middle;
+  margin-right: 8px;
+  font-size: 1rem;
+}
+
+/* List styling */
+.project-card ul {
+  list-style: disc;
+  padding-left: 20px;
+  margin: 8px 0;
+}
+
+.project-card ul li {
+  margin-bottom: 6px;
+  color: #595959;
+}
+
+/* Divider spacing */
+.project-card .ant-divider {
+  margin: 16px 0;
+}
+
+/* Collapse panel custom */
+.project-card .ant-collapse-header {
+  font-weight: 500;
+  color: #262626;
+  font-size: 1rem;
+}
+
+/* Avatar + text in team section */
+.project-card .team-member {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.project-card .team-member .ant-avatar {
+  flex-shrink: 0;
+}
+
+.project-card .team-member .ant-typography {
+  margin-bottom: 0;
+  color: #434343;
+}
+
+/* External link text */
+.project-card a {
+  color: #1890ff;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.project-card a:hover {
+  color: #40a9ff;
+  text-decoration: underline;
+}
+
+/* Optional: Hide empty card */
+.project-card:empty {
+  display: none;
+}

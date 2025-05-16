@@ -1,0 +1,22 @@
+/* Custom Ant Design overrides */
+.ant-layout {
+    background: #fff;
+    transition: all 0.3s;
+  }
+  
+  .ant-layout.dark {
+    background: #1f1f1f;
+    color: #fff;
+  }
+  
+  .ant-card {
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s;
+  }
+  
+  .dark .ant-card {
+    background: #2a2a2a;
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  }

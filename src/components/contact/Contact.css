@@ -1,0 +1,23 @@
+.contact-section {
+  padding: 20px;
+}
+
+.contact-form {
+  width: 100%;
+}
+
+.submit-button, .reset-button {
+  width: 100%; /* Ensures buttons fill the width of the card */
+  padding: 10px; /* Adds more padding for a better visual appearance */
+  font-size: 16px; /* Increases the font size for better readability */
+}
+
+@media (max-width: 600px) {
+  .contact-form {
+    margin: 0 20px;
+  }
+
+  .submit-button, .reset-button {
+    margin-top: 10px;
+  }
+}

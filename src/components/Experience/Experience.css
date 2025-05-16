@@ -1,0 +1,89 @@
+/* === Experience Section Wrapper === */
+.experience-section {
+  padding: 40px 32px; /* spacious padding for layout */
+  background-color: #f9f9f9; /* light background for separation */
+  text-align: center;
+}
+
+/* === Experience Title Styling === */
+.experience-section h2 {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 32px;
+  position: relative;
+  display: inline-block;
+  color: #333;
+}
+
+/* Optional: Decorative underline */
+.experience-section h2::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 4px;
+  background-color: #b8ccde;
+  margin: 10px auto 0;
+  border-radius: 2px;
+}
+
+/* === Experience Card Layout === */
+.experience-card {
+  background-color: #fff;
+  padding: 24px;
+  margin: 16px auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  max-width: 900px;
+  text-align: left;
+}
+
+/* === Skill Set Block === */
+.skill-set {
+  margin-top: 20px;
+}
+
+.skill-set.left-side {
+  text-align: left;
+}
+
+.skill-set.right-side {
+  text-align: right;
+}
+
+/* === Skill Set Heading === */
+.key-skills-heading {
+  margin-bottom: 10px;
+  font-size: 16px;
+  font-weight: normal;
+}
+
+/* === Skill Grid Layout === */
+.skills {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 8px 16px;
+}
+
+/* === Individual Skill Item === */
+.skill-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.skill-item span {
+  font-size: 14px;
+  font-weight: 500;
+  word-break: break-word;
+}
+
+/* === Distinct Icon Colors === */
+.skill-item:nth-child(1) .anticon { color: #1890ff; }   /* blue */
+.skill-item:nth-child(2) .anticon { color: #52c41a; }   /* green */
+.skill-item:nth-child(3) .anticon { color: #f5222d; }   /* red */
+.skill-item:nth-child(4) .anticon { color: #fa8c16; }   /* orange */
+.skill-item:nth-child(5) .anticon { color: #722ed1; }   /* purple */
+.skill-item:nth-child(6) .anticon { color: #13c2c2; }   /* teal */
+.skill-item:nth-child(7) .anticon { color: #eb2f96; }   /* pink */
+.skill-item:nth-child(8) .anticon { color: #bcbfcc; }   /* dark blue */
+.skill-item:nth-child(9) .anticon { color: #a0d911; }   /* lime */
