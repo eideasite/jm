@@ -16,113 +16,61 @@ const { Panel } = Collapse;
 
 const Project11 = () => {
   const project = {
-    name: 'Pizza Da Valter – Web and Mobile App (iOS & Android)',
+    name: 'Smart Money Exchange – Mobile & Web App Analysis',
     country: 'United Kingdom',
-    sector: 'Restaurant / Hospitality Tech',
-    client: ['Pizza Da Valter'],
-    role: [
-      'Business Analyst',
-      'Team Coordinator',
-      'Project Manager',
-      'Project Lead',
+    sector: 'Finance / Currency Exchange',
+    client: [],
+    role: ['Business Analyst / UAT & Workflow Analyst'],
+    purpose: [
+      'Analyze outdated mobile app features',
+      'Conduct UAT on pre-released app version (APK testing in sandbox environment)',
+      'Design improved workflows and UI enhancements',
+      'Compare old vs new product features',
+      'Analyze web admin portal functionalities',
+      'Study remit workflow and bank account API integrations',
+      'Recommend mobile app feature improvements',
+      'Prepare user flow and workflow documentation',
+      'Deliver mobile app comparison and improvement reports',
     ],
-    purpose:
-      'Develop website and mobile app with booking system, improve UX/UI, coordinate development teams, and ensure smooth project delivery.',
     technologies: [
-      'Frontend: ReactJS',
-      'Mobile App: Flutter, Kotlin',
-      'Backend: API & DBMS',
-      'Design/Flow: Draw.io, Figma',
+      'Jira (Task management)',
+      'Figma / Wireframing tools',
+      'Google Docs (Documentation)',
+      'API analysis tools',
+      'Sandbox environment for APK testing',
     ],
-    tools: ['Jira', 'Google Docs', 'Draw.io', 'Gmail', 'Canva'],
+    tools: [
+      'Jira',
+      'Figma',
+      'Google Docs',
+      'API Test Tools',
+    ],
     experience: [
-      'Feature gathering and requirement analysis',
-      'Sprint planning and backlog management',
-      'Booking system design and implementation',
-      'UX/UI enhancements and user story mapping',
-      'Privacy policy and data collection documentation',
-      'Agile methodology support and coordination',
+      'UAT analysis including APK testing in sandbox environment',
+      'Workflow and user flow design',
+      'Feature comparison and gap analysis',
+      'Coordination with development and product teams',
+      'Documentation of process and feature improvements',
+      'Communicate with stakeholders for clarification',
     ],
     document: [
-      'Business Analysis Report',
-      'UX/UI Wireframes',
-      'Booking System Flowcharts',
-      'Sprint Planning Sheets',
-      'Privacy Policy & Data Collection Confirmation',
-      'User Story Mapping',
+      'UAT & Sandbox APK Testing Report',
+      'Mobile App Feature Comparison Report',
+      'Workflow & User Flow Diagrams',
+      'UI Improvement Suggestions',
+      'API Integration Analysis',
+      'Web Admin Portal Functional Analysis',
     ],
-    scope: [
-      'New website and mobile app design',
-      'Booking time-slot system integration',
-      'Mobile and web screen flow documentation',
-      '1-mile delivery map range research',
-      'Content creation and deployment planning',
-    ],
-    cloudDeployment:
-      'Web: Live at https://www.pizzadavalter.co.uk/ | Mobile: Cross-platform iOS and Android deployment (Flutter)',
+    scope: ['Mobile app enhancement and web admin portal analysis'],
+    cloudDeployment: 'Web access and Play Store release phase',
     urls: [
-      'https://www.pizzadavalter.co.uk/',
-      'Android App: Google Play',
-      'iOS App: Apple Store',
+      'https://play.google.com/store/apps/details?id=com.globalexchange.global&pcampaignid=web_share',
+      'https://online.globalexchange.co.uk/',
     ],
     teamMembers: [
-      {
-        name: 'JM (You)',
-        role:
-          'Business Analyst / Team Coordinator / Project Manager / Project Lead',
-        icon: '🧑‍💼',
-        email: 'N/A',
-        linkedin: 'N/A',
-        technology: 'Leadership, Analysis & Coordination',
-      },
-      {
-        name: 'Yasindu Weerakkody',
-        role: 'UX/UI Lead',
-        icon: '🎨',
-        email: 'N/A',
-        linkedin: 'LinkedIn',
-        technology: 'UX/UI Design Leadership',
-      },
-      {
-        name: 'Jessy',
-        role: 'Associate UX/UI Designer',
-        icon: '🎨',
-        email: 'N/A',
-        linkedin: 'N/A',
-        technology: 'UX/UI Design',
-      },
-      {
-        name: 'Kavi (Kavitharan K)',
-        role: 'Associate Mobile App Developer',
-        icon: '📱',
-        email: 'N/A',
-        linkedin: 'LinkedIn',
-        technology: 'Flutter & Kotlin',
-      },
-      {
-        name: 'Thanu',
-        role: 'Intern React Developer',
-        icon: '💻',
-        email: 'N/A',
-        linkedin: 'N/A',
-        technology: 'React Frontend',
-      },
-      {
-        name: 'Gobi',
-        role: 'Intern React Developer',
-        icon: '💻',
-        email: 'N/A',
-        linkedin: 'N/A',
-        technology: 'React Frontend',
-      },
-      {
-        name: 'Thushanthan',
-        role: 'Backend Developer API/DBMS',
-        icon: '🛠️',
-        email: 'N/A',
-        linkedin: 'N/A',
-        technology: 'API and Database Management',
-      },
+      { name: 'JM (You)', role: 'Business Analyst / UAT & Workflow Analyst', icon: '🧑‍💼' },
+      { name: 'Mobile App Developer', role: 'Feature Implementation & APK Build', icon: '📱' },
+      { name: 'Product Manager', role: 'Business Requirement Alignment', icon: '📊' },
     ],
   };
 
@@ -140,65 +88,56 @@ const Project11 = () => {
       title={
         <div style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', flexWrap: 'wrap' }}>
           <ProjectOutlined style={{ color: '#13c2c2', marginTop: 3 }} />
-          <Text
-            strong
-            style={{
-              fontSize: '16px',
-              whiteSpace: 'normal',
-              wordBreak: 'break-word',
-            }}
-          >
+          <Text strong style={{ fontSize: '16px', whiteSpace: 'normal', wordBreak: 'break-word' }}>
             {project.name}
           </Text>
         </div>
       }
     >
       <Space direction="vertical" size="middle" style={{ width: '100%' }}>
-        {/* Section 1: Basic Info */}
         <Collapse ghost bordered={false}>
           <Panel header="🌍 Country" key="1"><ul><li>{project.country}</li></ul></Panel>
           <Panel header="💻 Sector" key="2"><ul><li>{project.sector}</li></ul></Panel>
-          <Panel header="🏢 Client" key="3"><ul>{project.client.map((c, i) => <li key={i}>{c}</li>)}</ul></Panel>
-          <Panel header="🔧 Role" key="4"><ul>{project.role.map((r, i) => <li key={i}>{r}</li>)}</ul></Panel>
-          <Panel header="🎯 Purpose" key="5"><Text>{project.purpose}</Text></Panel>
+          <Panel header="🔧 Role" key="3"><ul>{project.role.map((r, i) => <li key={i}>{r}</li>)}</ul></Panel>
+          <Panel header="🎯 Purpose" key="4"><ul>{project.purpose.map((p, i) => <li key={i}>{p}</li>)}</ul></Panel>
         </Collapse>
 
         <Divider style={{ margin: '12px 0' }} />
 
-        {/* Section 2: Technical / Experience */}
         <Collapse ghost bordered={false}>
-          <Panel header="🧪 Key Technologies Used" key="6">
+          <Panel header="🧪 Key Technologies Used" key="5">
             <ul>{project.technologies.map((tech, i) => <li key={i}>{tech}</li>)}</ul>
           </Panel>
-          <Panel header="📘 Experience Gained" key="7">
+          <Panel header="📘 Responsibilities (Experience Gained)" key="6">
             <ul>{project.experience.map((exp, i) => <li key={i}>{exp}</li>)}</ul>
           </Panel>
-          <Panel header="🛠 Tools Used" key="8">
+          <Panel header="🛠 Tools Used" key="7">
             <ul>{project.tools.map((tool, i) => <li key={i}>{tool}</li>)}</ul>
           </Panel>
-          <Panel header="📄 Documentation" key="9">
+          <Panel header="📄 Documentation" key="8">
             <ul>{project.document.map((doc, i) => <li key={i}>{doc}</li>)}</ul>
           </Panel>
-          <Panel header="📦 Project Scope" key="10">
+          <Panel header="📦 Platform Scope" key="9">
             <ul>{project.scope.map((s, i) => <li key={i}>{s}</li>)}</ul>
           </Panel>
-          <Panel header="☁️ Cloud Deployment" key="11"><Text>{project.cloudDeployment}</Text></Panel>
-          <Panel header="🔗 URLs" key="12">
-            <ul>{project.urls.map((url, i) => (
-              <li key={i}>
-                <Link href={url} target="_blank" rel="noopener noreferrer">
-                  {url}
-                </Link>
-              </li>
-            ))}</ul>
+          <Panel header="☁️ Deployment" key="10"><Text>{project.cloudDeployment}</Text></Panel>
+          <Panel header="🔗 URLs" key="11">
+            <ul>
+              {project.urls.map((url, i) => (
+                <li key={i}>
+                  <Link href={url} target="_blank" rel="noopener noreferrer">
+                    {url}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </Panel>
         </Collapse>
 
         <Divider dashed style={{ margin: '1px 0' }} />
 
-        {/* Section 3: Team Members */}
         <Collapse ghost bordered={false}>
-          <Panel header="🧑‍🤝‍🧑 Team Members" key="13">
+          <Panel header="🧑‍🤝‍🧑 Team Members" key="12">
             <ul>
               {project.teamMembers.map((member, i) => (
                 <li key={i} style={{ display: 'flex', alignItems: 'center' }}>
@@ -209,28 +148,12 @@ const Project11 = () => {
             </ul>
           </Panel>
 
-          <Panel header="💼 Job Role" key="14">
-            <ul>
-              {project.teamMembers.map((member, i) => (
-                <li key={i}>– {member.role}</li>
-              ))}
-            </ul>
+          <Panel header="💼 Job Role" key="13">
+            <ul>{project.teamMembers.map((member, i) => <li key={i}>– {member.role}</li>)}</ul>
           </Panel>
 
-          <Panel header="🔗 LinkedIn" key="15">
-            <ul>
-              {project.teamMembers.map((member, i) =>
-                member.linkedin && member.linkedin !== 'N/A' ? (
-                  <li key={i}>
-                    <Link href={member.linkedin} target="_blank" rel="noopener noreferrer">
-                      {member.linkedin}
-                    </Link>
-                  </li>
-                ) : (
-                  <li key={i}>N/A</li>
-                )
-              )}
-            </ul>
+          <Panel header="🔗 LinkedIn" key="14">
+            <ul>{project.teamMembers.map((_, i) => <li key={i}>N/A</li>)}</ul>
           </Panel>
         </Collapse>
       </Space>

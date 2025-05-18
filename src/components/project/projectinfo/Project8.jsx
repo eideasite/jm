@@ -16,63 +16,70 @@ const { Panel } = Collapse;
 
 const Project8 = () => {
   const project = {
-    name: 'IYCONNECT – Help Desk UI Improvements', // ✅ Project Name
-    country: 'United Kingdom (UK)',
-    sector: 'Internal Product / Customer Support Interface',
-    client: ['IYCONNECT (Own Product)'],
-    role: ['Intern Business Analyst', 'UI Improvement Coordinator'],
+    name: 'Sabah State Water Management System – Mobile App & Dashboard Redesign',
+    country: 'Malaysia',
+    sector: 'Public Utilities / Government Service (Water Management)',
+    client: ['Sabah State Water Department'],
+    role: ['Junior Business Analyst', 'UI/UX Coordination Lead'],
     purpose:
-      'To enhance the user interface of the Help Desk module by analyzing the existing UI and proposing improved layouts and flows for better user experience.',
-
-    technologies: ['UI Wireframing', 'Prototyping Tools'], // ✅ Key Technologies
+      'To identify weaknesses in the current mobile app and dashboard, gather stakeholder requirements, and redesign the UI/UX for improved user experience and functionality—focusing especially on the Registered Plumber section.',
+    technologies: ['Figma', 'Mobile UI Frameworks', 'Web UI Components'],
+    tools: ['Figma', 'Google Docs', 'Gmail', 'Canva', 'Presentation Tools'],
     experience: [
-      'UI analysis',
-      'Wireframe creation',
-      'Prototype presentation',
-      'Stakeholder requirement handling',
-      'Direct appreciation from leadership ("Good Work")',
+      'Requirement gathering and stakeholder communication',
+      'Analyzing existing system flow',
+      'Figma wireframing and prototyping',
+      'Coordinating UI/UX improvements',
+      'Delivering presentations and documentation to stakeholders',
     ],
-    tools: ['Wireframing Tools', 'Prototyping Software', 'Google Docs'],
-    scope:
-      'Focused UI enhancement of internal Help Desk module. Improvements included layout clarity, flow optimization, and task progress alignment with stakeholder goals.',
-
-    document:
-      'UI Suggestions Document, Task Board (To Do / In Progress), Wireframes, Prototype Screens',
-    cloudDeployment: 'Internal – Company Privacy',
-    urls: ['[Internal Project – No Public URL]'],
-
+    document: [
+      'UI/UX Proposal',
+      'Wireframes',
+      'Figma Prototypes',
+      'User Flow Documentation',
+      'Presentation Slides',
+    ],
+    scope: [
+      'Mobile app and dashboard UI analysis',
+      'Feature planning and redesign',
+      'Collaboration with UX/UI and development teams',
+      'Presentation of wireframes and user flows',
+      'Registered Plumber section enhancement',
+    ],
+    cloudDeployment: 'Not deployed – Design and proposal phase (Internal Review)',
+    urls: ['https://water.sabah.gov.my/'],
     teamMembers: [
       {
-        name: 'Senior Backend Developer',
-        role: 'Technical Guidance & Integration',
-        icon: '👨‍💻',
-        email: 'N/A',
-        linkedin: 'N/A',
-        technology: 'Backend Support',
-      },
-      {
-        name: 'Associate Mobile Developer',
-        role: 'App-side UI Adjustment',
-        icon: '📱',
-        email: 'N/A',
-        linkedin: 'N/A',
-        technology: 'Mobile UI',
-      },
-      {
         name: 'JM (You)',
-        role: 'BA / UI Improvement Lead',
+        role: 'Junior Business Analyst / UI UX Coordination',
         icon: '🧑‍💼',
         email: 'N/A',
         linkedin: 'N/A',
-        technology: 'Business Analysis / UI Coordination',
+        technology: 'Analysis & UI Coordination',
       },
       {
         name: 'Director',
-        role: 'Project Approval & Feedback ("Good Work")',
-        icon: '🏢',
+        role: 'Project Stakeholder (Feedback & Approval)',
+        icon: '👔',
         email: 'N/A',
         linkedin: 'N/A',
-        technology: 'Leadership',
+        technology: 'Stakeholder Management',
+      },
+      {
+        name: 'UX/UI Team',
+        role: 'Figma and Wireframe Designers',
+        icon: '🎨',
+        email: 'N/A',
+        linkedin: 'N/A',
+        technology: 'Design and Prototyping',
+      },
+      {
+        name: 'Development Team',
+        role: 'Web & Mobile Implementation Team (Internal)',
+        icon: '💻',
+        email: 'N/A',
+        linkedin: 'N/A',
+        technology: 'Frontend & Backend',
       },
     ],
   };
@@ -105,6 +112,7 @@ const Project8 = () => {
       }
     >
       <Space direction="vertical" size="middle" style={{ width: '100%' }}>
+        {/* Section 1: Basic Info */}
         <Collapse ghost bordered={false}>
           <Panel header="🌍 Country" key="1"><ul><li>{project.country}</li></ul></Panel>
           <Panel header="💻 Sector" key="2"><ul><li>{project.sector}</li></ul></Panel>
@@ -115,18 +123,38 @@ const Project8 = () => {
 
         <Divider style={{ margin: '12px 0' }} />
 
+        {/* Section 2: Technical / Experience */}
         <Collapse ghost bordered={false}>
-          <Panel header="🧪 Key Technologies Used" key="6"><ul>{project.technologies.map((t, i) => <li key={i}>{t}</li>)}</ul></Panel>
-          <Panel header="📘 Experience Gained" key="7"><ul>{project.experience.map((e, i) => <li key={i}>{e}</li>)}</ul></Panel>
-          <Panel header="🛠 Tools Used" key="8"><ul>{project.tools.map((tool, i) => <li key={i}>{tool}</li>)}</ul></Panel>
-          <Panel header="📄 Documentation" key="9"><Text>{project.document}</Text></Panel>
-          <Panel header="📦 Project Scope" key="10"><Text>{project.scope}</Text></Panel>
+          <Panel header="🧪 Key Technologies Used" key="6">
+            <ul>{project.technologies.map((tech, i) => <li key={i}>{tech}</li>)}</ul>
+          </Panel>
+          <Panel header="📘 Experience Gained" key="7">
+            <ul>{project.experience.map((exp, i) => <li key={i}>{exp}</li>)}</ul>
+          </Panel>
+          <Panel header="🛠 Tools Used" key="8">
+            <ul>{project.tools.map((tool, i) => <li key={i}>{tool}</li>)}</ul>
+          </Panel>
+          <Panel header="📄 Documentation" key="9">
+            <ul>{project.document.map((doc, i) => <li key={i}>{doc}</li>)}</ul>
+          </Panel>
+          <Panel header="📦 Project Scope" key="10">
+            <ul>{project.scope.map((s, i) => <li key={i}>{s}</li>)}</ul>
+          </Panel>
           <Panel header="☁️ Cloud Deployment" key="11"><Text>{project.cloudDeployment}</Text></Panel>
-          <Panel header="🔗 URLs" key="12"><ul>{project.urls.map((url, i) => <li key={i}>{url}</li>)}</ul></Panel>
+          <Panel header="🔗 URLs" key="12">
+            <ul>{project.urls.map((url, i) => (
+              <li key={i}>
+                <Link href={url} target="_blank" rel="noopener noreferrer">
+                  {url}
+                </Link>
+              </li>
+            ))}</ul>
+          </Panel>
         </Collapse>
 
         <Divider dashed style={{ margin: '1px 0' }} />
 
+        {/* Section 3: Team Members */}
         <Collapse ghost bordered={false}>
           <Panel header="🧑‍🤝‍🧑 Team Members" key="13">
             <ul>
