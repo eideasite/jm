@@ -1,0 +1,80 @@
+/* Container for right side: search, avatar, switch */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  white-space: nowrap; /* Prevent items breaking into multiple lines */
+}
+
+/* Search input max width & margin */
+.search-input {
+  max-width: 220px;
+  width: 100%;
+  margin-right: 16px;
+}
+
+/* Light mode search */
+.search-input.light input {
+  background-color: #fff;
+  color: #000;
+  border-color: #d9d9d9;
+}
+
+/* Dark mode search */
+.search-input.dark input {
+  background-color: #1f1f1f;
+  color: #fff;
+  border-color: #444;
+}
+
+/* Search button style */
+.search-input .ant-input-search-button {
+  background-color: #1890ff;
+  border-color: #1890ff;
+  color: #fff;
+}
+
+.search-input.dark .ant-input-search-button {
+  background-color: #555;
+  border-color: #555;
+  color: #fff;
+}
+
+/* Desktop menu container */
+.desktop-menu {
+  max-width: 700px; /* Limit max width to avoid overlap */
+  overflow-x: auto; /* Allow horizontal scroll if too many items */
+}
+
+/* Hide mobile menu button on desktop */
+.mobile-menu-button {
+  display: none;
+}
+
+/* Responsive: show mobile menu button and hide desktop menu on small screens */
+@media (max-width: 768px) {
+  .desktop-menu {
+    display: none !important;
+  }
+
+  .mobile-menu-button {
+    display: inline-block;
+  }
+
+  .header-right {
+    gap: 8px;
+  }
+
+  .search-input {
+    max-width: 150px;
+    margin-right: 8px;
+  }
+}
+.desktop-menu {
+  max-width: none;         /* Remove max-width limit */
+  overflow-x: visible;     /* Remove horizontal scroll */
+  white-space: nowrap;     /* Keep menu items in one line */
+  flex-wrap: nowrap;       /* Prevent wrapping */
+  display: flex !important; /* Force flex layout */
+  justify-content: center;  /* Center menu items */
+}

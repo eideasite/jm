@@ -23,8 +23,7 @@ const Project17 = lazy(() => import('./projectinfo/Project17'));
 const Project18 = lazy(() => import('./projectinfo/Project18'));
 const Project19 = lazy(() => import('./projectinfo/Project19'));
 const Project20 = lazy(() => import('./projectinfo/Project20'));
-const Project21 = lazy(() => import('./projectinfo/Project21'));
-const Project22 = lazy(() => import('./projectinfo/Project22'));
+
 
 const Project = () => {
   return (
@@ -50,8 +49,6 @@ const Project = () => {
         <Project18 />
         <Project19 />
         <Project20 />
-        <Project21 />
-        <Project22 />
       </Suspense>
     </div>
   );

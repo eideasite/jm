@@ -1,23 +1,60 @@
-.contact-section {
-  padding: 20px;
+/* Buttons container (matches input width) */
+.form-buttons {
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+  width: 100%;               /* match form field width */
+  margin-top: 8px;
 }
 
-.contact-form {
-  width: 100%;
+/* Submit & Reset button styling */
+.submit-button,
+.reset-button {
+  flex: 1;                   /* equal width */
+  padding: 12px 20px;
+  font-size: 16px;
+  font-weight: 600;
+  background-color: black;
+  color: rgb(161, 161, 161);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  white-space: nowrap;
 }
 
-.submit-button, .reset-button {
-  width: 100%; /* Ensures buttons fill the width of the card */
-  padding: 10px; /* Adds more padding for a better visual appearance */
-  font-size: 16px; /* Increases the font size for better readability */
+/* Hover and focus styles */
+.submit-button:hover,
+.reset-button:hover,
+.submit-button:focus,
+.reset-button:focus {
+  background-color: #ededed;
+  color: black;
+  outline: none;
 }
 
-@media (max-width: 600px) {
-  .contact-form {
-    margin: 0 20px;
+/* Dark mode support */
+.dark-mode .submit-button,
+.dark-mode .reset-button {
+  background-color: #000;
+  color: #fff;
+}
+
+.dark-mode .submit-button:hover,
+.dark-mode .reset-button:hover {
+  background-color: #333;
+  color: #fff;
+}
+
+/* Mobile responsive: stack vertically */
+@media (max-width: 480px) {
+  .form-buttons {
+    flex-direction: column;
+    gap: 14px;
   }
 
-  .submit-button, .reset-button {
-    margin-top: 10px;
+  .submit-button,
+  .reset-button {
+    width: 100%;
   }
 }

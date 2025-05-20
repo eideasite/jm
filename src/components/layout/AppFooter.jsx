@@ -1,9 +1,8 @@
-import React from 'react';
-import { Layout, Row, Col, Button, Card } from 'antd';
+import React, { useState } from 'react';
+import { Layout, Row, Col, Button, Card, Modal } from 'antd';
 import {
   FacebookOutlined,
   LinkedinOutlined,
-  TwitterOutlined,
   YoutubeOutlined,
   GithubOutlined,
   WhatsAppOutlined,
@@ -20,24 +19,85 @@ const iconButtonStyle = {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
+  backgroundColor: '#1f1f1f',
+  color: '#fff',
+  border: '1px solid #444',
 };
 
-const socialStyles = {
-  twitter: { backgroundColor: '#1DA1F2', color: '#fff' },
-  youtube: { backgroundColor: '#FF0000', color: '#fff' },
-  facebook: { backgroundColor: '#1877F2', color: '#fff' },
-  linkedin: { backgroundColor: '#0077B5', color: '#fff' },
-  github: { backgroundColor: '#333', color: '#fff' },
-};
+const socialData = [
+  {
+    platform: 'Facebook',
+    icon: <FacebookOutlined />,
+    link: 'https://www.facebook.com/public/Jeya-Manoharan',
+    emoji: '📘',
+    description: (
+      <div style={{ lineHeight: 1.6 }}>
+        <p>📘 Connect with me on Facebook.</p>
+        <p>🔗 <a href="https://www.facebook.com/public/Jeya-Manoharan" target="_blank" rel="noreferrer" style={{ color: '#1890ff' }}>https://www.facebook.com/public/Jeya-Manoharan</a></p>
+      </div>
+    ),
+  },
+  {
+    platform: 'LinkedIn',
+    icon: <LinkedinOutlined />,
+    link: 'https://www.linkedin.com/posts/career4jm',
+    emoji: '💼',
+    description: (
+      <div style={{ lineHeight: 1.6 }}>
+        <p>💼 Explore career updates and professional highlights.</p>
+        <p>🔗 <a href="https://www.linkedin.com/posts/career4jm" target="_blank" rel="noreferrer" style={{ color: '#1890ff' }}>https://www.linkedin.com/posts/career4jm</a></p>
+      </div>
+    ),
+  },
+  {
+    platform: 'GitHub',
+    icon: <GithubOutlined />,
+    link: 'https://github.com/eideasite',
+    emoji: '👨‍💻',
+    description: (
+      <div style={{ lineHeight: 1.6 }}>
+        <p>👨‍💻 Browse my open source projects.</p>
+        <p>🔗 <a href="https://github.com/eideasite" target="_blank" rel="noreferrer" style={{ color: '#1890ff' }}>https://github.com/eideasite</a></p>
+      </div>
+    ),
+  },
+  {
+    platform: 'YouTube',
+    icon: <YoutubeOutlined />,
+    link: 'https://youtube.com/@whytechboost?si=L42uW-DXZ0G4wncR',
+    emoji: '📺',
+    description: (
+      <div style={{ lineHeight: 1.6 }}>
+        <p>📺 <strong>Squwave</strong></p>
+        <p>💡 Learn more about technologies and include them in smart devices. Stay safe and secure with tech society.</p>
+        <p>📧 Email: Not shown publicly</p>
+        <p>📍 Location: Sri Lanka</p>
+        <p>📅 Joined Nov 28, 2021</p>
+        <p>👥 136 subscribers | 🎥 44 videos | 👁️‍🗨️ 35,107 views</p>
+        <p>🔗 <a href="https://www.youtube.com/@WhyTechBoost" target="_blank" rel="noreferrer" style={{ color: '#1890ff' }}>www.youtube.com/@WhyTechBoost</a></p>
+        <p>🔗 <a href="https://youtube.com/@whytechboost?si=L42uW-DXZ0G4wncR" target="_blank" rel="noreferrer" style={{ color: '#1890ff' }}>YouTube Channel Link</a></p>
+      </div>
+    ),
+  },
+];
 
 const AppFooter = ({ darkMode }) => {
+  const [modal, setModal] = useState({ visible: false, content: null });
+
+  const openModal = (item) => {
+    setModal({
+      visible: true,
+      content: item,
+    });
+  };
+
   const footerCardStyle = {
     width: '100%',
     borderRadius: '12px',
     padding: '40px 20px',
     boxShadow: darkMode
-      ? '0px 4px 16px rgba(255, 255, 255, 0.1)'
-      : '0px 4px 16px rgba(0, 0, 0, 0.1)',
+      ? '0px 4px 16px rgba(255, 255, 255, 0.05)'
+      : '0px 4px 16px rgba(0, 0, 0, 0.05)',
     backgroundColor: darkMode ? '#2a2a2a' : '#fff',
     color: darkMode ? '#fff' : '#000',
     textAlign: 'center',
@@ -46,7 +106,7 @@ const AppFooter = ({ darkMode }) => {
   return (
     <Footer
       style={{
-        background: darkMode ? '#1f1f1f' : '#fffafa', // snow white
+        background: darkMode ? '#1f1f1f' : '#fafafa',
         padding: '60px 20px',
       }}
     >
@@ -61,41 +121,15 @@ const AppFooter = ({ darkMode }) => {
                 flexWrap: 'wrap',
               }}
             >
-              <Button
-                shape="circle"
-                style={{ ...iconButtonStyle, ...socialStyles.twitter }}
-                icon={<TwitterOutlined />}
-                href="https://twitter.com/yourprofile"
-                target="_blank"
-              />
-              <Button
-                shape="circle"
-                style={{ ...iconButtonStyle, ...socialStyles.youtube }}
-                icon={<YoutubeOutlined />}
-                href="https://youtube.com/yourchannel"
-                target="_blank"
-              />
-              <Button
-                shape="circle"
-                style={{ ...iconButtonStyle, ...socialStyles.facebook }}
-                icon={<FacebookOutlined />}
-                href="https://facebook.com/yourprofile"
-                target="_blank"
-              />
-              <Button
-                shape="circle"
-                style={{ ...iconButtonStyle, ...socialStyles.linkedin }}
-                icon={<LinkedinOutlined />}
-                href="https://linkedin.com/in/yourprofile"
-                target="_blank"
-              />
-              <Button
-                shape="circle"
-                style={{ ...iconButtonStyle, ...socialStyles.github }}
-                icon={<GithubOutlined />}
-                href="https://github.com/yourgithubprofile"
-                target="_blank"
-              />
+              {socialData.map((item, index) => (
+                <Button
+                  key={index}
+                  shape="circle"
+                  style={iconButtonStyle}
+                  icon={item.icon}
+                  onClick={() => openModal(item)}
+                />
+              ))}
             </div>
           </Col>
 
@@ -139,10 +173,30 @@ const AppFooter = ({ darkMode }) => {
           </Col>
         </Row>
 
-        <div style={{ marginTop: '30px', fontSize: '14px', color: darkMode ? '#aaa' : '#888' }}>
+        <div
+          style={{
+            marginTop: '30px',
+            fontSize: '14px',
+            color: darkMode ? '#aaa' : '#888',
+          }}
+        >
           © {new Date().getFullYear()} My Portfolio. All rights reserved.
         </div>
       </Card>
+
+      <Modal
+        title={`${modal.content?.emoji} ${modal.content?.platform}`}
+        open={modal.visible}
+        onCancel={() => setModal({ visible: false, content: null })}
+        footer={null}
+      >
+        <div style={{ marginBottom: 12 }}>
+          {typeof modal.content?.description === 'string'
+            ? <p>{modal.content.description}</p>
+            : modal.content?.description}
+        </div>
+        {/* Removed duplicated link here */}
+      </Modal>
     </Footer>
   );
 };

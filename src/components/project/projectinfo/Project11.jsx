@@ -108,7 +108,7 @@ const Project11 = () => {
           <Panel header="🧪 Key Technologies Used" key="5">
             <ul>{project.technologies.map((tech, i) => <li key={i}>{tech}</li>)}</ul>
           </Panel>
-          <Panel header="📘 Responsibilities (Experience Gained)" key="6">
+          <Panel header="📘 Responsibilities " key="6">
             <ul>{project.experience.map((exp, i) => <li key={i}>{exp}</li>)}</ul>
           </Panel>
           <Panel header="🛠 Tools Used" key="7">

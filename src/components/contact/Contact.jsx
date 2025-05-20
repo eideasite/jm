@@ -5,12 +5,14 @@ const Contact = () => {
   const [form] = Form.useForm();
 
   return (
-    <section className="contact-section" style={{ padding: '20px' }}>
-      <h2 style={{ textAlign: 'center', marginBottom: '20px' }}>Contact Me</h2>
+    <section className="contact-section">
+      <h2 className="contact-title">Contact Me</h2>
       <Card
+        className="contact-card"
         title="Get in Touch"
         bordered={false}
         style={{ maxWidth: '600px', margin: '0 auto' }}
+        headStyle={{ color: 'inherit' }}
       >
         <Form
           form={form}
@@ -53,23 +55,15 @@ const Contact = () => {
             />
           </Form.Item>
 
-          <Form.Item style={{ display: 'flex', flexDirection: 'column' }}>
-            <Button
-              type="primary"
-              htmlType="submit"
-              className="submit-button"
-              style={{ width: '100%', marginBottom: '10px' }}
-            >
-              Send Message
-            </Button>
-            <Button
-              danger
-              onClick={() => form.resetFields()}
-              className="reset-button"
-              style={{ width: '100%' }}
-            >
-              Reset
-            </Button>
+          <Form.Item>
+            <div className="form-buttons">
+              <Button type="primary" htmlType="submit" className="submit-button">
+                Send Message
+              </Button>
+              <Button danger onClick={() => form.resetFields()} className="reset-button">
+                Reset
+              </Button>
+            </div>
           </Form.Item>
         </Form>
       </Card>

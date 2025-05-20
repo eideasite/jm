@@ -1,4 +1,3 @@
-// src/components/layout/MainLayout.jsx
 import React, { useState } from 'react';
 import { Layout, ConfigProvider } from 'antd';
 import { lightTheme, darkTheme } from '../../theme/themeConfig';
@@ -11,9 +10,9 @@ const MainLayout = () => {
 
   return (
     <ConfigProvider theme={darkMode ? darkTheme : lightTheme}>
-      <Layout className={darkMode ? 'dark' : ''}>
+      <Layout className={darkMode ? 'dark' : ''} style={{ minHeight: '100vh' }}>
         <AppHeader darkMode={darkMode} setDarkMode={setDarkMode} />
-        <AppContent />
+        <AppContent darkMode={darkMode} />
         <AppFooter darkMode={darkMode} />
       </Layout>
     </ConfigProvider>
