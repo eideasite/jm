@@ -78,3 +78,29 @@
   display: flex !important; /* Force flex layout */
   justify-content: center;  /* Center menu items */
 }
+
+/* Search Input Style */
+.search-input {
+  max-width: 300px;
+  min-width: 180px;
+  width: 100%;
+  transition: all 0.3s ease;
+  margin-right: 16px;
+}
+
+.search-input input {
+  background-color: transparent;
+  color: inherit;
+}
+
+.search-input.dark input {
+  background-color: #1a1a1a;
+  border-color: #444;
+  color: #fff;
+}
+
+.search-input.light input {
+  background-color: #fff;
+  border-color: #ccc;
+  color: #000;
+}

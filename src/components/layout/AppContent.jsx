@@ -1,13 +1,12 @@
 import React from 'react';
 import { Layout } from 'antd';
 
-import Hero from '../hero/Hero';
-import Skill from '../skill/Skill';
-import Experience from '../Experience/Experience';
-import Project from '../project/Project';
-import CVSection from '../cvSection/CVSection';
-import Journey from '../journey/journey';
-import Contact from '../contact/Contact';
+import Hero from '../home/hero/Hero';
+import Skill from '../home/skill/Skill';
+import Journey from '../home/journey/journey';
+import Project from '../../pages/projects/Project';
+import CVSection from '../home/cvSection/CVSection';
+import Contact from '../home/contact/Contact';
 
 const { Content } = Layout;
 
@@ -27,13 +26,6 @@ const AppContent = ({ darkMode }) => {
         <Skill darkMode={darkMode} />
       </section>
 
-
-
-      {/* Experience Section */}
-      <section id="experience">
-        <Experience />
-      </section>
-
       {/* Journey Section */}
       <section id="journey">
         <Journey />
@@ -44,14 +36,10 @@ const AppContent = ({ darkMode }) => {
         <Project darkMode={darkMode} />
       </section>
 
-
-
       {/* Documents Section */}
       <section id="documents">
         <CVSection />
       </section>
-
-
 
       {/* Contact Section */}
       <section id="contact">

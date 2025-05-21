@@ -1,16 +1,22 @@
+.contact-title {
+  text-align: center;   /* <-- Center-align the text */
+  font-size: 28px;      /* (Optional) Improve visibility */
+  margin-bottom: 24px;  /* (Optional) Space before the card */
+}
+
 /* Buttons container (matches input width) */
 .form-buttons {
   display: flex;
   gap: 16px;
-  justify-content: space-between;
-  width: 100%;               /* match form field width */
+  justify-content: center;       /* <-- Center align buttons horizontally */
+  width: 100%;                   /* match form field width */
   margin-top: 8px;
 }
 
 /* Submit & Reset button styling */
 .submit-button,
 .reset-button {
-  flex: 1;                   /* equal width */
+  flex: 0 1 auto;                /* <-- Allow natural size, not forced equal width */
   padding: 12px 20px;
   font-size: 16px;
   font-weight: 600;
@@ -51,6 +57,7 @@
   .form-buttons {
     flex-direction: column;
     gap: 14px;
+    align-items: center;         /* <-- Center align items when stacked */
   }
 
   .submit-button,

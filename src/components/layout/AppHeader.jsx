@@ -2,10 +2,8 @@ import React, { useState } from 'react';
 import './AppHeader.css';
 import {
   Layout,
-  Space,
   Menu,
   Switch,
-  Avatar,
   Drawer,
   Button,
   Input,
@@ -19,24 +17,23 @@ import {
   FileTextOutlined,
   ContactsOutlined,
   MenuOutlined,
-  UserOutlined,
-  SearchOutlined,
 } from '@ant-design/icons';
+import { SiGoogle } from 'react-icons/si'; // ✅ Google icon
 
 const AppHeader = ({ darkMode, setDarkMode }) => {
   const [current, setCurrent] = useState('home');
   const [drawerVisible, setDrawerVisible] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
 
-const navItems = [
-  { label: 'Home', key: 'home', icon: <HomeOutlined style={{ color: '#1890ff' }} />, style: { padding: '0 12px' } },
-  { label: 'Skills', key: 'skills', icon: <AppstoreOutlined style={{ color: '#52c41a' }} />, style: { padding: '0 12px' } },
-  { label: 'Experience', key: 'experience', icon: <SolutionOutlined style={{ color: '#faad14' }} />, style: { padding: '0 12px' } },
-  { label: 'Projects', key: 'projects', icon: <AppstoreOutlined style={{ color: '#13c2c2' }} />, style: { padding: '0 12px' } },
-  { label: 'Documents', key: 'documents', icon: <FileTextOutlined style={{ color: '#f5222d' }} />, style: { padding: '0 12px' } },
-  { label: 'Contact', key: 'contact', icon: <ContactsOutlined style={{ color: '#2f54eb' }} />, style: { padding: '0 12px' } },
-];
-
+  const navItems = [
+    { label: 'Home', key: 'home', icon: <HomeOutlined style={{ color: '#1890ff' }} /> },
+    { label: 'Skills', key: 'skills', icon: <AppstoreOutlined style={{ color: '#52c41a' }} /> },
+    { label: 'Experience', key: 'experience', icon: <SolutionOutlined style={{ color: '#faad14' }} /> },
+    { label: 'Journey', key: 'journey', icon: <SolutionOutlined style={{ color: '#722ed1' }} /> },
+    { label: 'Projects', key: 'projects', icon: <AppstoreOutlined style={{ color: '#13c2c2' }} /> },
+    { label: 'Documents', key: 'documents', icon: <FileTextOutlined style={{ color: '#f5222d' }} /> },
+    { label: 'Contact', key: 'contact', icon: <ContactsOutlined style={{ color: '#2f54eb' }} /> },
+  ];
 
   const handleMenuClick = (e) => {
     setCurrent(e.key);
@@ -60,8 +57,6 @@ const navItems = [
 
   const showDrawer = () => setDrawerVisible(true);
   const closeDrawer = () => setDrawerVisible(false);
-
-  const googleAvatarUrl = 'https://lh3.googleusercontent.com/a/default-user=s64';
 
   return (
     <Layout.Header
@@ -95,25 +90,16 @@ const navItems = [
         />
       </div>
 
-      {/* Search + Avatar + Theme */}
+      {/* Search + Theme Toggle */}
       <div className="header-right">
-        <Input.Search
+        <Input
           value={searchQuery}
           onChange={handleSearchChange}
-          onSearch={handleSearch}
-          placeholder="Search..."
-          enterButton={<SearchOutlined />}
+          onPressEnter={(e) => handleSearch(e.target.value)}
+          placeholder="Search with Google..."
+          prefix={<SiGoogle color="#4285F4" size={18} />}
           allowClear
           className={`search-input ${darkMode ? 'dark' : 'light'}`}
-        />
-
-        <Avatar
-          src={googleAvatarUrl}
-          icon={<UserOutlined />}
-          style={{
-            backgroundColor: darkMode ? '#333' : '#e6f7ff',
-            color: darkMode ? '#fff' : '#000',
-          }}
         />
 
         <Switch
@@ -121,6 +107,7 @@ const navItems = [
           onChange={() => setDarkMode(!darkMode)}
           checkedChildren={<MoonOutlined />}
           unCheckedChildren={<SunOutlined />}
+          style={{ marginLeft: 12 }}
         />
         <span style={{ userSelect: 'none', marginLeft: 4 }}>
           {darkMode ? 'Dark Mode' : 'Light Mode'}
