@@ -2,38 +2,33 @@ import React from 'react';
 import { Card, Row, Col, Tag } from 'antd';
 import { ToolOutlined } from '@ant-design/icons';
 
-// 🎯 New hard skills (titles only)
 const hardSkills = [
-  'Agile Project Management',
-  'Analysis',
-  'Analytical',
-  'Architecture',
-  'Artificial Intelligence',
-  'Backend',
-  'Cloud',
-  'Database Management System',
-  'Developer Tools',
-  'Figma',
-  'Git',
-  'GitHub',
-  'JScript',
-  'Linux',
-  'Mobile',
-  'Mobile Development',
-  'Research',
-  'Software Architecture',
-  'Software Development',
-  'System Design',
-  'System Integration',
-  'Technical Documentation',
-  'Testing',
-  'Web Development',
+  'Git',                       // 3
+  'Linux',                     // 5
+  'Figma',                     // 5
+  'Cloud',                     // 5
+  'Mobile',                    // 6
+  'GitHub',                    // 6
+  'Backend',                   // 7
+  'JScript',                   // 7
+  'Testing',                   // 7
+  'Research',                  // 8
+  'Analysis',                  // 8
+  'Analytical',                // 10
+  'Architecture',              // 12
+  'System Design',             // 13
+  'Developer Tools',           // 15
+  'Web Development',           // 15
+  'Mobile Development',        // 18
+  'System Integration',        // 18
+  'Software Development',      // 20
+  'Software Architecture',     // 21
+  'Artificial Intelligence',   // 22
+  'Technical Documentation',   // 23
+  'Agile Project Management',  // 24
+  'Database Management System' // 26
 ];
 
-const tagColors = [
-  'geekblue', 'green', 'purple', 'cyan', 'orange',
-  'magenta', 'volcano', 'gold', 'lime', 'blue',
-];
 
 const HardSkill = ({ darkMode }) => (
   <Card
@@ -56,7 +51,7 @@ const HardSkill = ({ darkMode }) => (
       {hardSkills.map((skill, index) => (
         <Col key={index} xs={12} sm={8} md={6} lg={6} xl={4}>
           <Tag
-            color={tagColors[index % tagColors.length]}
+            className={`skill-card ${darkMode ? 'skill-card-dark' : 'skill-card-light'} skill-shade-${index % 10}`}
             style={{
               display: 'block',
               textAlign: 'center',
@@ -68,6 +63,18 @@ const HardSkill = ({ darkMode }) => (
               lineHeight: '1.4',
               minHeight: 40,
               wordBreak: 'break-word',
+              transition: 'transform 0.3s ease, background-color 0.3s ease, color 0.3s ease',
+              cursor: 'pointer',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'scale(1.05)';
+              e.currentTarget.style.backgroundColor = '#000'; // dark background
+              e.currentTarget.style.color = '#fff'; // white text
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'scale(1)';
+              e.currentTarget.style.backgroundColor = '';
+              e.currentTarget.style.color = '';
             }}
           >
             {skill}

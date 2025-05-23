@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-import { Descriptions, Tag, Card, Button } from 'antd';
-import { DownOutlined, UpOutlined } from '@ant-design/icons';
+import React from 'react';
+import { Tabs, Table, Card, Descriptions, Tag } from 'antd';
+
+const { TabPane } = Tabs;
 
 const colors = [
   'geekblue', 'purple', 'green', 'red', 'volcano', 'orange',
@@ -30,111 +31,84 @@ const data = [
   { project: 'Austrian UX/UI Modernization', tools: 'Wireframes, UX, Leadership', skills: 'Wireframing, System Analysis, Team Coordination, Leadership, Client Communication' },
   { project: 'FatChef POS System', tools: 'React, Flutter, APIs', skills: 'React JS, Flutter, API Integration, Requirement Gathering, Documentation, Team Coordination, Client Communication' },
   { project: 'Water Billing System', tools: 'Workflows, Wireframes, Proposals', skills: 'Wireframing, System Analysis, Requirement Gathering, Documentation, Client Communication, Leadership' },
-  
-  // Added new detailed project here:
-  {
-    project: 'BPH – Bridge Park Hotel London',
-    tools: 'Figma, Jira, Slack, Zoom',
-    skills: 'UI/UX enhancement, Stakeholder communication, Backlog grooming, Team coordination, Project tracking, Documentation',
-    details: {
-      country: 'UK',
-      sector: 'Hotel Services / Web Development',
-      client: 'Bridge Park Hotel',
-      role: 'Junior Business Analyst, Intern Project Coordinator',
-      purpose: 'UI/UX enhancement, backlog grooming, stakeholder communication, team coordination',
-      keyTechnologies: 'ReactJS, JavaScript, Figma, Stripe, Siteminder',
-      experience: 'UI/UX enhancement using Figma, Stakeholder communication and requirement gathering, Backlog grooming and sprint planning, Team coordination and project tracking',
-      toolsUsed: 'Figma, Jira, Slack, Zoom',
-      documentation: 'Project documentation, wireframes, stakeholder emails, and sprint reports',
-    },
-  },
 ];
 
-const App = () => {
-  const [expanded, setExpanded] = useState(false);
-  const visibleData = expanded ? data : data.slice(0, 4); // default show 4
 
-  return (
-    <div style={{ padding: 16, maxHeight: '90vh', overflowY: 'auto' }}>
-      {visibleData.map((item, index) => (
-        <Card
-          key={index}
-          title={item.project}
-          style={{ marginBottom: 24, textAlign: 'center' }}
-          bordered
-          hoverable
-        >
-          <Descriptions
+const tableColumns = [
+  { title: 'Project', dataIndex: 'project', key: 'project', ellipsis: true },
+  { title: 'Tools', dataIndex: 'tools', key: 'tools', ellipsis: true },
+  { title: 'Skills', dataIndex: 'skills', key: 'skills', ellipsis: true },
+];
+
+const Journey = () => (
+  <Card
+    style={{
+      maxWidth: 960,
+      margin: '20px auto',
+      height: '85vh',
+      padding: 16,
+      overflowY: 'auto',  // Outer scroll bar controls vertical scroll
+      boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+      borderRadius: 8,
+      backgroundColor: '#fff',
+    }}
+  >
+    <Tabs defaultActiveKey="1" type="card" size="large">
+
+      {/* === TAB 1: CARD VIEW === */}
+      <TabPane tab="Card View" key="1">
+        {data.map((item, index) => (
+          <Card
+            key={index}
+            title={item.project}
             bordered
-            column={{ xs: 1, sm: 2, md: 2, lg: 3, xl: 3, xxl: 3 }}
-            size="middle"
-            contentStyle={{ justifyContent: 'center', textAlign: 'center' }}
-            labelStyle={{ textAlign: 'center' }}
+            hoverable
+            style={{ marginBottom: 24 }}
           >
-            <Descriptions.Item label="Tools / Tech Used">
-              <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: 8 }}>
-                {item.tools.split(',').map((tool, idx) => (
-                  <Tag
-                    key={idx}
-                    color={colors[idx % colors.length]}
-                    style={{ padding: '4px 10px', fontSize: 13 }}
-                  >
-                    {tool.trim()}
-                  </Tag>
-                ))}
-              </div>
-            </Descriptions.Item>
-            <Descriptions.Item label="Key Skills Mapped">
-              <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: 8 }}>
-                {item.skills.split(',').map((skill, idx) => (
-                  <Tag
-                    key={idx}
-                    color={colors[(idx + 5) % colors.length]}
-                    style={{ padding: '4px 10px', fontSize: 13 }}
-                  >
-                    {skill.trim()}
-                  </Tag>
-                ))}
-              </div>
-            </Descriptions.Item>
-          </Descriptions>
-
-          {/* Render extra details if available */}
-          {item.details && (
             <Descriptions
-              title="Project Details"
               bordered
-              column={1}
-              size="small"
-              style={{ marginTop: 16, textAlign: 'left' }}
-              labelStyle={{ width: 120, fontWeight: 'bold' }}
+              column={{ xs: 1, sm: 2, md: 3 }}
+              size="middle"
+              contentStyle={{ textAlign: 'center' }}
+              labelStyle={{ textAlign: 'center', fontWeight: '600' }}
             >
-              <Descriptions.Item label="Country">{item.details.country}</Descriptions.Item>
-              <Descriptions.Item label="Sector">{item.details.sector}</Descriptions.Item>
-              <Descriptions.Item label="Client">{item.details.client}</Descriptions.Item>
-              <Descriptions.Item label="Role">{item.details.role}</Descriptions.Item>
-              <Descriptions.Item label="Purpose">{item.details.purpose}</Descriptions.Item>
-              <Descriptions.Item label="Key Technologies">{item.details.keyTechnologies}</Descriptions.Item>
-              <Descriptions.Item label="Experience Gained">{item.details.experience}</Descriptions.Item>
-              <Descriptions.Item label="Tools Used">{item.details.toolsUsed}</Descriptions.Item>
-              <Descriptions.Item label="Documentation">{item.details.documentation}</Descriptions.Item>
+              <Descriptions.Item label="Tools / Tech Used">
+                <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 8 }}>
+                  {item.tools.split(',').map((tool, idx) => (
+                    <Tag key={idx} color={colors[idx % colors.length]}>
+                      {tool.trim()}
+                    </Tag>
+                  ))}
+                </div>
+              </Descriptions.Item>
+              <Descriptions.Item label="Key Skills Mapped">
+                <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 8 }}>
+                  {item.skills.split(',').map((skill, idx) => (
+                    <Tag key={idx} color={colors[(idx + 5) % colors.length]}>
+                      {skill.trim()}
+                    </Tag>
+                  ))}
+                </div>
+              </Descriptions.Item>
             </Descriptions>
-          )}
-        </Card>
-      ))}
+          </Card>
+        ))}
+      </TabPane>
 
-      <div style={{ textAlign: 'center', marginTop: 16 }}>
-        <Button
-          type="default"
-          icon={expanded ? <UpOutlined /> : <DownOutlined />}
-          onClick={() => setExpanded(!expanded)}
-          style={{ backgroundColor: '#000', color: '#fff', borderColor: '#000' }}
-        >
-          {expanded ? ' Show Less' : ' Show More'}
-        </Button>
-      </div>
-    </div>
-  );
-};
+      {/* === TAB 2: TABLE VIEW === */}
+      <TabPane tab="Table View" key="2">
+        <Table
+          dataSource={data}
+          columns={tableColumns}
+          rowKey={(record) => record.project}
+          pagination={false}
+          bordered
+          size="middle"
+          style={{ tableLayout: 'fixed' }} // tidy columns
+        />
+      </TabPane>
+    </Tabs>
+  </Card>
+);
 
-export default App;
+export default Journey;

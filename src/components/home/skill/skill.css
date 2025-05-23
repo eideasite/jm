@@ -1,33 +1,32 @@
-.skill-section {
-  padding: 40px 20px;
-}
+/* Grayscale Skill Shades */
+.skill-shade-0  { background-color: #000; color: #fff; }
+.skill-shade-1  { background-color: #1a1a1a; color: #fff; }
+.skill-shade-2  { background-color: #333; color: #fff; }
+.skill-shade-3  { background-color: #4d4d4d; color: #fff; }
+.skill-shade-4  { background-color: #666; color: #fff; }
+.skill-shade-5  { background-color: #808080; color: #fff; }
+.skill-shade-6  { background-color: #999; color: #fff; }
+.skill-shade-7  { background-color: #b3b3b3; color: #000; }
+.skill-shade-8  { background-color: #ccc; color: #000; }
+.skill-shade-9  { background-color: #e6e6e6; color: #000; }
 
-.skill-section-dark {
-  background: #1f1f1f;
-}
-
-.skill-section-light {
-  background: #fff;
-}
-
-.skill-card {
-  border-radius: 8px;
-}
-
-.skill-card-dark {
-  background: #2c2c2c;
+/* Button: Rounded Black-to-White Hover with Zoom */
+.switch-button {
+  background-color: #000;
   color: #fff;
+  border: 2px solid #000;
+  padding: 10px 20px;
+  border-radius: 999px; /* Fully rounded pill shape */
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+  transform: scale(1);
+  display: inline-block;
 }
 
-.skill-card-light {
-  background: #f5f5f5;
+.switch-button:hover {
+  background-color: #fff;
   color: #000;
-}
-
-.skill-text-dark {
-  color: #ccc;
-}
-
-.skill-text-light {
-  color: #333;
+  transform: scale(1.05);
 }

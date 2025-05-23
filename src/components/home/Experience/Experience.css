@@ -4,7 +4,7 @@
   --card-bg: #ffffff89;
   --card-text: #34425d;
   --primary-icon: #d9e0c6;
-  --hover-glow: rgba(93, 0, 255, 0.325);  /* Light mode glow */
+  --hover-glow: rgb(136, 56, 222);  /* Light mode glow */
 }
 
 body.dark-mode {
@@ -54,11 +54,13 @@ body.dark-mode {
   box-shadow: 0 3px 6px rgba(240, 159, 159, 0.1);
   text-align: left;
   transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  
 }
 
 .experience-item:hover {
   box-shadow: 0 0 20px var(--hover-glow);
   transform: translateY(-2px);
+  
 }
 
 .experience-card h3 {
@@ -92,7 +94,7 @@ body.dark-mode {
 
 .key-skills-heading {
   margin-bottom: 6px;
-  color: rgb(61, 191, 72);
+  color: rgb(90, 88, 88);
 }
 
 .skills {
@@ -106,7 +108,8 @@ body.dark-mode {
   align-items: center;
   gap: 6px;
   background: var(--primary-icon);
-  color: rgb(1, 211, 18);
+  background-color: rgba(194, 236, 188, 0.724);
+  color: rgba(94, 46, 255, 0.484);
   padding: 6px 12px;
   border-radius: 16px;
   font-size: 0.875rem;
@@ -116,8 +119,8 @@ body.dark-mode {
 }
 
 .skill-item:hover {
-  background-color: rgba(255, 255, 255, 0.724);
-  box-shadow: 0 0 12px rgba(30, 255, 49, 0.738);
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0 0 12px rgba(200, 255, 0, 0.738);
   cursor: pointer;
 }
 
@@ -133,6 +136,7 @@ body.dark-mode {
 
   .skill-item {
     font-size: 0.8rem;
+    
     padding: 5px 10px;
   }
 }

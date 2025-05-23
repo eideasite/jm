@@ -6,6 +6,7 @@ const { Text, Link } = Typography;
 const { Panel } = Collapse;
 
 const Project1 = () => {
+  // Project data
   const project = {
     name: 'Website WordPress Plugin Enhancement',
     country: 'UK (Remote)',
@@ -50,11 +51,17 @@ const Project1 = () => {
       style={{
         borderRadius: 12,
         boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
-        background: 'rgba(255, 255, 255, 0.95)',
         padding: 24,
       }}
       title={
-        <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: 8,
+            flexWrap: 'wrap',
+          }}
+        >
           <ProjectOutlined style={{ fontSize: 18 }} />
           <Text strong style={{ fontSize: 18, wordBreak: 'break-word', margin: 0 }}>
             {project.name}
@@ -63,11 +70,7 @@ const Project1 = () => {
       }
     >
       {/* General Project Info */}
-      <Collapse
-        ghost
-        bordered={false}
-        expandIconPosition="end"
-      >
+      <Collapse ghost bordered={false} expandIconPosition="end">
         <Panel header="🌍 Country" key="country">
           <ul>
             <li>{project.country}</li>
@@ -97,14 +100,10 @@ const Project1 = () => {
         </Panel>
       </Collapse>
 
-      <Divider style={{ margin: '16px 0' }} />
+      <Divider style={{ margin: '16px 0', borderColor: '#ddd' }} />
 
       {/* Technical Info */}
-      <Collapse
-        ghost
-        bordered={false}
-        expandIconPosition="end"
-      >
+      <Collapse ghost bordered={false} expandIconPosition="end">
         <Panel header="🔧 Key Technologies Used" key="technologies">
           <ul>
             {project.technologies.map((t, i) => (
@@ -142,14 +141,10 @@ const Project1 = () => {
         </Panel>
       </Collapse>
 
-      <Divider dashed style={{ margin: '16px 0' }} />
+      <Divider dashed style={{ margin: '16px 0', borderColor: '#ccc' }} />
 
       {/* Team Info */}
-      <Collapse
-        ghost
-        bordered={false}
-        expandIconPosition="end"
-      >
+      <Collapse ghost bordered={false} expandIconPosition="end">
         <Panel header="🧑‍🤝‍🧑 Team Member" key="members">
           <ul>
             {project.teamMembers.map((member, i) => (

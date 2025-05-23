@@ -1,5 +1,3 @@
-// src/components/project/projectinfo/Project4_BABusinessProfileSystem.jsx
-
 import React from 'react';
 import {
   Card,
@@ -54,30 +52,16 @@ const Project4_BABusinessProfileSystem = () => {
       className="project-card"
       hoverable
       bordered
-      style={{
-        background: 'rgba(255, 255, 255, 0.8)',
-        backdropFilter: 'blur(10px)',
-        borderRadius: '12px',
-        boxShadow: '0 4px 16px rgba(0,0,0,0.1)',
-      }}
       title={
         <div style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', flexWrap: 'wrap' }}>
-          <ProjectOutlined style={{ color: '#13c2c2', marginTop: 3 }} />
-          <Text
-            strong
-            style={{
-              fontSize: '16px',
-              whiteSpace: 'normal',
-              wordBreak: 'break-word',
-            }}
-          >
-            {project.name}
-          </Text>
+          <ProjectOutlined />
+          <Text strong>{project.name}</Text>
         </div>
       }
     >
       <Space direction="vertical" size="middle" style={{ width: '100%' }}>
-        <Collapse ghost bordered={false}>
+        {/* General Info */}
+        <Collapse ghost>
           <Panel header="🌍 Country" key="1"><ul><li>{project.country}</li></ul></Panel>
           <Panel header="💻 Sector" key="2"><ul><li>{project.sector}</li></ul></Panel>
           <Panel header="🏢 Client" key="3"><ul>{project.client.map((c, i) => <li key={i}>{c}</li>)}</ul></Panel>
@@ -85,16 +69,17 @@ const Project4_BABusinessProfileSystem = () => {
           <Panel header="🎯 Purpose" key="5"><Text>{project.purpose}</Text></Panel>
         </Collapse>
 
-        <Divider style={{ margin: '12px 0' }} />
+        <Divider />
 
-        <Collapse ghost bordered={false}>
+        {/* Technical Details */}
+        <Collapse ghost>
           <Panel header="🧪 Key Technologies Used" key="6"><ul>{project.technologies.map((t, i) => <li key={i}>{t}</li>)}</ul></Panel>
           <Panel header="📘 Experience Gained" key="7"><ul>{project.experience.map((e, i) => <li key={i}>{e}</li>)}</ul></Panel>
           <Panel header="🛠 Tools Used" key="8"><ul>{project.tools.map((tool, i) => <li key={i}>{tool}</li>)}</ul></Panel>
           <Panel header="📄 Documentation" key="9"><Text>{project.document}</Text></Panel>
           {project.url.links.length > 0 && (
             <Panel header="🔗 Project Link" key="10">
-              <ul style={{ paddingLeft: '20px' }}>
+              <ul>
                 {project.url.links.map((link, index) => (
                   <li key={index}>
                     <Typography.Link href={link} target="_blank" rel="noopener noreferrer">
@@ -107,15 +92,15 @@ const Project4_BABusinessProfileSystem = () => {
           )}
         </Collapse>
 
-        <Divider dashed style={{ margin: '1px 0' }} />
+        <Divider dashed />
 
-        <Collapse ghost bordered={false}>
+        {/* Team Info */}
+        <Collapse ghost>
           <Panel header="🧑‍🤝‍🧑 Team Members" key="11">
             <ul>
               {project.teamMembers.map((member, i) => (
-                <li key={i} style={{ display: 'flex', alignItems: 'center' }}>
-                  <TeamOutlined style={{ color: '#1890ff', marginRight: 6 }} />
-                  <Text>{member.name} ({member.icon})</Text>
+                <li key={i}>
+                  <TeamOutlined /> {member.name} ({member.icon})
                 </li>
               ))}
             </ul>

@@ -3,8 +3,8 @@ import {
   Card,
   Typography,
   Space,
-  Collapse,
   Divider,
+  Collapse,
 } from 'antd';
 import {
   MobileOutlined,
@@ -59,75 +59,81 @@ const Project20 = () => {
 
   return (
     <Card
-      className="project-card"
       hoverable
       bordered
-      style={{
-        background: 'rgba(255, 255, 255, 0.9)',
-        backdropFilter: 'blur(10px)',
-        borderRadius: '12px',
-        boxShadow: '0 4px 16px rgba(0,0,0,0.1)',
-      }}
+      // Removed dark background, borderColor and text color styles
       title={
-        <div style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', flexWrap: 'wrap' }}>
-          <MobileOutlined style={{ color: '#13c2c2', marginTop: 3 }} />
-          <Text strong style={{ fontSize: '16px', whiteSpace: 'normal', wordBreak: 'break-word' }}>
-            {project.name}
-          </Text>
+        <div>
+          <MobileOutlined style={{ marginRight: 8, color: '#1890ff' }} />
+          <Text strong>{project.name}</Text>
         </div>
       }
     >
       <Space direction="vertical" size="middle" style={{ width: '100%' }}>
-        {/* Basic Info */}
-        <Collapse ghost bordered={false}>
-          <Panel header="🌍 Country" key="1"><ul><li>{project.country}</li></ul></Panel>
-          <Panel header="🏢 Sector" key="2"><ul><li>{project.sector}</li></ul></Panel>
-          <Panel header="👥 Client" key="3"><ul>{project.client.map((c, i) => <li key={i}>{c}</li>)}</ul></Panel>
-          <Panel header="👤 Role" key="4"><ul>{project.role.map((r, i) => <li key={i}>{r}</li>)}</ul></Panel>
-          <Panel header="📝 Overview / Purpose" key="5"><ul>{project.purpose.map((p, i) => <li key={i}>{p}</li>)}</ul></Panel>
+
+        {/* Basic Info - Collapsible */}
+        <Collapse expandIconPosition="right" bordered>
+          <Panel header={<span>🌍 Country</span>} key="1">
+            <ul><li>{project.country}</li></ul>
+          </Panel>
+          <Panel header={<span>🏢 Sector</span>} key="2">
+            <ul><li>{project.sector}</li></ul>
+          </Panel>
+          <Panel header={<span>👥 Client</span>} key="3">
+            <ul>{project.client.map((c, i) => <li key={i}>{c}</li>)}</ul>
+          </Panel>
+          <Panel header={<span>👤 Role</span>} key="4">
+            <ul>{project.role.map((r, i) => <li key={i}>{r}</li>)}</ul>
+          </Panel>
+          <Panel header={<span>📝 Overview / Purpose</span>} key="5">
+            <ul>{project.purpose.map((p, i) => <li key={i}>{p}</li>)}</ul>
+          </Panel>
         </Collapse>
 
-        <Divider style={{ margin: '12px 0' }} />
+        <Divider />
 
         {/* Tech & Experience */}
-        <Collapse ghost bordered={false}>
-          <Panel header="🧪 Technologies & Tools" key="6">
+        <Collapse expandIconPosition="right" bordered>
+          <Panel header={<span>🧪 Technologies & Tools</span>} key="6">
             <ul>{project.technologies.map((tech, i) => <li key={i}>{tech}</li>)}</ul>
           </Panel>
-          <Panel header="📘 Key Responsibilities" key="7">
+          <Panel header={<span>📘 Key Responsibilities</span>} key="7">
             <ul>{project.experience.map((exp, i) => <li key={i}>{exp}</li>)}</ul>
           </Panel>
-          <Panel header="📄 Documentation / Deliverables" key="8">
+          <Panel header={<span>📄 Documentation / Deliverables</span>} key="8">
             <ul>{project.document.map((doc, i) => <li key={i}>{doc}</li>)}</ul>
           </Panel>
-          <Panel header="📦 Project Scope" key="9">
+          <Panel header={<span>📦 Project Scope</span>} key="9">
             <ul>{project.scope.map((s, i) => <li key={i}>{s}</li>)}</ul>
           </Panel>
-          <Panel header="☁️ Deployment" key="10">
+          <Panel header={<span>☁️ Deployment</span>} key="10">
             <Text>{project.cloudDeployment}</Text>
           </Panel>
         </Collapse>
 
-        <Divider dashed style={{ margin: '1px 0' }} />
+        <Divider dashed />
 
         {/* Team Info */}
-        <Collapse ghost bordered={false}>
-          <Panel header="👥 Team Members" key="11">
+        <Collapse expandIconPosition="right" bordered>
+          <Panel header={<span>👥 Team Members</span>} key="11">
             <ul>
               {project.teamMembers.map((member, i) => (
-                <li key={i} style={{ display: 'flex', alignItems: 'center' }}>
-                  <TeamOutlined style={{ color: '#1890ff', marginRight: 6 }} />
+                <li key={i}>
+                  <TeamOutlined style={{ marginRight: 8, color: '#52c41a' }} />
                   <Text>{member.name} ({member.icon})</Text>
                 </li>
               ))}
             </ul>
           </Panel>
-          <Panel header="💼 Job Roles" key="12">
-            <ul>{project.teamMembers.map((member, i) => (
-              <li key={i}>– {member.role}</li>
-            ))}</ul>
+          <Panel header={<span>💼 Job Roles</span>} key="12">
+            <ul>
+              {project.teamMembers.map((member, i) => (
+                <li key={i}>– {member.role}</li>
+              ))}
+            </ul>
           </Panel>
         </Collapse>
+
       </Space>
     </Card>
   );

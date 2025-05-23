@@ -74,30 +74,10 @@ const Project5_AlliBhavan = () => {
       className="project-card"
       hoverable
       bordered
-      style={{
-        background: 'rgba(255, 255, 255, 0.9)',
-        backdropFilter: 'blur(10px)',
-        borderRadius: '12px',
-        boxShadow: '0 4px 16px rgba(0,0,0,0.1)',
-      }}
       title={
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'flex-start',
-            gap: '8px',
-            flexWrap: 'wrap',
-          }}
-        >
-          <ProjectOutlined style={{ color: '#13c2c2', marginTop: 3 }} />
-          <Text
-            strong
-            style={{
-              fontSize: '16px',
-              whiteSpace: 'normal',
-              wordBreak: 'break-word',
-            }}
-          >
+        <div style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', flexWrap: 'wrap' }}>
+          <ProjectOutlined />
+          <Text strong style={{ fontSize: '16px', whiteSpace: 'normal', wordBreak: 'break-word' }}>
             {project.name}
           </Text>
         </div>
@@ -106,14 +86,10 @@ const Project5_AlliBhavan = () => {
       <Space direction="vertical" size="middle" style={{ width: '100%' }}>
         <Collapse ghost bordered={false}>
           <Panel header="🌍 Country" key="1">
-            <ul>
-              <li>{project.country}</li>
-            </ul>
+            <ul><li>{project.country}</li></ul>
           </Panel>
           <Panel header="💻 Sector" key="2">
-            <ul>
-              <li>{project.sector}</li>
-            </ul>
+            <ul><li>{project.sector}</li></ul>
           </Panel>
           <Panel header="🏢 Client" key="3">
             <ul>{project.client.map((c, i) => <li key={i}>{c}</li>)}</ul>
@@ -149,19 +125,13 @@ const Project5_AlliBhavan = () => {
           <Panel header="🧑‍🤝‍🧑 Team Members" key="10">
             <ul>
               {project.teamMembers.map((member, i) => (
-                <li
-                  key={i}
-                  style={{ display: 'flex', alignItems: 'center', gap: '6px' }}
-                >
-                  <TeamOutlined style={{ color: '#1890ff' }} />
-                  <Text>
-                    {member.name} ({member.icon})
-                  </Text>
+                <li key={i} style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                  <TeamOutlined />
+                  <Text>{member.name} ({member.icon})</Text>
                 </li>
               ))}
             </ul>
           </Panel>
-
           <Panel header="💼 Job Role" key="11">
             <ul>
               {project.teamMembers.map((member, i) => (
@@ -169,35 +139,26 @@ const Project5_AlliBhavan = () => {
               ))}
             </ul>
           </Panel>
-
           <Panel header="🔧 Technologies Used by Team" key="12">
             <ul>
               {project.teamMembers.map((member, i) => (
-                <li key={i}>
-                  {member.name}: {member.technology || 'N/A'}
-                </li>
+                <li key={i}>{member.name}: {member.technology || 'N/A'}</li>
               ))}
             </ul>
           </Panel>
-
           <Panel header="🔗 LinkedIn" key="13">
             <ul>
               {project.teamMembers
                 .filter((member) => member.linkedin)
                 .map((member, i) => (
                   <li key={i}>
-                    <Link
-                      href={member.linkedin}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
+                    <Link href={member.linkedin} target="_blank" rel="noopener noreferrer">
                       {member.linkedin}
                     </Link>
                   </li>
                 ))}
             </ul>
           </Panel>
-
           <Panel header="✉️ Email" key="14">
             <ul>
               {project.teamMembers.map((member, i) => (

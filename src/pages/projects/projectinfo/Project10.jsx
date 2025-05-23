@@ -1,6 +1,3 @@
-
-
-
 import React from 'react';
 import {
   Card,
@@ -19,7 +16,7 @@ const { Panel } = Collapse;
 
 const Project10 = () => {
   const project = {
-    name: 'IYCONNECT – Help Desk UI Improvements', // ✅ Project Name
+    name: 'IYCONNECT – Help Desk UI Improvements',
     country: 'United Kingdom (UK)',
     sector: 'Internal Product / Customer Support Interface',
     client: ['IYCONNECT (Own Product)'],
@@ -27,7 +24,7 @@ const Project10 = () => {
     purpose:
       'To enhance the user interface of the Help Desk module by analyzing the existing UI and proposing improved layouts and flows for better user experience.',
 
-    technologies: ['UI Wireframing', 'Prototyping Tools'], // ✅ Key Technologies
+    technologies: ['UI Wireframing', 'Prototyping Tools'],
     experience: [
       'UI analysis',
       'Wireframe creation',
@@ -85,15 +82,10 @@ const Project10 = () => {
       className="project-card"
       hoverable
       bordered
-      style={{
-        background: 'rgba(255, 255, 255, 0.9)',
-        backdropFilter: 'blur(10px)',
-        borderRadius: '12px',
-        boxShadow: '0 4px 16px rgba(0,0,0,0.1)',
-      }}
+      // Removed all style props related to background, borderRadius, boxShadow, backdropFilter
       title={
         <div style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', flexWrap: 'wrap' }}>
-          <ProjectOutlined style={{ color: '#13c2c2', marginTop: 3 }} />
+          <ProjectOutlined style={{ marginTop: 3 }} />
           <Text
             strong
             style={{
@@ -135,7 +127,7 @@ const Project10 = () => {
             <ul>
               {project.teamMembers.map((member, i) => (
                 <li key={i} style={{ display: 'flex', alignItems: 'center' }}>
-                  <TeamOutlined style={{ color: '#1890ff', marginRight: 6 }} />
+                  <TeamOutlined style={{ marginRight: 6 }} />
                   <Text>{member.name} ({member.icon})</Text>
                 </li>
               ))}

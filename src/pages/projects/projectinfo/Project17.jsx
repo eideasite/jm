@@ -64,38 +64,43 @@ const Project17 = () => {
 
   return (
     <Card
-      className="project-card"
       hoverable
       bordered
-      style={{
-        background: 'rgba(255, 255, 255, 0.9)',
-        backdropFilter: 'blur(10px)',
-        borderRadius: '12px',
-        boxShadow: '0 4px 16px rgba(0,0,0,0.1)',
-      }}
       title={
-        <div style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', flexWrap: 'wrap' }}>
-          <ProjectOutlined style={{ color: '#13c2c2', marginTop: 3 }} />
-          <Text strong style={{ fontSize: '16px', whiteSpace: 'normal', wordBreak: 'break-word' }}>
-            {project.name}
-          </Text>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+          <ProjectOutlined />
+          <Text strong>{project.name}</Text>
         </div>
       }
     >
       <Space direction="vertical" size="middle" style={{ width: '100%' }}>
         {/* Section 1: Basic Info */}
-        <Collapse ghost bordered={false}>
-          <Panel header="🌍 Country" key="1"><ul><li>{project.country}</li></ul></Panel>
-          <Panel header="💻 Sector" key="2"><ul><li>{project.sector}</li></ul></Panel>
-          <Panel header="🏢 Client" key="3"><ul>{project.client.map((c, i) => <li key={i}>{c}</li>)}</ul></Panel>
-          <Panel header="🔧 Role" key="4"><ul>{project.role.map((r, i) => <li key={i}>{r}</li>)}</ul></Panel>
-          <Panel header="🎯 Purpose" key="5"><ul>{project.purpose.map((p, i) => <li key={i}>{p}</li>)}</ul></Panel>
+        <Collapse>
+          <Panel header="🌍 Country" key="1">
+            <ul>
+              <li>{project.country}</li>
+            </ul>
+          </Panel>
+          <Panel header="💻 Sector" key="2">
+            <ul>
+              <li>{project.sector}</li>
+            </ul>
+          </Panel>
+          <Panel header="🏢 Client" key="3">
+            <ul>{project.client.map((c, i) => <li key={i}>{c}</li>)}</ul>
+          </Panel>
+          <Panel header="🔧 Role" key="4">
+            <ul>{project.role.map((r, i) => <li key={i}>{r}</li>)}</ul>
+          </Panel>
+          <Panel header="🎯 Purpose" key="5">
+            <ul>{project.purpose.map((p, i) => <li key={i}>{p}</li>)}</ul>
+          </Panel>
         </Collapse>
 
-        <Divider style={{ margin: '12px 0' }} />
+        <Divider />
 
         {/* Section 2: Technical / Experience */}
-        <Collapse ghost bordered={false}>
+        <Collapse>
           <Panel header="🧪 Key Technologies Used" key="6">
             <ul>{project.technologies.map((tech, i) => <li key={i}>{tech}</li>)}</ul>
           </Panel>
@@ -108,27 +113,33 @@ const Project17 = () => {
           <Panel header="📦 Platform Scope" key="9">
             <ul>{project.scope.map((s, i) => <li key={i}>{s}</li>)}</ul>
           </Panel>
-          <Panel header="☁️ Deployment" key="10"><Text>{project.cloudDeployment}</Text></Panel>
+          <Panel header="☁️ Deployment" key="10">
+            <Text>{project.cloudDeployment}</Text>
+          </Panel>
           {project.urls.length > 0 && (
             <Panel header="🔗 URLs" key="11">
-              <ul>{project.urls.map((url, i) => (
-                <li key={i}>
-                  <a href={url} target="_blank" rel="noopener noreferrer">{url}</a>
-                </li>
-              ))}</ul>
+              <ul>
+                {project.urls.map((url, i) => (
+                  <li key={i}>
+                    <a href={url} target="_blank" rel="noopener noreferrer">
+                      {url}
+                    </a>
+                  </li>
+                ))}
+              </ul>
             </Panel>
           )}
         </Collapse>
 
-        <Divider dashed style={{ margin: '1px 0' }} />
+        <Divider dashed />
 
         {/* Section 3: Team Members */}
-        <Collapse ghost bordered={false}>
+        <Collapse>
           <Panel header="🧑‍🤝‍🧑 Team Members" key="12">
             <ul>
               {project.teamMembers.map((member, i) => (
-                <li key={i} style={{ display: 'flex', alignItems: 'center' }}>
-                  <TeamOutlined style={{ color: '#1890ff', marginRight: 6 }} />
+                <li key={i} style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                  <TeamOutlined />
                   <Text>{member.name} ({member.icon})</Text>
                 </li>
               ))}

@@ -2,7 +2,7 @@ import React, { useState, Suspense, lazy } from 'react';
 import { Button, Tooltip, Row, Col, Spin } from 'antd';
 import { DownOutlined, UpOutlined } from '@ant-design/icons';
 
-// Lazy load project components
+// 1. Lazy load project components
 const projects = [
   lazy(() => import('./projectinfo/Project1')),
   lazy(() => import('./projectinfo/Project2')),
@@ -27,18 +27,31 @@ const projects = [
 ];
 
 const Project = () => {
+  // 2. Manage state for show/hide toggle
   const [showAll, setShowAll] = useState(false);
-  const visibleProjects = showAll ? projects : projects.slice(0, 4); // ⬅️ Only show 4 by default
 
-  const toggleShowAll = () => setShowAll((prev) => !prev);
+  // 3. Control visible projects: 4 by default, all on toggle
+  const visibleProjects = showAll ? projects : projects.slice(0, 4);
+
+  // 4. Toggle handler
+  const toggleShowAll = () => setShowAll(prev => !prev);
 
   return (
-    <div className="projects-section" style={{ padding: '24px' }}>
+    <div
+      className="projects-section"
+      style={{
+        padding: '24px',
+        maxWidth: '900px',  // constrain width here
+        margin: '0 auto',   // center horizontally
+      }}
+    >
+      {/* 5. Title */}
       <div style={{ textAlign: 'center', marginBottom: 24 }}>
         <h2>Projects</h2>
       </div>
 
       <div className="projects-container">
+        {/* 6. Suspense wraps project list for lazy loading */}
         <Suspense
           fallback={
             <div style={{ textAlign: 'center', padding: '40px' }}>
@@ -46,10 +59,17 @@ const Project = () => {
             </div>
           }
         >
+          {/* 7. Responsive grid with gutter */}
           <Row gutter={[24, 24]}>
             {visibleProjects.map((Component, idx) => (
-              <Col key={`${showAll ? 'all' : 'partial'}-${idx}`} xs={24} sm={24} md={12} lg={12}>
-                <div className="project-card">
+              <Col
+                key={`${showAll ? 'all' : 'partial'}-${idx}`}  // unique key with context
+                xs={24}
+                sm={24}
+                md={12}
+                lg={12}
+              >
+                <div className="project-card" style={{ height: '100%' }}>
                   <Component />
                 </div>
               </Col>
@@ -57,6 +77,7 @@ const Project = () => {
           </Row>
         </Suspense>
 
+        {/* 8. Show More / Show Less Button */}
         <div
           style={{
             width: '100%',
@@ -92,3 +113,4 @@ const Project = () => {
 };
 
 export default Project;
+  

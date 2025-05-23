@@ -71,29 +71,17 @@ const Project9 = () => {
       className="project-card"
       hoverable
       bordered
-      style={{
-        background: 'rgba(255, 255, 255, 0.9)',
-        backdropFilter: 'blur(10px)',
-        borderRadius: '12px',
-        boxShadow: '0 4px 16px rgba(0,0,0,0.1)',
-      }}
       title={
-        <div style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', flexWrap: 'wrap' }}>
-          <ProjectOutlined style={{ color: '#13c2c2', marginTop: 3 }} />
-          <Text
-            strong
-            style={{
-              fontSize: '16px',
-              whiteSpace: 'normal',
-              wordBreak: 'break-word',
-            }}
-          >
+        <div style={{ display: 'flex', alignItems: 'flex-start', gap: 8, flexWrap: 'wrap' }}>
+          <ProjectOutlined style={{ marginTop: 3 }} />
+          <Text strong style={{ fontSize: 16, whiteSpace: 'normal', wordBreak: 'break-word' }}>
             {project.name}
           </Text>
         </div>
       }
     >
       <Space direction="vertical" size="middle" style={{ width: '100%' }}>
+        {/* Basic Info */}
         <Collapse ghost bordered={false}>
           <Panel header="🌍 Country" key="1"><ul><li>{project.country}</li></ul></Panel>
           <Panel header="💻 Sector" key="2"><ul><li>{project.sector}</li></ul></Panel>
@@ -104,24 +92,48 @@ const Project9 = () => {
 
         <Divider style={{ margin: '12px 0' }} />
 
+        {/* Tech & Experience */}
         <Collapse ghost bordered={false}>
-          <Panel header="🧪 Key Technologies Used" key="6"><ul>{project.technologies.map((t, i) => <li key={i}>{t}</li>)}</ul></Panel>
-          <Panel header="📘 Experience Gained" key="7"><ul>{project.experience.map((e, i) => <li key={i}>{e}</li>)}</ul></Panel>
-          <Panel header="🛠 Tools Used" key="8"><ul>{project.tools.map((tool, i) => <li key={i}>{tool}</li>)}</ul></Panel>
-          <Panel header="📄 Documentation" key="9"><Text>{project.document}</Text></Panel>
-          <Panel header="📦 Project Scope" key="10"><Text>{project.scope}</Text></Panel>
-          <Panel header="☁️ Cloud Deployment" key="11"><Text>{project.cloudDeployment}</Text></Panel>
-          <Panel header="🔗 URLs" key="12"><ul>{project.urls.map((url, i) => <li key={i}>{url}</li>)}</ul></Panel>
+          <Panel header="🧪 Key Technologies Used" key="6">
+            <ul>{project.technologies.map((t, i) => <li key={i}>{t}</li>)}</ul>
+          </Panel>
+          <Panel header="📘 Experience Gained" key="7">
+            <ul>{project.experience.map((e, i) => <li key={i}>{e}</li>)}</ul>
+          </Panel>
+          <Panel header="🛠 Tools Used" key="8">
+            <ul>{project.tools.map((tool, i) => <li key={i}>{tool}</li>)}</ul>
+          </Panel>
+          <Panel header="📄 Documentation" key="9">
+            <Text>{project.document}</Text>
+          </Panel>
+          <Panel header="📦 Project Scope" key="10">
+            <Text>{project.scope}</Text>
+          </Panel>
+          <Panel header="☁️ Cloud Deployment" key="11">
+            <Text>{project.cloudDeployment}</Text>
+          </Panel>
+          <Panel header="🔗 URLs" key="12">
+            <ul>{project.urls.map((url, i) => (
+              <li key={i}>
+                {url === 'N/A' ? url : (
+                  <Link href={url} target="_blank" rel="noopener noreferrer">
+                    {url}
+                  </Link>
+                )}
+              </li>
+            ))}</ul>
+          </Panel>
         </Collapse>
 
         <Divider dashed style={{ margin: '1px 0' }} />
 
+        {/* Team Members */}
         <Collapse ghost bordered={false}>
           <Panel header="🧑‍🤝‍🧑 Team Members" key="13">
             <ul>
               {project.teamMembers.map((member, i) => (
                 <li key={i} style={{ display: 'flex', alignItems: 'center' }}>
-                  <TeamOutlined style={{ color: '#1890ff', marginRight: 6 }} />
+                  <TeamOutlined style={{ marginRight: 6 }} />
                   <Text>{member.name} ({member.icon})</Text>
                 </li>
               ))}
@@ -129,11 +141,9 @@ const Project9 = () => {
           </Panel>
 
           <Panel header="💼 Job Role" key="14">
-            <ul>
-              {project.teamMembers.map((member, i) => (
-                <li key={i}>– {member.role}</li>
-              ))}
-            </ul>
+            <ul>{project.teamMembers.map((member, i) => (
+              <li key={i}>– {member.role}</li>
+            ))}</ul>
           </Panel>
 
           <Panel header="🔗 LinkedIn" key="15">

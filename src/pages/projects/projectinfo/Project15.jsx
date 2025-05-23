@@ -74,38 +74,28 @@ const Project15 = () => {
 
   return (
     <Card
-      className="project-card"
       hoverable
       bordered
-      style={{
-        background: 'rgba(255, 255, 255, 0.9)',
-        backdropFilter: 'blur(10px)',
-        borderRadius: '12px',
-        boxShadow: '0 4px 16px rgba(0,0,0,0.1)',
-      }}
+      style={{ borderRadius: 8 }}
       title={
-        <div style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', flexWrap: 'wrap' }}>
-          <ProjectOutlined style={{ color: '#13c2c2', marginTop: 3 }} />
-          <Text strong style={{ fontSize: '16px', whiteSpace: 'normal', wordBreak: 'break-word' }}>
+        <div style={{ display: 'flex', alignItems: 'flex-start', gap: 8, flexWrap: 'wrap' }}>
+          <ProjectOutlined style={{ marginTop: 3 }} />
+          <Text strong style={{ fontSize: 16, whiteSpace: 'normal', wordBreak: 'break-word' }}>
             {project.name}
           </Text>
         </div>
       }
     >
       <Space direction="vertical" size="middle" style={{ width: '100%' }}>
-        {/* Section 1: Basic Info */}
-        <Collapse ghost bordered={false}>
+        <Collapse ghost bordered={false} defaultActiveKey={['1', '6', '13']}>
           <Panel header="🌍 Country" key="1"><ul><li>{project.country}</li></ul></Panel>
           <Panel header="💻 Sector" key="2"><ul><li>{project.sector}</li></ul></Panel>
           <Panel header="🏢 Client" key="3"><ul>{project.client.map((c, i) => <li key={i}>{c}</li>)}</ul></Panel>
           <Panel header="🔧 Role" key="4"><ul>{project.role.map((r, i) => <li key={i}>{r}</li>)}</ul></Panel>
           <Panel header="🎯 Purpose" key="5"><ul>{project.purpose.map((p, i) => <li key={i}>{p}</li>)}</ul></Panel>
-        </Collapse>
 
-        <Divider style={{ margin: '12px 0' }} />
+          <Divider />
 
-        {/* Section 2: Technical / Experience */}
-        <Collapse ghost bordered={false}>
           <Panel header="🧪 Key Technologies Used" key="6">
             <ul>{project.technologies.map((tech, i) => <li key={i}>{tech}</li>)}</ul>
           </Panel>
@@ -121,7 +111,9 @@ const Project15 = () => {
           <Panel header="📦 Platform Scope" key="10">
             <ul>{project.scope.map((s, i) => <li key={i}>{s}</li>)}</ul>
           </Panel>
-          <Panel header="☁️ Deployment" key="11"><Text>{project.cloudDeployment}</Text></Panel>
+          <Panel header="☁️ Deployment" key="11">
+            <Text>{project.cloudDeployment}</Text>
+          </Panel>
           <Panel header="🔗 URLs" key="12">
             <ul>{project.urls.map((url, i) => (
               <li key={i}>
@@ -131,27 +123,22 @@ const Project15 = () => {
               </li>
             ))}</ul>
           </Panel>
-        </Collapse>
 
-        <Divider dashed style={{ margin: '1px 0' }} />
+          <Divider dashed />
 
-        {/* Section 3: Team Members */}
-        <Collapse ghost bordered={false}>
           <Panel header="🧑‍🤝‍🧑 Team Members" key="13">
             <ul>
               {project.teamMembers.map((member, i) => (
                 <li key={i} style={{ display: 'flex', alignItems: 'center' }}>
-                  <TeamOutlined style={{ color: '#1890ff', marginRight: 6 }} />
+                  <TeamOutlined style={{ marginRight: 6 }} />
                   <Text>{member.name} ({member.icon})</Text>
                 </li>
               ))}
             </ul>
           </Panel>
-
           <Panel header="💼 Job Role" key="14">
             <ul>{project.teamMembers.map((member, i) => <li key={i}>– {member.role}</li>)}</ul>
           </Panel>
-
           <Panel header="🔗 LinkedIn" key="15">
             <ul>{project.teamMembers.map((_, i) => <li key={i}>N/A</li>)}</ul>
           </Panel>
