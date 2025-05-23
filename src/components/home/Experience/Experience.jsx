@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   CalendarOutlined,
   EnvironmentOutlined,
@@ -10,8 +10,10 @@ import {
   UserOutlined,
   ToolOutlined
 } from '@ant-design/icons';
-import { Card, Timeline } from 'antd';
+import { Card, Typography } from 'antd';
 import './Experience.css';
+
+const { Title } = Typography;
 
 const experiences = [
   {
@@ -77,19 +79,36 @@ const experiences = [
   }
 ];
 
-const Experience = () => (
-  <section className="experience-section">
-    <h2 className="experience-title">Work Experience</h2>
-    <Timeline mode="alternate" className="experience-timeline">
-      {experiences.map((exp, index) => (
-        <Timeline.Item key={index} position={exp.side} dot={<UserOutlined style={{ fontSize: 18 }} />}>
-          <Card className="experience-card" bordered={false} style={{ background: '#fff' }}>
-            <h3>{exp.company}</h3>
-            <p><strong>{exp.title}</strong></p>
-            <p><CalendarOutlined /> {exp.date}</p>
-            <p><EnvironmentOutlined /> {exp.location}</p>
-            <p>{exp.description}</p>
-            <div className={`skill-set ${exp.side === 'left' ? 'left-side' : 'right-side'}`}>
+const Experience = ({ darkMode }) => {
+  useEffect(() => {
+    if (darkMode) {
+      document.body.classList.add("dark-mode");
+    } else {
+      document.body.classList.remove("dark-mode");
+    }
+  }, [darkMode]);
+
+  return (
+    <section className={`experience-container ${darkMode ? 'dark' : 'light'}`}>
+      <Title level={3} className="experience-title">Work Experience</Title>
+      <div className="experience-list">
+        {experiences.map((exp, index) => (
+          <Card
+            key={index}
+            className="experience-item"
+            bordered={false}
+            style={{ background: 'var(--card-bg)', color: 'var(--card-text)' }}
+          >
+            <div className="exp-header">
+              <h3>{exp.company}</h3>
+              <span className="exp-title">{exp.title}</span>
+            </div>
+            <div className="exp-meta">
+              <p><CalendarOutlined /> {exp.date}</p>
+              <p><EnvironmentOutlined /> {exp.location}</p>
+            </div>
+            <p className="exp-desc">{exp.description}</p>
+            <div className="skills-block">
               <p className="key-skills-heading"><strong>Key Skills:</strong></p>
               <div className="skills">
                 {exp.skills.map((skill, i) => (
@@ -100,10 +119,10 @@ const Experience = () => (
               </div>
             </div>
           </Card>
-        </Timeline.Item>
-      ))}
-    </Timeline>
-  </section>
-);
+        ))}
+      </div>
+    </section>
+  );
+};
 
 export default Experience;

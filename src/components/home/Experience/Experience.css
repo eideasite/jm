@@ -1,89 +1,149 @@
-/* === Experience Section Wrapper === */
+:root {
+  --bg-color: #ffffff;
+  --text-color: #333333;
+  --card-bg: #ffffff89;
+  --card-text: #34425d;
+  --primary-icon: #d9e0c6;
+  --hover-glow: rgba(93, 0, 255, 0.325);  /* Light mode glow */
+}
+
+body.dark-mode {
+  --bg-color: #1f1f1f;
+  --text-color: #f0f0f0;
+  --card-bg: #2c2c2c;
+  --card-text: #ffffff;
+  --primary-icon: #40a9ff;
+  --hover-glow: rgba(0, 255, 128, 0.709);
+}
+
 .experience-section {
-  padding: 40px 32px; /* spacious padding for layout */
-  background-color: #f9f9f9; /* light background for separation */
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  padding: 20px;
+  min-height: 100vh;
+}
+
+.experience-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+.experience-title {
   text-align: center;
-}
-
-/* === Experience Title Styling === */
-.experience-section h2 {
-  font-size: 32px;
-  font-weight: 700;
   margin-bottom: 32px;
-  position: relative;
-  display: inline-block;
-  color: #333;
 }
 
-/* Optional: Decorative underline */
-.experience-section h2::after {
-  content: '';
+.experience-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  width: 100%;
+  max-width: 800px;
+}
+
+.experience-item {
+  width: 100%;
+  max-width: 700px;
+  padding: 20px;
+  background: var(--card-bg);
+  color: var(--card-text);
+  border-radius: 8px;
+  box-shadow: 0 3px 6px rgba(240, 159, 159, 0.1);
+  text-align: left;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.experience-item:hover {
+  box-shadow: 0 0 20px var(--hover-glow);
+  transform: translateY(-2px);
+}
+
+.experience-card h3 {
+  margin-bottom: 6px;
+}
+
+.exp-header {
+  margin-bottom: 12px;
+}
+
+.exp-title {
+  font-weight: bold;
   display: block;
-  width: 60px;
-  height: 4px;
-  background-color: #b8ccde;
-  margin: 10px auto 0;
-  border-radius: 2px;
+  margin-top: 4px;
 }
 
-/* === Experience Card Layout === */
-.experience-card {
-  background-color: #fff;
-  padding: 24px;
-  margin: 16px auto;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  max-width: 900px;
-  text-align: left;
+.exp-meta p {
+  margin: 4px 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
-/* === Skill Set Block === */
-.skill-set {
-  margin-top: 20px;
+.exp-desc {
+  margin-top: 12px;
 }
 
-.skill-set.left-side {
-  text-align: left;
+.skills-block {
+  margin-top: 16px;
 }
 
-.skill-set.right-side {
-  text-align: right;
-}
-
-/* === Skill Set Heading === */
 .key-skills-heading {
-  margin-bottom: 10px;
-  font-size: 16px;
-  font-weight: normal;
+  margin-bottom: 6px;
+  color: rgb(61, 191, 72);
 }
 
-/* === Skill Grid Layout === */
 .skills {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 8px 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
 }
 
-/* === Individual Skill Item === */
 .skill-item {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
+  background: var(--primary-icon);
+  color: rgb(1, 211, 18);
+  padding: 6px 12px;
+  border-radius: 16px;
+  font-size: 0.875rem;
+  user-select: none;
+  white-space: nowrap;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.skill-item span {
-  font-size: 14px;
-  font-weight: 500;
-  word-break: break-word;
+.skill-item:hover {
+  background-color: rgba(255, 255, 255, 0.724);
+  box-shadow: 0 0 12px rgba(30, 255, 49, 0.738);
+  cursor: pointer;
 }
 
-/* === Distinct Icon Colors === */
-.skill-item:nth-child(1) .anticon { color: #1890ff; }   /* blue */
-.skill-item:nth-child(2) .anticon { color: #52c41a; }   /* green */
-.skill-item:nth-child(3) .anticon { color: #f5222d; }   /* red */
-.skill-item:nth-child(4) .anticon { color: #fa8c16; }   /* orange */
-.skill-item:nth-child(5) .anticon { color: #722ed1; }   /* purple */
-.skill-item:nth-child(6) .anticon { color: #13c2c2; }   /* teal */
-.skill-item:nth-child(7) .anticon { color: #eb2f96; }   /* pink */
-.skill-item:nth-child(8) .anticon { color: #bcbfcc; }   /* dark blue */
-.skill-item:nth-child(9) .anticon { color: #a0d911; }   /* lime */
+/* Responsive */
+@media (max-width: 768px) {
+  .experience-item {
+    padding: 15px;
+  }
+
+  .skills {
+    gap: 8px;
+  }
+
+  .skill-item {
+    font-size: 0.8rem;
+    padding: 5px 10px;
+  }
+}
+
+/* Skill item icon coloring */
+.skill-item:nth-child(1) .anticon { color: #0084ff; }
+.skill-item:nth-child(2) .anticon { color: #55ff00; }
+.skill-item:nth-child(3) .anticon { color: #ff000d; }
+.skill-item:nth-child(4) .anticon { color: #ff8400; }
+.skill-item:nth-child(5) .anticon { color: #6a00ff; }
+.skill-item:nth-child(6) .anticon { color: #00ffff; }
+.skill-item:nth-child(7) .anticon { color: #ff008c; }
+.skill-item:nth-child(8) .anticon { color: #002fff; }
+.skill-item:nth-child(9) .anticon { color: #b7ff00; }

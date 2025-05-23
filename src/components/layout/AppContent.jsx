@@ -4,6 +4,7 @@ import { Layout } from 'antd';
 import Hero from '../home/hero/Hero';
 import Skill from '../home/skill/Skill';
 import Journey from '../home/journey/journey';
+import Experience from '../home/Experience/Experience';
 import Project from '../../pages/projects/Project';
 import CVSection from '../home/cvSection/CVSection';
 import Contact from '../home/contact/Contact';
@@ -13,12 +14,23 @@ const { Content } = Layout;
 const AppContent = ({ darkMode }) => {
   return (
     <Content style={{ padding: '24px', minHeight: 'calc(100vh - 128px)' }}>
-      <h1 style={{ textAlign: 'center' }}>Welcome to the Website</h1>
-      <p style={{ textAlign: 'center' }}>This is your content area.</p>
+      <h1 style={{ textAlign: 'center' }}></h1>
+      <p style={{ textAlign: 'center' }}></p>
 
       {/* Hero Section */}
       <section id="home">
         <Hero />
+      </section>
+
+            {/*Experience Section - NEW */}
+      <section id="experience">
+        <Experience />
+      </section>
+
+      
+      {/* Journey Section */}
+      <section id="journey">
+        <Journey />
       </section>
 
       {/* Skills Section */}
@@ -26,10 +38,10 @@ const AppContent = ({ darkMode }) => {
         <Skill darkMode={darkMode} />
       </section>
 
-      {/* Journey Section */}
-      <section id="journey">
-        <Journey />
-      </section>
+
+
+
+
 
       {/* Projects Section */}
       <section id="projects">

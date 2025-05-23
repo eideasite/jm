@@ -8,6 +8,8 @@ import {
   Input,
   notification,
   Spin,
+  Row,
+  Col,
 } from 'antd';
 import {
   FilePdfOutlined,
@@ -15,20 +17,45 @@ import {
   DownloadOutlined,
 } from '@ant-design/icons';
 
-const CvCard = () => {
+const documents = [
+  {
+    key: 'cv',
+    title: 'Curriculum Vitae (CV)',
+    file: '/assets/documents/cv.pdf',
+    description: 'Updated CV with latest experience and skills.',
+  },
+  {
+    key: 'service',
+    title: 'Service Letter',
+    file: '/assets/documents/service-letter.pdf',
+    description: 'Official letter from prior organization.',
+  },
+  {
+    key: 'internship',
+    title: 'Internship Completion Letter',
+    file: '/assets/documents/internship-letter.pdf',
+    description: 'Proof of completed internship.',
+  },
+  {
+    key: 'career',
+    title: 'Career Updation Letter',
+    file: '/assets/documents/career-updation-letter.pdf',
+    description: 'Latest career progress update.',
+  },
+];
+
+const DocumentCard = ({ title, file, description }) => {
   const { notification } = App.useApp();
   const [previewVisible, setPreviewVisible] = useState(false);
   const [downloadModalVisible, setDownloadModalVisible] = useState(false);
   const [downloading, setDownloading] = useState(false);
   const [form] = Form.useForm();
 
-  const pdfUrl = '/assets/documents/cv.pdf';
-
   const handleValidDownload = () => {
     setDownloading(true);
+    const filename = `${title.toLowerCase().replace(/\s+/g, '_')}-${Date.now()}.pdf`;
 
-    const filename = `cv-${Date.now()}.pdf`;
-    fetch(pdfUrl)
+    fetch(file)
       .then(res => res.blob())
       .then(blob => {
         const blobUrl = URL.createObjectURL(blob);
@@ -42,7 +69,7 @@ const CvCard = () => {
 
         notification.success({
           message: 'Download Started',
-          description: 'Your CV is being downloaded.',
+          description: `${title} is being downloaded.`,
           placement: 'topRight',
         });
       })
@@ -63,20 +90,21 @@ const CvCard = () => {
   };
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', padding: '2rem', flexWrap: 'wrap' }}>
+    <>
       <Card
-        title="CV ACCESS"
+        title={title}
         bordered={false}
         style={{
           width: '100%',
           maxWidth: 400,
           textAlign: 'center',
+          marginBottom: 24,
           boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
         }}
         cover={
           <div style={{ padding: '2rem 0' }}>
             <FilePdfOutlined style={{ fontSize: 64, color: '#d32f2f' }} />
-            <div style={{ marginTop: 10 }}>Preview your CV</div>
+            <div style={{ marginTop: 10 }}>{description}</div>
           </div>
         }
         actions={[
@@ -84,10 +112,10 @@ const CvCard = () => {
           <DownloadOutlined key="download" onClick={() => setDownloadModalVisible(true)} />,
         ]}
       >
-        <p>This card allows users to preview or securely download your CV document.</p>
+        <p>You can preview or securely download this document.</p>
       </Card>
 
-      {/* CV Preview Modal */}
+      {/* Preview Modal */}
       <Modal
         open={previewVisible}
         onCancel={() => setPreviewVisible(false)}
@@ -95,21 +123,21 @@ const CvCard = () => {
         width="80%"
         style={{ top: 20 }}
         bodyStyle={{ height: '80vh', padding: 0 }}
-        title="CV Preview"
+        title={`${title} Preview`}
       >
         <iframe
-          src={pdfUrl}
-          title="CV File Preview"
+          src={file}
+          title={`${title} File Preview`}
           width="100%"
           height="100%"
           style={{ border: 'none' }}
         />
       </Modal>
 
-      {/* Download Form Modal */}
+      {/* Secure Download Modal */}
       <Modal
         open={downloadModalVisible}
-        title="Secure CV Download"
+        title={`Secure Download - ${title}`}
         onCancel={() => {
           setDownloadModalVisible(false);
           form.resetFields();
@@ -123,7 +151,7 @@ const CvCard = () => {
               loading={downloading}
               disabled={downloading}
             >
-              {downloading ? <Spin size="small" /> : 'Download CV'}
+              {downloading ? <Spin size="small" /> : `Download ${title}`}
             </Button>
           </>
         )}
@@ -156,12 +184,24 @@ const CvCard = () => {
           </Form.Item>
         </Form>
       </Modal>
-    </div>
+    </>
   );
 };
 
-export default () => (
-  <App>
-    <CvCard />
-  </App>
-);
+const CvDocuments = () => {
+  return (
+    <App>
+      <div style={{ padding: '2rem' }}>
+        <Row gutter={[24, 24]} justify="center">
+          {documents.map(doc => (
+            <Col key={doc.key}>
+              <DocumentCard {...doc} />
+            </Col>
+          ))}
+        </Row>
+      </div>
+    </App>
+  );
+};
+
+export default CvDocuments;

@@ -1,8 +1,6 @@
-// src/components/project/Project.jsx
 import React, { useState, Suspense, lazy } from 'react';
 import { Button, Tooltip, Row, Col, Spin } from 'antd';
 import { DownOutlined, UpOutlined } from '@ant-design/icons';
-import './Project.css';
 
 // Lazy load project components
 const projects = [
@@ -30,83 +28,64 @@ const projects = [
 
 const Project = () => {
   const [showAll, setShowAll] = useState(false);
-  const visibleProjects = showAll ? projects : projects.slice(0, 8);
+  const visibleProjects = showAll ? projects : projects.slice(0, 4); // ⬅️ Only show 4 by default
 
-  const toggleShowAll = () => {
-    setShowAll((prev) => !prev);
-  };
+  const toggleShowAll = () => setShowAll((prev) => !prev);
 
   return (
-    <div
-      className="projects-container"
-      style={{
-        padding: 16,
-        display: 'flex', // flex column container
-        flexDirection: 'column',
-        minHeight: '600px', // adjust this height as needed
-      }}
-    >
-      <Suspense
-        fallback={
-          <div style={{ textAlign: 'center', padding: 40 }}>
-            <Spin size="large" tip="Loading Projects..." />
-          </div>
-        }
-      >
-        <Row
-          gutter={[24, 24]}
+    <div className="projects-section" style={{ padding: '24px' }}>
+      <div style={{ textAlign: 'center', marginBottom: 24 }}>
+        <h2>Projects</h2>
+      </div>
+
+      <div className="projects-container">
+        <Suspense
+          fallback={
+            <div style={{ textAlign: 'center', padding: '40px' }}>
+              <Spin size="large" tip="Loading Projects..." />
+            </div>
+          }
+        >
+          <Row gutter={[24, 24]}>
+            {visibleProjects.map((Component, idx) => (
+              <Col key={`${showAll ? 'all' : 'partial'}-${idx}`} xs={24} sm={24} md={12} lg={12}>
+                <div className="project-card">
+                  <Component />
+                </div>
+              </Col>
+            ))}
+          </Row>
+        </Suspense>
+
+        <div
           style={{
-            flexGrow: 1, // make projects grid expand
+            width: '100%',
+            marginTop: '32px',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
           }}
         >
-          {visibleProjects.map((Component, idx) => (
-            <Col
-              key={`${showAll ? 'all' : 'partial'}-${idx}`}
-              xs={24}
-              sm={24}
-              md={12}
-              lg={12}
+          <Tooltip title="There are more than 20 projects done in last career">
+            <Button
+              type="default"
+              onClick={toggleShowAll}
+              icon={showAll ? <UpOutlined /> : <DownOutlined />}
+              style={{
+                backgroundColor: '#000',
+                color: '#fff',
+                borderColor: '#000',
+                borderRadius: '6px',
+                padding: '0 20px',
+                height: '40px',
+                fontWeight: 500,
+                transition: 'all 0.3s ease',
+              }}
             >
-              <div
-                className="project-wrapper"
-                style={{
-                  border: '1px solid #f0f0f0',
-                  borderRadius: 8,
-                  padding: 16,
-                  backgroundColor: '#fff',
-                  boxShadow: '0 2px 8px rgba(0, 0, 0, 0.05)',
-                  height: '100%',
-                }}
-              >
-                <Component />
-              </div>
-            </Col>
-          ))}
-        </Row>
-      </Suspense>
-
-      <div
-        style={{
-          marginTop: 24,
-          display: 'flex',
-          justifyContent: 'center',
-        }}
-      >
-        <Tooltip title="There are more than 20 projects done in last career">
-          <Button
-            type="default"
-            onClick={toggleShowAll}
-            icon={showAll ? <UpOutlined /> : <DownOutlined />}
-            style={{
-              backgroundColor: '#000',
-              color: '#fff',
-              borderColor: '#000',
-              minWidth: 140,
-            }}
-          >
-            {showAll ? ' Show Less' : ' Show More'}
-          </Button>
-        </Tooltip>
+              {showAll ? ' Show Less' : ' Show More'}
+            </Button>
+          </Tooltip>
+        </div>
       </div>
     </div>
   );
