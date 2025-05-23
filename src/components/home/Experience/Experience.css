@@ -151,3 +151,86 @@ body.dark-mode {
 .skill-item:nth-child(7) .anticon { color: #ff008c; }
 .skill-item:nth-child(8) .anticon { color: #002fff; }
 .skill-item:nth-child(9) .anticon { color: #b7ff00; }
+
+/* Media Queries for responsiveness */
+
+/* Mobile: width <= 768px */
+@media (max-width: 768px) {
+  .experience-list {
+    gap: 16px;
+  }
+
+  .experience-item {
+    padding: 15px;
+  }
+
+  .exp-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .exp-header h3 {
+    font-size: 1.1rem;
+  }
+
+  .exp-title {
+    font-size: 0.95rem;
+  }
+
+  .exp-meta {
+    flex-direction: column;
+    gap: 4px;
+    font-size: 0.85rem;
+  }
+
+  .exp-desc {
+    font-size: 0.95rem;
+  }
+
+  .skills {
+    gap: 8px;
+  }
+
+  .skill-item {
+    font-size: 0.8rem;
+    padding: 5px 8px;
+  }
+}
+
+/* Small phones: width <= 480px */
+@media (max-width: 480px) {
+  .experience-container {
+    padding: 12px 10px;
+  }
+
+  .experience-title {
+    font-size: 1.4rem;
+    margin-bottom: 18px;
+  }
+
+  .experience-item {
+    padding: 12px;
+  }
+
+  .exp-header h3 {
+    font-size: 1rem;
+  }
+
+  .exp-title {
+    font-size: 0.9rem;
+  }
+
+  .exp-meta {
+    font-size: 0.8rem;
+  }
+
+  .exp-desc {
+    font-size: 0.9rem;
+  }
+
+  .skill-item {
+    font-size: 0.75rem;
+    padding: 4px 6px;
+  }
+}

@@ -18,7 +18,7 @@ import {
   ContactsOutlined,
   MenuOutlined,
 } from '@ant-design/icons';
-import { SiGoogle } from 'react-icons/si'; // ✅ Google icon
+import { SiGoogle } from 'react-icons/si';
 
 const AppHeader = ({ darkMode, setDarkMode }) => {
   const [current, setCurrent] = useState('home');
@@ -60,25 +60,16 @@ const AppHeader = ({ darkMode, setDarkMode }) => {
 
   return (
     <Layout.Header
-      style={{
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        padding: '0 20px',
-        backgroundColor: darkMode ? '#000' : '#fff',
-        color: darkMode ? '#fff' : '#000',
-        position: 'sticky',
-        top: 0,
-        zIndex: 1000,
-      }}
+      className={`app-header ${darkMode ? 'dark' : 'light'}`}
     >
-      {/* Navigation Menu */}
-      <div style={{ flex: 1 }}>
+      {/* Left side: mobile menu button + desktop menu */}
+      <div className="left-nav">
         <Button
           type="text"
           icon={<MenuOutlined />}
           onClick={showDrawer}
           className="mobile-menu-button"
+          aria-label="Open menu"
         />
         <Menu
           onClick={handleMenuClick}
@@ -86,11 +77,11 @@ const AppHeader = ({ darkMode, setDarkMode }) => {
           mode="horizontal"
           items={navItems}
           className="desktop-menu"
-          style={{ backgroundColor: 'transparent', color: darkMode ? '#fff' : '#000' }}
+          theme={darkMode ? 'dark' : 'light'}
         />
       </div>
 
-      {/* Search + Theme Toggle */}
+      {/* Right side: search + toggle */}
       <div className="header-right">
         <Input
           value={searchQuery}
@@ -100,6 +91,8 @@ const AppHeader = ({ darkMode, setDarkMode }) => {
           prefix={<SiGoogle color="#4285F4" size={18} />}
           allowClear
           className={`search-input ${darkMode ? 'dark' : 'light'}`}
+          style={{ width: 220 }}
+          aria-label="Search input"
         />
 
         <Switch
@@ -108,8 +101,9 @@ const AppHeader = ({ darkMode, setDarkMode }) => {
           checkedChildren={<MoonOutlined />}
           unCheckedChildren={<SunOutlined />}
           style={{ marginLeft: 12 }}
+          aria-label="Toggle dark mode"
         />
-        <span style={{ userSelect: 'none', marginLeft: 4 }}>
+        <span className="mode-label" aria-live="polite">
           {darkMode ? 'Dark Mode' : 'Light Mode'}
         </span>
       </div>
@@ -120,12 +114,15 @@ const AppHeader = ({ darkMode, setDarkMode }) => {
         placement="right"
         onClose={closeDrawer}
         visible={drawerVisible}
+        bodyStyle={{ padding: 0 }}
+        className={`app-drawer ${darkMode ? 'dark' : 'light'}`}
       >
         <Menu
           onClick={handleMenuClick}
           selectedKeys={[current]}
           mode="vertical"
           items={navItems}
+          theme={darkMode ? 'dark' : 'light'}
         />
       </Drawer>
     </Layout.Header>

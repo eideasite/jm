@@ -1,57 +1,109 @@
-/* Container for right side: search, avatar, switch */
+/* Base header styles */
+.app-header {
+  position: fixed;  /* FIXED to top for all devices */
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Light and dark backgrounds */
+.app-header.light {
+  background-color: #fff;
+  color: #000;
+}
+
+.app-header.dark {
+  background-color: #000;
+  color: #fff;
+}
+
+/* Left nav container */
+.left-nav {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+/* Desktop menu styles */
+.desktop-menu {
+  background-color: transparent !important;
+  color: inherit !important;
+  flex: 1;
+  display: flex !important;
+  justify-content: center;
+  gap: 16px;
+  white-space: nowrap;
+}
+
+/* Mobile menu button hidden on desktop */
+.mobile-menu-button {
+  display: none;
+  font-size: 20px;
+  color: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-right: 12px;
+}
+
+/* Header right container: search + switch + label */
 .header-right {
   display: flex;
   align-items: center;
   gap: 12px;
-  white-space: nowrap; /* Prevent items breaking into multiple lines */
+  white-space: nowrap;
 }
 
-/* Search input max width & margin */
+/* Mode label spacing */
+.mode-label {
+  user-select: none;
+  white-space: nowrap;
+  font-weight: 500;
+}
+
+/* Search input base */
 .search-input {
-  max-width: 220px;
+  max-width: 300px;
+  min-width: 180px;
   width: 100%;
-  margin-right: 16px;
+  transition: all 0.3s ease;
+}
+
+.search-input input {
+  background-color: transparent;
+  color: inherit;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  padding: 6px 11px;
+  font-size: 14px;
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+  outline: none;
 }
 
 /* Light mode search */
 .search-input.light input {
   background-color: #fff;
   color: #000;
-  border-color: #d9d9d9;
+  border-color: #ccc;
 }
 
 /* Dark mode search */
 .search-input.dark input {
-  background-color: #1f1f1f;
+  background-color: #1a1a1a;
   color: #fff;
   border-color: #444;
 }
 
-/* Search button style */
-.search-input .ant-input-search-button {
-  background-color: #1890ff;
-  border-color: #1890ff;
-  color: #fff;
-}
+/* Responsive */
 
-.search-input.dark .ant-input-search-button {
-  background-color: #555;
-  border-color: #555;
-  color: #fff;
-}
-
-/* Desktop menu container */
-.desktop-menu {
-  max-width: 700px; /* Limit max width to avoid overlap */
-  overflow-x: auto; /* Allow horizontal scroll if too many items */
-}
-
-/* Hide mobile menu button on desktop */
-.mobile-menu-button {
-  display: none;
-}
-
-/* Responsive: show mobile menu button and hide desktop menu on small screens */
+/* Mobile view: show menu button, hide desktop menu */
 @media (max-width: 768px) {
   .desktop-menu {
     display: none !important;
@@ -61,46 +113,26 @@
     display: inline-block;
   }
 
+  .search-input {
+    max-width: 140px !important;
+  }
+
   .header-right {
     gap: 8px;
   }
-
-  .search-input {
-    max-width: 150px;
-    margin-right: 8px;
+}
+/* Fixed header for mobile: always visible on top */
+@media (max-width: 480px) {
+  .ant-layout-header {
+    position: fixed !important;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   }
-}
-.desktop-menu {
-  max-width: none;         /* Remove max-width limit */
-  overflow-x: visible;     /* Remove horizontal scroll */
-  white-space: nowrap;     /* Keep menu items in one line */
-  flex-wrap: nowrap;       /* Prevent wrapping */
-  display: flex !important; /* Force flex layout */
-  justify-content: center;  /* Center menu items */
-}
 
-/* Search Input Style */
-.search-input {
-  max-width: 300px;
-  min-width: 180px;
-  width: 100%;
-  transition: all 0.3s ease;
-  margin-right: 16px;
-}
-
-.search-input input {
-  background-color: transparent;
-  color: inherit;
-}
-
-.search-input.dark input {
-  background-color: #1a1a1a;
-  border-color: #444;
-  color: #fff;
-}
-
-.search-input.light input {
-  background-color: #fff;
-  border-color: #ccc;
-  color: #000;
+  /* Add padding to body or main content so it is not hidden behind header */
+  #main-content {
+    padding-top: 64px; /* Height of your header */
+  }
 }

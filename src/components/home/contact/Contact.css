@@ -1,22 +1,28 @@
 .contact-title {
-  text-align: center;   /* <-- Center-align the text */
-  font-size: 28px;      /* (Optional) Improve visibility */
-  margin-bottom: 24px;  /* (Optional) Space before the card */
+  text-align: center;
+  /* <-- Center-align the text */
+  font-size: 28px;
+  /* (Optional) Improve visibility */
+  margin-bottom: 24px;
+  /* (Optional) Space before the card */
 }
 
 /* Buttons container (matches input width) */
 .form-buttons {
   display: flex;
   gap: 16px;
-  justify-content: center;       /* <-- Center align buttons horizontally */
-  width: 100%;                   /* match form field width */
+  justify-content: center;
+  /* <-- Center align buttons horizontally */
+  width: 100%;
+  /* match form field width */
   margin-top: 8px;
 }
 
 /* Submit & Reset button styling */
 .submit-button,
 .reset-button {
-  flex: 0 1 auto;                /* <-- Allow natural size, not forced equal width */
+  flex: 0 1 auto;
+  /* <-- Allow natural size, not forced equal width */
   padding: 12px 20px;
   font-size: 16px;
   font-weight: 600;
@@ -57,7 +63,52 @@
   .form-buttons {
     flex-direction: column;
     gap: 14px;
-    align-items: center;         /* <-- Center align items when stacked */
+    align-items: center;
+    /* <-- Center align items when stacked */
+  }
+
+  .submit-button,
+  .reset-button {
+    width: 100%;
+  }
+}
+
+/* Large devices (desktops, laptops) */
+@media (min-width: 1025px) {
+  .form-buttons {
+    flex-direction: row;
+    gap: 16px;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .submit-button,
+  .reset-button {
+    width: auto;
+  }
+}
+
+/* Medium devices (tablets, small laptops) */
+@media (max-width: 1024px) and (min-width: 481px) {
+  .form-buttons {
+    flex-direction: row;
+    gap: 14px;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .submit-button,
+  .reset-button {
+    width: auto;
+  }
+}
+
+/* Small devices (mobile phones) */
+@media (max-width: 480px) {
+  .form-buttons {
+    flex-direction: column;
+    gap: 14px;
+    align-items: center;
   }
 
   .submit-button,

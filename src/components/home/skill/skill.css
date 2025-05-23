@@ -30,3 +30,104 @@
   color: #000;
   transform: scale(1.05);
 }
+
+/* Responsive media queries for .switch-button */
+
+/* Extra small phones (e.g., iPhone SE, Galaxy Note 3) */
+@media (max-width: 320px) {
+  .switch-button {
+    width: 100%;
+    padding: 14px 0;
+    font-size: 15px;
+    text-align: center;
+    display: block;
+  }
+}
+
+/* Small phones (e.g., Galaxy S8+, A51, Pixel 7, iPhone 12 Pro) */
+@media (min-width: 321px) and (max-width: 360px) {
+  .switch-button {
+    width: 100%;
+    padding: 13px 0;
+    font-size: 15px;
+    text-align: center;
+    display: block;
+  }
+}
+
+/* Medium phones (e.g., iPhone XR, iPhone 14 Pro Max, Galaxy S20 Ultra) */
+@media (min-width: 361px) and (max-width: 414px) {
+  .switch-button {
+    width: 100%;
+    padding: 12px 0;
+    font-size: 16px;
+    text-align: center;
+    display: block;
+  }
+}
+
+/* Large phones and small tablets (e.g., Galaxy Z Fold 5 folded, Google Nest Hub) */
+@media (min-width: 415px) and (max-width: 480px) {
+  .switch-button {
+    width: 100%;
+    padding: 14px 0;
+    font-size: 16px;
+    text-align: center;
+    display: block;
+  }
+}
+
+/* Small tablets (e.g., iPad Mini, BlackBerry PlayBook, Google Nest Hub Max) */
+@media (min-width: 481px) and (max-width: 600px) {
+  .switch-button {
+    padding: 11px 24px;
+    font-size: 15px;
+    width: auto;
+    display: inline-block;
+    text-align: left;
+  }
+}
+
+/* Medium tablets (e.g., iPad Air, BlackBerry Z30, Surface Duo per screen width) */
+@media (min-width: 601px) and (max-width: 720px) {
+  .switch-button {
+    padding: 12px 26px;
+    font-size: 15.5px;
+    width: auto;
+    display: inline-block;
+    text-align: left;
+  }
+}
+
+/* Large tablets and small laptops (e.g., iPad Pro 11", Surface Pro 7) */
+@media (min-width: 721px) and (max-width: 834px) {
+  .switch-button {
+    padding: 12px 28px;
+    font-size: 16px;
+    width: auto;
+    display: inline-block;
+    text-align: left;
+  }
+}
+
+/* Extra large tablets / laptops (e.g., Surface Pro 7 extended, Asus Zenbook Fold) */
+@media (min-width: 835px) and (max-width: 1024px) {
+  .switch-button {
+    padding: 12px 28px;
+    font-size: 16px;
+    width: auto;
+    display: inline-block;
+    text-align: left;
+  }
+}
+
+/* Larger devices and desktops (above 1025px) */
+@media (min-width: 1025px) {
+  .switch-button {
+    padding: 14px 32px;
+    font-size: 17px;
+    width: auto;
+    display: inline-block;
+    text-align: left;
+  }
+}
