@@ -108,7 +108,7 @@ body.dark-mode {
   align-items: center;
   gap: 6px;
   background: var(--primary-icon);
-  background-color: rgba(194, 236, 188, 0.724);
+  background-color: rgb(245, 242, 247);
   color: rgba(94, 46, 255, 0.484);
   padding: 6px 12px;
   border-radius: 16px;
