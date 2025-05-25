@@ -21,27 +21,21 @@ const documents = [
   {
     key: 'cv',
     title: 'Curriculum Vitae (CV)',
-    file: '/assets/documents/cv.pdf',
+    file: '/assets/documents/manoharan jeyamohan cv.pdf',
     description: 'Updated CV with latest experience and skills.',
   },
   {
     key: 'service',
     title: 'Service Letter',
-    file: '/assets/documents/service-letter.pdf',
+    file: '/assets/documents/Service Letter -JM.pdf',
     description: 'Official letter from prior organization.',
   },
   {
     key: 'internship',
     title: 'Internship Completion Letter',
-    file: '/assets/documents/internship-letter.pdf',
+    file: '/assets/documents/INTERNSHIP.pdf',
     description: 'Proof of completed internship.',
-  },
-  {
-    key: 'career',
-    title: 'Career Updation Letter',
-    file: '/assets/documents/career-updation-letter.pdf',
-    description: 'Latest career progress update.',
-  },
+  }
 ];
 
 const DocumentCard = ({ title, file, description }) => {
