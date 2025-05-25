@@ -1,133 +1,386 @@
-/* Grayscale Skill Shades */
-.skill-shade-0  { background-color: #000; color: #fff; }
-.skill-shade-1  { background-color: #1a1a1a; color: #fff; }
-.skill-shade-2  { background-color: #333; color: #fff; }
-.skill-shade-3  { background-color: #4d4d4d; color: #fff; }
-.skill-shade-4  { background-color: #666; color: #fff; }
-.skill-shade-5  { background-color: #808080; color: #fff; }
-.skill-shade-6  { background-color: #999; color: #fff; }
-.skill-shade-7  { background-color: #b3b3b3; color: #000; }
-.skill-shade-8  { background-color: #ccc; color: #000; }
-.skill-shade-9  { background-color: #e6e6e6; color: #000; }
-
-/* Button: Rounded Black-to-White Hover with Zoom */
-.switch-button {
-  background-color: #000;
-  color: #fff;
-  border: 2px solid #000;
-  padding: 10px 20px;
-  border-radius: 999px; /* Fully rounded pill shape */
+/* Base tag styles */
+.tag-hover {
+  display: block;
+  text-align: center;
+  padding: 8px 12px;
+  font-weight: 600;
   font-size: 14px;
-  font-weight: 500;
+  border-radius: 50px;
+  white-space: normal;
+  line-height: 1.4;
+  min-height: 40px;
+  word-break: break-word;
+  transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
   cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
-  transform: scale(1);
-  display: inline-block;
+  color: var(--default-text-color);
+  background-color: transparent;
+  user-select: none;
 }
 
-.switch-button:hover {
-  background-color: #fff;
-  color: #000;
-  transform: scale(1.05);
+/* Hover scale effect */
+.tag-hover:hover {
+  transform: scale(1.20);
 }
 
-/* Responsive media queries for .switch-button */
-
-/* Extra small phones (e.g., iPhone SE, Galaxy Note 3) */
-@media (max-width: 320px) {
-  .switch-button {
-    width: 100%;
-    padding: 14px 0;
-    font-size: 15px;
-    text-align: center;
-    display: block;
-  }
+/* ---------------------------- */
+/* DARK MODE hover colors        */
+/* ---------------------------- */
+.skill-section-dark .tag-hover.color-git:hover {
+  background-color: #f05033; color: #fff !important;
+}
+.skill-section-dark .tag-hover.color-linux:hover {
+  background-color: #333333; color: #fff !important;
+}
+.skill-section-dark .tag-hover.color-figma:hover {
+  background-color: #f24e1e; color: #fff !important;
+}
+.skill-section-dark .tag-hover.color-cloud:hover {
+  background-color: #00aaff; color: #fff !important;
+}
+.skill-section-dark .tag-hover.color-mobile:hover {
+  background-color: #00cc66; color: #fff !important;
+}
+.skill-section-dark .tag-hover.color-github:hover {
+  background-color: #181717; color: #fff !important;
+}
+.skill-section-dark .tag-hover.color-backend:hover {
+  background-color: #663399; color: #fff !important;
+}
+.skill-section-dark .tag-hover.color-jscript:hover {
+  background-color: #f7df1e; color: #000 !important;
+}
+.skill-section-dark .tag-hover.color-testing:hover {
+  background-color: #ff66cc; color: #000 !important;
+}
+.skill-section-dark .tag-hover.color-research:hover {
+  background-color: #0099cc; color: #fff !important;
+}
+.skill-section-dark .tag-hover.color-analysis:hover {
+  background-color: #336699; color: #fff !important;
+}
+.skill-section-dark .tag-hover.color-analytical:hover {
+  background-color: #9966cc; color: #fff !important;
+}
+.skill-section-dark .tag-hover.color-architecture:hover {
+  background-color: #cc9966; color: #000 !important;
+}
+.skill-section-dark .tag-hover.color-system-design:hover {
+  background-color: #6699cc; color: #fff !important;
+}
+.skill-section-dark .tag-hover.color-developer-tools:hover {
+  background-color: #ff9900; color: #000 !important;
+}
+.skill-section-dark .tag-hover.color-web-development:hover {
+  background-color: #339966; color: #fff !important;
+}
+.skill-section-dark .tag-hover.color-mobile-development:hover {
+  background-color: #cc3333; color: #fff !important;
+}
+.skill-section-dark .tag-hover.color-system-integration:hover {
+  background-color: #666666; color: #fff !important;
+}
+.skill-section-dark .tag-hover.color-software-development:hover {
+  background-color: #0066cc; color: #fff !important;
+}
+.skill-section-dark .tag-hover.color-software-architecture:hover {
+  background-color: #993366; color: #fff !important;
+}
+.skill-section-dark .tag-hover.color-artificial-intelligence:hover {
+  background-color: #6699ff; color: #000 !important;
+}
+.skill-section-dark .tag-hover.color-technical-documentation:hover {
+  background-color: #999999; color: #000 !important;
+}
+.skill-section-dark .tag-hover.color-agile-project-management:hover {
+  background-color: #ff6600; color: #fff !important;
+}
+.skill-section-dark .tag-hover.color-database-management-system:hover {
+  background-color: #336633; color: #fff !important;
 }
 
-/* Small phones (e.g., Galaxy S8+, A51, Pixel 7, iPhone 12 Pro) */
-@media (min-width: 321px) and (max-width: 360px) {
-  .switch-button {
-    width: 100%;
-    padding: 13px 0;
-    font-size: 15px;
-    text-align: center;
-    display: block;
-  }
+/* ---------------------------- */
+/* LIGHT MODE hover colors       */
+/* ---------------------------- */
+.skill-section-light .tag-hover.color-git:hover {
+  background-color: #f7c3b3; color: #a33b1c !important;
+}
+.skill-section-light .tag-hover.color-linux:hover {
+  background-color: #cccccc; color: #333333 !important;
+}
+.skill-section-light .tag-hover.color-figma:hover {
+  background-color: #f9b8a0; color: #a63518 !important;
+}
+.skill-section-light .tag-hover.color-cloud:hover {
+  background-color: #b3e5ff; color: #006699 !important;
+}
+.skill-section-light .tag-hover.color-mobile:hover {
+  background-color: #b3f0c1; color: #006633 !important;
+}
+.skill-section-light .tag-hover.color-github:hover {
+  background-color: #d9d9d9; color: #333333 !important;
+}
+.skill-section-light .tag-hover.color-backend:hover {
+  background-color: #c9b3e5; color: #4b2f80 !important;
+}
+.skill-section-light .tag-hover.color-jscript:hover {
+  background-color: #fff8b3; color: #666600 !important;
+}
+.skill-section-light .tag-hover.color-testing:hover {
+  background-color: #ffcee7; color: #99004d !important;
+}
+.skill-section-light .tag-hover.color-research:hover {
+  background-color: #b3dbf5; color: #004466 !important;
+}
+.skill-section-light .tag-hover.color-analysis:hover {
+  background-color: #a1c5e7; color: #003366 !important;
+}
+.skill-section-light .tag-hover.color-analytical:hover {
+  background-color: #d6b3f5; color: #4a237e !important;
+}
+.skill-section-light .tag-hover.color-architecture:hover {
+  background-color: #f0d7b3; color: #6e4f2a !important;
+}
+.skill-section-light .tag-hover.color-system-design:hover {
+  background-color: #c0d6f5; color: #1a3d7a !important;
+}
+.skill-section-light .tag-hover.color-developer-tools:hover {
+  background-color: #ffdb99; color: #804d00 !important;
+}
+.skill-section-light .tag-hover.color-web-development:hover {
+  background-color: #99cbb3; color: #1a4d33 !important;
+}
+.skill-section-light .tag-hover.color-mobile-development:hover {
+  background-color: #f7b3b3; color: #800000 !important;
+}
+.skill-section-light .tag-hover.color-system-integration:hover {
+  background-color: #d9d9d9; color: #333333 !important;
+}
+.skill-section-light .tag-hover.color-software-development:hover {
+  background-color: #b3d1f7; color: #003366 !important;
+}
+.skill-section-light .tag-hover.color-software-architecture:hover {
+  background-color: #e5b3d1; color: #662244 !important;
+}
+.skill-section-light .tag-hover.color-artificial-intelligence:hover {
+  background-color: #b3c9ff; color: #003399 !important;
+}
+.skill-section-light .tag-hover.color-technical-documentation:hover {
+  background-color: #e5e5e5; color: #666666 !important;
+}
+.skill-section-light .tag-hover.color-agile-project-management:hover {
+  background-color: #ffc299; color: #804000 !important;
+}
+.skill-section-light .tag-hover.color-database-management-system:hover {
+  background-color: #a3c9a3; color: #244d24 !important;
+}
+/* ---------------------------- */
+/* SOFT SKILL hover colors - DARK MODE */
+/* ---------------------------- */
+.skill-section-dark .tag-hover.color-docs:hover {
+  background-color: #4a90e2; color: #fff !important;
+}
+.skill-section-dark .tag-hover.color-jira:hover {
+  background-color: #0052cc; color: #fff !important;
+}
+.skill-section-dark .tag-hover.color-drive:hover {
+  background-color: #4285f4; color: #fff !important;
+}
+.skill-section-dark .tag-hover.color-email:hover {
+  background-color: #bb001b; color: #fff !important;
+}
+.skill-section-dark .tag-hover.color-excel:hover {
+  background-color: #217346; color: #fff !important;
+}
+.skill-section-dark .tag-hover.color-gmail:hover {
+  background-color: #d93025; color: #fff !important;
+}
+.skill-section-dark .tag-hover.color-scrum:hover {
+  background-color: #f2a900; color: #000 !important;
+}
+.skill-section-dark .tag-hover.color-design:hover {
+  background-color: #ff6f61; color: #fff !important;
+}
+.skill-section-dark .tag-hover.color-ux-design:hover {
+  background-color: #6c5ce7; color: #fff !important;
+}
+.skill-section-dark .tag-hover.color-invoicing:hover {
+  background-color: #d67f00; color: #fff !important;
+}
+.skill-section-dark .tag-hover.color-execution:hover {
+  background-color: #ff9f43; color: #000 !important;
+}
+.skill-section-dark .tag-hover.color-google-docs:hover {
+  background-color: #3367d6; color: #fff !important;
+}
+.skill-section-dark .tag-hover.color-prototyping:hover {
+  background-color: #9b59b6; color: #fff !important;
+}
+.skill-section-dark .tag-hover.color-wireframing:hover {
+  background-color: #34495e; color: #fff !important;
+}
+.skill-section-dark .tag-hover.color-user-centered:hover {
+  background-color: #2ecc71; color: #fff !important;
+}
+.skill-section-dark .tag-hover.color-facilitation:hover {
+  background-color: #e67e22; color: #fff !important;
+}
+.skill-section-dark .tag-hover.color-management:hover {
+  background-color: #2980b9; color: #fff !important;
+}
+.skill-section-dark .tag-hover.color-innovation:hover {
+  background-color: #f39c12; color: #000 !important;
+}
+.skill-section-dark .tag-hover.color-teamwork:hover {
+  background-color: #27ae60; color: #fff !important;
+}
+.skill-section-dark .tag-hover.color-communication:hover {
+  background-color: #c0392b; color: #fff !important;
+}
+.skill-section-dark .tag-hover.color-collaboration:hover {
+  background-color: #8e44ad; color: #fff !important;
+}
+.skill-section-dark .tag-hover.color-user-interface:hover {
+  background-color: #2980b9; color: #fff !important;
+}
+.skill-section-dark .tag-hover.color-problem-solving:hover {
+  background-color: #16a085; color: #fff !important;
+}
+.skill-section-dark .tag-hover.color-risk-management:hover {
+  background-color: #d35400; color: #fff !important;
+}
+.skill-section-dark .tag-hover.color-team-management:hover {
+  background-color: #34495e; color: #fff !important;
+}
+.skill-section-dark .tag-hover.color-design-thinking:hover {
+  background-color: #9b59b6; color: #fff !important;
+}
+.skill-section-dark .tag-hover.color-project-planning:hover {
+  background-color: #e67e22; color: #fff !important;
+}
+.skill-section-dark .tag-hover.color-business-analysis:hover {
+  background-color: #27ae60; color: #fff !important;
+}
+.skill-section-dark .tag-hover.color-project-management:hover {
+  background-color: #2980b9; color: #fff !important;
+}
+.skill-section-dark .tag-hover.color-strategic-thinking:hover {
+  background-color: #8e44ad; color: #fff !important;
+}
+.skill-section-dark .tag-hover.color-process-management:hover {
+  background-color: #d35400; color: #fff !important;
+}
+.skill-section-dark .tag-hover.color-product-development:hover {
+  background-color: #16a085; color: #fff !important;
+}
+.skill-section-dark .tag-hover.color-requirements-gathering:hover {
+  background-color: #f39c12; color: #000 !important;
+}
+.skill-section-dark .tag-hover.color-product-lifecycle-management:hover {
+  background-color: #27ae60; color: #fff !important;
 }
 
-/* Medium phones (e.g., iPhone XR, iPhone 14 Pro Max, Galaxy S20 Ultra) */
-@media (min-width: 361px) and (max-width: 414px) {
-  .switch-button {
-    width: 100%;
-    padding: 12px 0;
-    font-size: 16px;
-    text-align: center;
-    display: block;
-  }
+/* ---------------------------- */
+/* SOFT SKILL hover colors - LIGHT MODE */
+/* ---------------------------- */
+.skill-section-light .tag-hover.color-docs:hover {
+  background-color: #d0e3ff; color: #244a86 !important;
 }
-
-/* Large phones and small tablets (e.g., Galaxy Z Fold 5 folded, Google Nest Hub) */
-@media (min-width: 415px) and (max-width: 480px) {
-  .switch-button {
-    width: 100%;
-    padding: 14px 0;
-    font-size: 16px;
-    text-align: center;
-    display: block;
-  }
+.skill-section-light .tag-hover.color-jira:hover {
+  background-color: #cce0ff; color: #003366 !important;
 }
-
-/* Small tablets (e.g., iPad Mini, BlackBerry PlayBook, Google Nest Hub Max) */
-@media (min-width: 481px) and (max-width: 600px) {
-  .switch-button {
-    padding: 11px 24px;
-    font-size: 15px;
-    width: auto;
-    display: inline-block;
-    text-align: left;
-  }
+.skill-section-light .tag-hover.color-drive:hover {
+  background-color: #d7eaff; color: #1a4d99 !important;
 }
-
-/* Medium tablets (e.g., iPad Air, BlackBerry Z30, Surface Duo per screen width) */
-@media (min-width: 601px) and (max-width: 720px) {
-  .switch-button {
-    padding: 12px 26px;
-    font-size: 15.5px;
-    width: auto;
-    display: inline-block;
-    text-align: left;
-  }
+.skill-section-light .tag-hover.color-email:hover {
+  background-color: #fbdada; color: #b30000 !important;
 }
-
-/* Large tablets and small laptops (e.g., iPad Pro 11", Surface Pro 7) */
-@media (min-width: 721px) and (max-width: 834px) {
-  .switch-button {
-    padding: 12px 28px;
-    font-size: 16px;
-    width: auto;
-    display: inline-block;
-    text-align: left;
-  }
+.skill-section-light .tag-hover.color-excel:hover {
+  background-color: #cde5d1; color: #1d3c1d !important;
 }
-
-/* Extra large tablets / laptops (e.g., Surface Pro 7 extended, Asus Zenbook Fold) */
-@media (min-width: 835px) and (max-width: 1024px) {
-  .switch-button {
-    padding: 12px 28px;
-    font-size: 16px;
-    width: auto;
-    display: inline-block;
-    text-align: left;
-  }
+.skill-section-light .tag-hover.color-gmail:hover {
+  background-color: #f9d8d6; color: #a10000 !important;
 }
-
-/* Larger devices and desktops (above 1025px) */
-@media (min-width: 1025px) {
-  .switch-button {
-    padding: 14px 32px;
-    font-size: 17px;
-    width: auto;
-    display: inline-block;
-    text-align: left;
-  }
+.skill-section-light .tag-hover.color-scrum:hover {
+  background-color: #fff3cc; color: #b38600 !important;
+}
+.skill-section-light .tag-hover.color-design:hover {
+  background-color: #ffd6d1; color: #a83329 !important;
+}
+.skill-section-light .tag-hover.color-ux-design:hover {
+  background-color: #e6dbff; color: #3a2a75 !important;
+}
+.skill-section-light .tag-hover.color-invoicing:hover {
+  background-color: #f7e6cc; color: #7a4e00 !important;
+}
+.skill-section-light .tag-hover.color-execution:hover {
+  background-color: #ffe6b3; color: #665500 !important;
+}
+.skill-section-light .tag-hover.color-google-docs:hover {
+  background-color: #c2d5ff; color: #244a86 !important;
+}
+.skill-section-light .tag-hover.color-prototyping:hover {
+  background-color: #f0dbff; color: #5c3a99 !important;
+}
+.skill-section-light .tag-hover.color-wireframing:hover {
+  background-color: #d7dce6; color: #3a3f4d !important;
+}
+.skill-section-light .tag-hover.color-user-centered:hover {
+  background-color: #d1f0d7; color: #1b5e20 !important;
+}
+.skill-section-light .tag-hover.color-facilitation:hover {
+  background-color: #ffe6cc; color: #804d1a !important;
+}
+.skill-section-light .tag-hover.color-management:hover {
+  background-color: #cce0ff; color: #1a3d7a !important;
+}
+.skill-section-light .tag-hover.color-innovation:hover {
+  background-color: #fff1cc; color: #997a00 !important;
+}
+.skill-section-light .tag-hover.color-teamwork:hover {
+  background-color: #c3f0c3; color: #1b4d1b !important;
+}
+.skill-section-light .tag-hover.color-communication:hover {
+  background-color: #f9d6d6; color: #7a2020 !important;
+}
+.skill-section-light .tag-hover.color-collaboration:hover {
+  background-color: #e4d6f9; color: #4a237e !important;
+}
+.skill-section-light .tag-hover.color-user-interface:hover {
+  background-color: #cce0ff; color: #1a3d7a !important;
+}
+.skill-section-light .tag-hover.color-problem-solving:hover {
+  background-color: #d1f0d7; color: #1b5e20 !important;
+}
+.skill-section-light .tag-hover.color-risk-management:hover {
+  background-color: #fbd6b3; color: #7a4a00 !important;
+}
+.skill-section-light .tag-hover.color-team-management:hover {
+  background-color: #d7dce6; color: #3a3f4d !important;
+}
+.skill-section-light .tag-hover.color-design-thinking:hover {
+  background-color: #f0dbff; color: #5c3a99 !important;
+}
+.skill-section-light .tag-hover.color-project-planning:hover {
+  background-color: #ffe6cc; color: #7a4e00 !important;
+}
+.skill-section-light .tag-hover.color-business-analysis:hover {
+  background-color: #c3f0c3; color: #1b4d1b !important;
+}
+.skill-section-light .tag-hover.color-project-management:hover {
+  background-color: #cce0ff; color: #1a3d7a !important;
+}
+.skill-section-light .tag-hover.color-strategic-thinking:hover {
+  background-color: #e4d6f9; color: #4a237e !important;
+}
+.skill-section-light .tag-hover.color-process-management:hover {
+  background-color: #fbd6b3; color: #7a4a00 !important;
+}
+.skill-section-light .tag-hover.color-product-development:hover {
+  background-color: #d1f0d7; color: #1b5e20 !important;
+}
+.skill-section-light .tag-hover.color-requirements-gathering:hover {
+  background-color: #fff1cc; color: #997a00 !important;
+}
+.skill-section-light .tag-hover.color-product-lifecycle-management:hover {
+  background-color: #c3f0c3; color: #1b4d1b !important;
 }

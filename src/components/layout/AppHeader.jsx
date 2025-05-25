@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './AppHeader.css';
 import {
   Layout,
@@ -24,6 +24,13 @@ const AppHeader = ({ darkMode, setDarkMode }) => {
   const [current, setCurrent] = useState('home');
   const [drawerVisible, setDrawerVisible] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const navItems = [
     { label: 'Home', key: 'home', icon: <HomeOutlined style={{ color: '#1890ff' }} /> },
@@ -38,84 +45,89 @@ const AppHeader = ({ darkMode, setDarkMode }) => {
   const handleMenuClick = (e) => {
     setCurrent(e.key);
     setDrawerVisible(false);
-    const section = document.getElementById(e.key);
-    if (section) {
-      section.scrollIntoView({ behavior: 'smooth' });
-    }
+    const target = document.getElementById(e.key);
+    if (target) target.scrollIntoView({ behavior: 'smooth' });
   };
 
-  const handleSearchChange = (e) => {
-    setSearchQuery(e.target.value);
-  };
+  const handleSearchChange = (e) => setSearchQuery(e.target.value);
 
   const handleSearch = (value) => {
-    const query = value.trim();
-    if (query) {
-      window.open(`https://www.google.com/search?q=${encodeURIComponent(query)}`, '_blank');
-    }
+    const trimmed = value.trim();
+    if (trimmed) window.open(`https://www.google.com/search?q=${encodeURIComponent(trimmed)}`, '_blank');
   };
 
-  const showDrawer = () => setDrawerVisible(true);
-  const closeDrawer = () => setDrawerVisible(false);
-
   return (
-    <Layout.Header
-      className={`app-header ${darkMode ? 'dark' : 'light'}`}
-    >
-      {/* Left side: mobile menu button + desktop menu */}
-      <div className="left-nav">
-        <Button
-          type="text"
-          icon={<MenuOutlined />}
-          onClick={showDrawer}
-          className="mobile-menu-button"
-          aria-label="Open menu"
-        />
-        <Menu
-          onClick={handleMenuClick}
-          selectedKeys={[current]}
-          mode="horizontal"
-          items={navItems}
-          className="desktop-menu"
-          theme={darkMode ? 'dark' : 'light'}
-        />
+    <Layout.Header className={`app-header ${darkMode ? 'dark' : 'light'}`}>
+      <div
+        className="header-container"
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          width: '100%',
+          maxWidth: 1200,
+          margin: '0 auto',
+          padding: '0 16px',
+        }}
+      >
+        <div className="left-nav" style={{ flexGrow: 1, display: 'flex', alignItems: 'center' }}>
+          <Button
+            type="text"
+            icon={<MenuOutlined />}
+            onClick={() => setDrawerVisible(true)}
+            className="mobile-menu-button"
+            aria-label="Open mobile menu"
+            style={{ display: isMobile ? 'inline-block' : 'none' }}
+          />
+          <Menu
+            onClick={handleMenuClick}
+            selectedKeys={[current]}
+            mode="horizontal"
+            items={navItems}
+            className="desktop-menu"
+            theme={darkMode ? 'dark' : 'light'}
+            style={{ display: isMobile ? 'none' : 'flex', flexGrow: 1 }}
+          />
+        </div>
+
+        {!isMobile && (
+          <div
+            className="header-controls"
+            style={{ display: 'flex', alignItems: 'center', gap: 16 }}
+          >
+            <Input
+              value={searchQuery}
+              onChange={handleSearchChange}
+              onPressEnter={(e) => handleSearch(e.target.value)}
+              placeholder="Search with Google..."
+              prefix={<SiGoogle color="#4285F4" size={18} />}
+              allowClear
+              className={`search-input ${darkMode ? 'dark' : 'light'}`}
+              aria-label="Google Search"
+              style={{ width: 200 }}
+            />
+            <Switch
+              checked={darkMode}
+              onChange={() => setDarkMode(!darkMode)}
+              checkedChildren={<MoonOutlined />}
+              unCheckedChildren={<SunOutlined />}
+              aria-label="Toggle Dark Mode"
+            />
+            <span className="mode-label" aria-live="polite">
+              {darkMode ? 'Dark Mode' : 'Light Mode'}
+            </span>
+          </div>
+        )}
       </div>
 
-      {/* Right side: search + toggle */}
-      <div className="header-right">
-        <Input
-          value={searchQuery}
-          onChange={handleSearchChange}
-          onPressEnter={(e) => handleSearch(e.target.value)}
-          placeholder="Search with Google..."
-          prefix={<SiGoogle color="#4285F4" size={18} />}
-          allowClear
-          className={`search-input ${darkMode ? 'dark' : 'light'}`}
-          style={{ width: 220 }}
-          aria-label="Search input"
-        />
-
-        <Switch
-          checked={darkMode}
-          onChange={() => setDarkMode(!darkMode)}
-          checkedChildren={<MoonOutlined />}
-          unCheckedChildren={<SunOutlined />}
-          style={{ marginLeft: 12 }}
-          aria-label="Toggle dark mode"
-        />
-        <span className="mode-label" aria-live="polite">
-          {darkMode ? 'Dark Mode' : 'Light Mode'}
-        </span>
-      </div>
-
-      {/* Mobile Drawer */}
+      {/* Mobile drawer */}
       <Drawer
         title="Menu"
         placement="right"
-        onClose={closeDrawer}
+        onClose={() => setDrawerVisible(false)}
         visible={drawerVisible}
-        bodyStyle={{ padding: 0 }}
         className={`app-drawer ${darkMode ? 'dark' : 'light'}`}
+        bodyStyle={{ padding: 0 }}
       >
         <Menu
           onClick={handleMenuClick}
@@ -124,6 +136,43 @@ const AppHeader = ({ darkMode, setDarkMode }) => {
           items={navItems}
           theme={darkMode ? 'dark' : 'light'}
         />
+
+        {/* Centered controls inside drawer */}
+        <div
+          style={{
+            padding: '16px',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: '12px',
+            borderTop: darkMode ? '1px solid #444' : '1px solid #eee',
+          }}
+        >
+          <Input
+            value={searchQuery}
+            onChange={handleSearchChange}
+            onPressEnter={(e) => handleSearch(e.target.value)}
+            placeholder="Search with Google..."
+            prefix={<SiGoogle color="#4285F4" size={18} />}
+            allowClear
+            className={`search-input ${darkMode ? 'dark' : 'light'}`}
+            style={{ width: '100%' }}
+            aria-label="Google Search"
+          />
+
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <Switch
+              checked={darkMode}
+              onChange={() => setDarkMode(!darkMode)}
+              checkedChildren={<MoonOutlined />}
+              unCheckedChildren={<SunOutlined />}
+              aria-label="Toggle Dark Mode"
+            />
+            <span className="mode-label" aria-live="polite" style={{ marginTop: 8 }}>
+              {darkMode ? 'Dark Mode' : 'Light Mode'}
+            </span>
+          </div>
+        </div>
       </Drawer>
     </Layout.Header>
   );

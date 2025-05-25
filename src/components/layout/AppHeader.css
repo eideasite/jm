@@ -1,138 +1,255 @@
-/* Base header styles */
+/* Main container */
 .app-header {
-  position: fixed;  /* FIXED to top for all devices */
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1100;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 20px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-  transition: background-color 0.3s ease, color 0.3s ease;
+  padding: 0 16px;
+  height: 64px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
 }
 
-/* Light and dark backgrounds */
-.app-header.light {
-  background-color: #fff;
-  color: #000;
-}
-
+/* Dark / light theme support */
 .app-header.dark {
-  background-color: #000;
+  background-color: #1f1f1f;
+  color: white;
+}
+
+.app-header.light {
+  background-color: #ffffff;
+  color: black;
+}
+
+/* ================= Desktop Layout ================= */
+.left-nav {
+  display: flex;
+  align-items: center;
+}
+
+.desktop-menu {
+  display: flex;
+}
+
+/* Hide desktop menu on mobile */
+@media (max-width: 767px) {
+  .desktop-menu {
+    display: none !important;
+  }
+}
+
+/* ================= Mobile Layout ================= */
+.mobile-menu-button {
+  display: none;
+  font-size: 22px;
+  margin-right: 12px;
+  z-index: 2;
+}
+
+@media (max-width: 767px) {
+  .mobile-menu-button {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+  }
+}
+
+/* ================= Right Controls ================= */
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.search-input {
+  width: 200px;
+}
+
+@media (max-width: 767px) {
+  .header-controls {
+    flex: 1;
+    justify-content: flex-end;
+  }
+
+  .search-input {
+    display: none;
+  }
+
+  .mode-label {
+    display: none;
+  }
+}
+
+/* ================= Drawer ================= */
+.app-drawer .ant-menu {
+  text-align: center;
+  padding-top: 12px;
+}
+
+.app-drawer.dark .ant-menu-item {
+  color: white;
+}
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 16px;
+}
+
+.left-nav {
+  display: flex;
+  align-items: center;
+}
+
+.desktop-menu {
+  display: none;
+}
+
+.header-controls {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+/* Responsive rules */
+@media (min-width: 768px) {
+  .desktop-menu {
+    display: block;
+  }
+
+  .mobile-menu-button {
+    display: none;
+  }
+}
+.search-input.dark {
+  background-color: #1f1f1f;
   color: #fff;
 }
 
-/* Left nav container */
+.search-input.light {
+  background-color: #fff;
+  color: #000;
+}
+/* AppHeader.css */
+
+/* General header styling */
+.app-header {
+  padding: 0;
+  background-color: var(--header-bg);
+  box-shadow: 0 2px 8px #f0f1f2;
+  z-index: 1000;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  transition: background-color 0.3s ease;
+}
+
+/* Dark mode variables */
+.app-header.dark {
+  --header-bg: #1f1f1f;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.85);
+}
+
+/* Light mode variables */
+.app-header.light {
+  --header-bg: #ffffff;
+}
+
+/* Container inside header for content alignment */
+.header-container {
+  height: 64px;
+}
+
+/* Left navigation */
 .left-nav {
-  flex: 1;
   display: flex;
   align-items: center;
+  gap: 16px;
 }
 
 /* Desktop menu styles */
 .desktop-menu {
-  background-color: transparent !important;
-  color: inherit !important;
-  flex: 1;
-  display: flex !important;
-  justify-content: center;
-  gap: 16px;
-  white-space: nowrap;
+  border-bottom: none !important;
+  flex-grow: 1;
 }
 
-/* Mobile menu button hidden on desktop */
+/* Hide mobile menu button on desktop */
 .mobile-menu-button {
-  display: none;
   font-size: 20px;
-  color: inherit;
-  background: none;
-  border: none;
-  cursor: pointer;
-  margin-right: 12px;
+  line-height: 1;
+  padding: 0 8px;
+  display: none;
 }
 
-/* Header right container: search + switch + label */
-.header-right {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  white-space: nowrap;
-}
-
-/* Mode label spacing */
-.mode-label {
-  user-select: none;
-  white-space: nowrap;
-  font-weight: 500;
-}
-
-/* Search input base */
-.search-input {
-  max-width: 300px;
-  min-width: 180px;
-  width: 100%;
-  transition: all 0.3s ease;
-}
-
-.search-input input {
-  background-color: transparent;
-  color: inherit;
-  border: 1px solid transparent;
-  border-radius: 4px;
-  padding: 6px 11px;
-  font-size: 14px;
-  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
-  outline: none;
-}
-
-/* Light mode search */
-.search-input.light input {
-  background-color: #fff;
-  color: #000;
-  border-color: #ccc;
-}
-
-/* Dark mode search */
-.search-input.dark input {
-  background-color: #1a1a1a;
-  color: #fff;
-  border-color: #444;
-}
-
-/* Responsive */
-
-/* Mobile view: show menu button, hide desktop menu */
-@media (max-width: 768px) {
-  .desktop-menu {
-    display: none !important;
-  }
-
+/* Show mobile menu button on mobile */
+@media (max-width: 767px) {
   .mobile-menu-button {
     display: inline-block;
   }
-
-  .search-input {
-    max-width: 140px !important;
-  }
-
-  .header-right {
-    gap: 8px;
-  }
 }
-/* Fixed header for mobile: always visible on top */
-@media (max-width: 480px) {
-  .ant-layout-header {
-    position: fixed !important;
-    top: 0;
-    width: 100%;
-    z-index: 1000;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-  }
 
-  /* Add padding to body or main content so it is not hidden behind header */
-  #main-content {
-    padding-top: 64px; /* Height of your header */
-  }
+/* Search input styling */
+.search-input {
+  border-radius: 4px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Dark mode search input */
+.search-input.dark {
+  background-color: #333;
+  color: #eee;
+  border: 1px solid #555;
+}
+
+/* Light mode search input */
+.search-input.light {
+  background-color: #fff;
+  color: #000;
+  border: 1px solid #d9d9d9;
+}
+
+/* Header controls container */
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Mode label styling */
+.mode-label {
+  font-size: 14px;
+  color: var(--mode-label-color);
+}
+
+/* Dark mode mode-label */
+.app-header.dark .mode-label {
+  --mode-label-color: #bbb;
+}
+
+/* Light mode mode-label */
+.app-header.light .mode-label {
+  --mode-label-color: #444;
+}
+
+/* Drawer styling overrides */
+.app-drawer.dark .ant-drawer-content {
+  background-color: #1f1f1f;
+  color: #eee;
+}
+
+.app-drawer.light .ant-drawer-content {
+  background-color: #fff;
+  color: #000;
+}
+
+/* Remove menu border on drawer */
+.app-drawer .ant-menu {
+  border-right: none;
+}
+
+/* Fix input full width inside drawer */
+.app-drawer .search-input {
+  width: 100% !important;
 }

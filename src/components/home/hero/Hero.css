@@ -1,102 +1,121 @@
-/* Base styles */
+/* Hover forward effect */
+.ant-card:hover {
+  transform: scale(.87);
+  z-index: 10;
+  box-shadow: 0 10px 20px rgb(176, 164, 215);
+}
+
+/* Smooth animation */
+.ant-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+}
+
+body.light {
+  background-color: var(--light-bg);
+  color: var(--light-text);
+}
+
+body.dark {
+  background-color: var(--dark-bg);
+  color: var(--dark-text);
+}
+
+/* Header styling fix for mobile side icon alignment */
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 16px;
+  background-color: var(--light-bg);
+  color: var(--light-text);
+}
+
+body.dark .app-header {
+  background-color: var(--dark-bg);
+  color: var(--dark-text);
+}
+
+.mobile-menu-button {
+  display: none;
+  font-size: 22px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-right: 8px;
+}
+
+@media (max-width: 768px) {
+  .mobile-menu-button {
+    display: inline-block;
+  }
+
+  .header-right {
+    gap: 8px;
+  }
+}
+
+/* Hero Section */
 .hero-avatar {
-  margin-right: 20px;
   width: 220px;
   height: 220px;
   border-radius: 50%;
   overflow: hidden;
   flex-shrink: 0;
+  margin-right: 24px;
 }
 
-/* Flex container for avatar + text */
 .hero-content {
   display: flex;
   align-items: center;
+  text-align: left;
 }
 
-/* Small phones (up to 320px) */
-@media (max-width: 320px) {
-  .hero-avatar {
-    width: 120px;
-    height: 120px;
-    margin-right: 12px;
-  }
+/* Responsive adjustments */
+@media (max-width: 768px) {
   .hero-content {
     flex-direction: column;
     align-items: center;
     text-align: center;
   }
+
+  .hero-avatar {
+    width: 140px;
+    height: 140px;
+    margin-right: 0;
+    margin-bottom: 16px;
+  }
+
   .hero-content > div {
     margin-top: 12px;
   }
-  .hero-content h3 {
-    font-size: 1.2rem;
-  }
-  .hero-content p,
-  .hero-content .ant-typography-secondary {
-    font-size: 0.9rem;
-  }
 }
 
-/* Mobile phones up to 414px */
-@media (min-width: 321px) and (max-width: 414px) {
-  .hero-avatar {
-    width: 160px;
-    height: 160px;
-    margin-right: 16px;
-  }
-  .hero-content {
-    flex-direction: row;
-    align-items: center;
-  }
-  .hero-content > div {
-    margin-top: 0;
-  }
-  .hero-content h3 {
-    font-size: 1.2rem;
-  }
-  .hero-content p,
-  .hero-content .ant-typography-secondary {
-    font-size: 0.9rem;
-  }
+/* Typography structure */
+.hero-content h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--light-text);
+}
+body.dark .hero-content h1 {
+  color: var(--dark-text);
 }
 
-/* Tablets and small laptops (415px up to 768px) */
-@media (min-width: 415px) and (max-width: 768px) {
-  .hero-avatar {
-    width: 180px;
-    height: 180px;
-    margin-right: 18px;
-  }
-  .hero-content {
-    flex-direction: row;
-    align-items: center;
-  }
-  .hero-content h3 {
-    font-size: 1.4rem;
-  }
-  .hero-content p,
-  .hero-content .ant-typography-secondary {
-    font-size: 1rem;
-  }
+.hero-content h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--light-text);
+}
+body.dark .hero-content h2 {
+  color: var(--dark-text);
 }
 
-/* Larger screens (769px and above) */
-@media (min-width: 769px) {
-  .hero-avatar {
-    width: 220px;
-    height: 220px;
-    margin-right: 20px;
-  }
-  .hero-content {
-    flex-direction: row;
-    align-items: center;
-  }
-  .hero-content h3 {
-    font-size: 1.5rem;
-  }
-  .hero-content p,
-  .hero-content .ant-typography-secondary {
-    font-size: 1rem;
-  }
+.hero-content h3 {
+  font-size: 1.1rem;
+  font-weight: 500;
+  line-height: 1.6;
+  color: var(--light-text);
+}
+body.dark .hero-content h3 {
+  color: var(--dark-text);
 }
