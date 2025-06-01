@@ -1,6 +1,6 @@
 /* Hover forward effect */
 .ant-card:hover {
-  transform: scale(.87);
+  transform: scale(.98);
   z-index: 10;
   box-shadow: 0 10px 20px rgb(176, 164, 215);
 }

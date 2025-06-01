@@ -1,0 +1,200 @@
+.journey-container {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 20px 12px;
+  position: relative;
+}
+
+.journey-card {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border-radius: 12px;
+  background-color: transparent;
+}
+
+.carousel-content {
+  padding: 20px;
+  text-align: center;
+  max-height: 250px;
+  overflow-y: auto;
+}
+
+.carousel-title {
+  margin-bottom: 16px;
+  font-weight: 600;
+  user-select: none;
+}
+
+.carousel-tasks .task-item {
+  font-size: 14px;
+  margin-bottom: 6px;
+  line-height: 1.5;
+}
+
+.custom-arrow {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: transparent;
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.left-arrow {
+  left: -10px;
+}
+
+.right-arrow {
+  right: -10px;
+}
+
+/* ------------------ MEDIA QUERIES ------------------ */
+
+/* Extra Small Devices (iPhone SE, small Android) */
+@media (max-width: 360px) {
+  .journey-container {
+    padding: 10px 4px;
+  }
+
+  .carousel-content {
+    padding: 12px;
+    max-height: 300px;
+  }
+
+  .carousel-tasks .task-item {
+    font-size: 13px;
+  }
+
+  .custom-arrow {
+    width: 30px;
+    height: 30px;
+  }
+
+  .left-arrow {
+    left: -5px;
+  }
+
+  .right-arrow {
+    right: -5px;
+  }
+}
+
+/* Small Phones (iPhone X, 12, 13, most Androids) */
+@media (min-width: 361px) and (max-width: 428px) {
+  .journey-container {
+    padding: 12px 6px;
+  }
+
+  .carousel-content {
+    padding: 14px;
+    max-height: 280px;
+  }
+
+  .custom-arrow {
+    width: 34px;
+    height: 34px;
+  }
+
+  .left-arrow {
+    left: -6px;
+  }
+
+  .right-arrow {
+    right: -6px;
+  }
+}
+
+/* Tablets (iPads, small landscape tablets) */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .journey-container {
+    padding: 24px 16px;
+    max-width: 700px;
+  }
+
+  .carousel-content {
+    padding: 22px;
+    max-height: 320px;
+  }
+
+  .carousel-tasks .task-item {
+    font-size: 15px;
+  }
+
+  .custom-arrow {
+    width: 44px;
+    height: 44px;
+  }
+
+  .left-arrow {
+    left: -12px;
+  }
+
+  .right-arrow {
+    right: -12px;
+  }
+}
+
+/* Medium Screens (1024px to 1440px) - Laptops, desktops */
+@media (min-width: 1025px) and (max-width: 1440px) {
+  .journey-container {
+    max-width: 800px;
+    padding: 30px 20px;
+  }
+
+  .carousel-content {
+    max-height: 340px;
+    padding: 24px;
+  }
+
+  .carousel-tasks .task-item {
+    font-size: 15px;
+  }
+
+  .custom-arrow {
+    width: 48px;
+    height: 48px;
+  }
+
+  .left-arrow {
+    left: -14px;
+  }
+
+  .right-arrow {
+    right: -14px;
+  }
+}
+
+/* Large Screens (1440px and above) - Desktop monitors */
+@media (min-width: 1441px) {
+  .journey-container {
+    max-width: 1000px;
+    padding: 32px;
+  }
+
+  .carousel-content {
+    max-height: 360px;
+    padding: 28px;
+  }
+
+  .carousel-tasks .task-item {
+    font-size: 16px;
+  }
+
+  .custom-arrow {
+    width: 50px;
+    height: 50px;
+  }
+
+  .left-arrow {
+    left: -16px;
+  }
+
+  .right-arrow {
+    right: -16px;
+  }
+}

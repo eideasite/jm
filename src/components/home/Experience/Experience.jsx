@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   CalendarOutlined,
   EnvironmentOutlined,
@@ -10,7 +10,7 @@ import {
   UserOutlined,
   ToolOutlined
 } from '@ant-design/icons';
-import { Card, Typography } from 'antd';
+import { Card, Typography, Skeleton } from 'antd';
 import './Experience.css';
 
 const { Title } = Typography;
@@ -79,7 +79,11 @@ const experiences = [
   }
 ];
 
+const skeletonDurations = [3000, 3000, 3000, 4000];
+
 const Experience = ({ darkMode }) => {
+  const [loadedCards, setLoadedCards] = useState([]);
+
   useEffect(() => {
     if (darkMode) {
       document.body.classList.add("dark-mode");
@@ -88,38 +92,63 @@ const Experience = ({ darkMode }) => {
     }
   }, [darkMode]);
 
+  useEffect(() => {
+    let timers = [];
+    const loadOrder = [3, 2, 1, 0];
+
+    loadOrder.forEach((cardIndex, orderIndex) => {
+      const delay = skeletonDurations.slice(0, orderIndex + 1).reduce((a, b) => a + b, 0);
+      const timer = setTimeout(() => {
+        setLoadedCards(prev => [...prev, cardIndex]);
+      }, delay);
+      timers.push(timer);
+    });
+
+    return () => timers.forEach(clearTimeout);
+  }, []);
+
   return (
     <section className={`experience-container ${darkMode ? 'dark' : 'light'}`}>
       <Title level={3} className="experience-title">Work Experience</Title>
       <div className="experience-list">
-        {experiences.map((exp, index) => (
-          <Card
-            key={index}
-            className="experience-item"
-            bordered={false}
-            style={{ background: 'var(--card-bg)', color: 'var(--card-text)' }}
-          >
-            <div className="exp-header">
-              <h3>{exp.company}</h3>
-              <span className="exp-title">{exp.title}</span>
-            </div>
-            <div className="exp-meta">
-              <p><CalendarOutlined /> {exp.date}</p>
-              <p><EnvironmentOutlined /> {exp.location}</p>
-            </div>
-            <p className="exp-desc">{exp.description}</p>
-            <div className="skills-block">
-              <p className="key-skills-heading"><strong>Key Skills:</strong></p>
-              <div className="skills">
-                {exp.skills.map((skill, i) => (
-                  <div key={i} className="skill-item">
-                    {skill.icon} <span>{skill.label}</span>
+        {[3, 2, 1, 0].map(index => {
+          const exp = experiences[index];
+          const isLoaded = loadedCards.includes(index);
+
+          return (
+            <Card
+              key={index}
+              className="experience-item"
+              bordered={false}
+            >
+              {!isLoaded ? (
+                <Skeleton active paragraph={{ rows: 4 }} title={false} />
+              ) : (
+                <>
+                  <div className="exp-header">
+                    <h3>{exp.company}</h3>
+                    <span className="exp-title">{exp.title}</span>
                   </div>
-                ))}
-              </div>
-            </div>
-          </Card>
-        ))}
+                  <div className="exp-meta">
+                    <p><CalendarOutlined /> {exp.date}</p>
+                    <p><EnvironmentOutlined /> {exp.location}</p>
+                  </div>
+                  <p className="exp-desc">{exp.description}</p>
+                  <div className="skills-block">
+                    <p className="key-skills-heading"><strong>Key Skills:</strong></p>
+                    <div className="skills">
+                      {exp.skills.map((skill, i) => (
+                        <div key={i} className="skill-item">
+                          {skill.icon} <span>{skill.label}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </>
+              )}
+            </Card>
+          );
+        })}
       </div>
     </section>
   );

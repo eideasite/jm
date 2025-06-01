@@ -38,11 +38,6 @@ const AppContent = ({ darkMode }) => {
         <Skill darkMode={darkMode} />
       </section>
 
-
-
-
-
-
       {/* Projects Section */}
       <section id="projects">
         <Project darkMode={darkMode} />

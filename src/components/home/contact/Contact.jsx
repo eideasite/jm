@@ -1,4 +1,4 @@
-import { Button, Form, Input, Select, Card } from 'antd';
+import { Button, Form, Input, Card } from 'antd';
 import './Contact.css';
 
 const Contact = () => {
@@ -44,15 +44,13 @@ const Contact = () => {
             <Input.TextArea rows={4} placeholder="Message" />
           </Form.Item>
 
-          <Form.Item name="occupation" label="Occupation">
-            <Select
-              options={[
-                { label: 'Designer', value: 'designer' },
-                { label: 'Developer', value: 'developer' },
-                { label: 'Product Manager', value: 'product-manager' },
-              ]}
-              placeholder="Select your occupation"
-            />
+          {/* Changed occupation field from Select to Input */}
+          <Form.Item
+            name="occupation"
+            label="Occupation"
+            // rules={[{ required: true, message: 'Please enter your occupation!' }]} // optional validation
+          >
+            <Input placeholder="Enter your occupation" />
           </Form.Item>
 
           <Form.Item>

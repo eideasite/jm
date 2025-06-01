@@ -1,148 +1,240 @@
 :root {
-  --bg-color: #ffffff;
-  --text-color: #333333;
-  --card-bg: #ffffff89;
-  --card-text: #34425d;
-  --primary-icon: #d9e0c6;
-  --hover-glow: rgb(203, 203, 203);  /* Light mode glow */
+
+  --primary-icon: #47338a;
+  --hover-glow: rgb(203, 203, 203);
+  --title-color: #ffffff;
+  --skill-bg: rgba(235, 210, 250, 0.446);
+  --skill-hover-shadow: rgb(200, 255, 0);
 }
 
 body.dark-mode {
-  --bg-color: #1f1f1f;
-  --text-color: #f0f0f0;
-  --card-bg: #2c2c2c;
-  --card-text: #ffffff;
-  --primary-icon: #40a9ff;
-  --hover-glow: rgba(0, 255, 128, 0.709);
+  --primary-icon: #8800ff;
+  --hover-glow: rgba(123, 0, 255, 0.709);
+  --title-color: #000000;
+  --skill-hover-bg: #8c00ff;
+  --skill-hover-shadow: rgba(128, 0, 255, 0.7);
 }
+
 
 /* === Layout Base === */
-.experience-section {
+.experience-container {
   background-color: var(--bg-color);
   color: var(--text-color);
-  padding: 20px;
-  min-height: 100vh;
-}
-
-.experience-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 40px 20px;
+  min-height: 100vh;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}.experience-item {
+  background: var(--card-bg);
+  color: var(--card-text);
+  padding: 32px 28px;
+  border-radius: 12px;
+  /* Enhanced box-shadow with multiple layers for better depth */
+  box-shadow:
+    0 4px 6px rgba(106, 0, 255, 0.4),
+    0 8px 20px rgba(106, 0, 255, 0.3),
+    0 0 12px rgba(106, 0, 255, 0.5);
+  transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+  cursor: default;
+  user-select: text;
+  text-align: left;
 }
+
+.experience-item:hover {
+  /* Stronger glowing shadow on hover */
+  box-shadow:
+    0 0 10px var(--hover-glow),
+    0 8px 30px var(--hover-glow),
+    0 0 25px var(--hover-glow);
+  transform: translateY(-6px);
+}
+
 
 .experience-title {
-  text-align: center;
+  font-weight: 700;
+  font-size: 2rem;
   margin-bottom: 32px;
+  color: var(--title-color);
+  text-align: center;
+  user-select: none;
+  transition: color 0.3s ease;
 }
 
+/* === Experience List === */
 .experience-list {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 24px;
   width: 100%;
   max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }
 
 /* === Experience Item === */
 .experience-item {
-  width: 100%;
-  max-width: 700px;
-  padding: 32px 28px; /* ✅ Improved spacing */
   background: var(--card-bg);
   color: var(--card-text);
-  border-radius: 12px; /* ✅ Softer card edges */
-  box-shadow: 0 6px 12px rgba(240, 159, 159, 0.08);
-  margin-bottom: 12px; /* ✅ Vertical spacing */
+  padding: 32px 28px;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(106, 0, 255, 0.827);
+  transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+  cursor: default;
+  user-select: text;
   text-align: left;
-  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .experience-item:hover {
   box-shadow: 0 0 20px var(--hover-glow);
-  transform: translateY(20px);
+  transform: translateY(-6px);
 }
 
-/* === Content Styling === */
-.experience-card h3,
-.exp-header h3 {
-  font-size: 1.3rem; /* ✅ Company name emphasis */
-  font-weight: 600;
-  margin-bottom: 6px;
-}
-
+/* === Experience Header === */
 .exp-header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
   margin-bottom: 12px;
+  color: var(--text-color);
+}
+
+.exp-header h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin: 0;
+  color: var(--text-color);
+  user-select: text;
 }
 
 .exp-title {
-  font-weight: bold;
-  display: block;
-  margin-top: 2px;
+  font-weight: 700;
   font-size: 1.05rem;
-  color: var(--hover-glow); /* ✅ Thematic color */
+  margin-top: 2px;
+  color: var(--text-color);
+  user-select: text;
+}
+
+/* === Meta (Date & Location) === */
+.exp-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 12px;
+  color: var(--text-color);
+  font-size: 0.95rem;
+  user-select: none;
 }
 
 .exp-meta p {
-  margin: 4px 0;
   display: flex;
   align-items: center;
   gap: 6px;
+  margin: 0;
+  color: var(--text-color);
 }
 
+.exp-meta .anticon {
+  font-size: 1rem;
+  color: var(--primary-icon);
+}
+
+/* === Description === */
 .exp-desc {
-  margin-top: 12px;
   font-size: 0.95rem;
+  line-height: 1.5;
+  margin-top: 12px;
+  color: var(--text-color);
+  user-select: text;
+  transition: color 0.3s ease;
 }
 
-/* === Skills === */
+/* === Skills Block === */
 .skills-block {
-  margin-top: 16px;
+  margin-top: 20px;
+  color: var(--text-color);
 }
 
 .key-skills-heading {
-  margin-bottom: 6px;
-  color: rgb(90, 88, 88);
+  margin-bottom: 8px;
+  font-weight: 700;
+  color: var(--text-color);
+  user-select: none;
 }
 
+/* === Skills List === */
 .skills {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px 16px; /* ✅ Horizontal + vertical spacing */
-  margin-top: 12px;
+  gap: 12px 16px;
 }
 
 .skill-item {
   display: flex;
   align-items: center;
-  gap: 6px;
-  background-color: rgb(245, 242, 247);
-  color: rgba(94, 46, 255, 0.484);
-  padding: 6px 12px;
+  gap: 8px;
+  background-color: var(--skill-bg);
+  color: var(--skill-text);
+  padding: 6px 14px;
   border-radius: 16px;
   font-size: 0.875rem;
   user-select: none;
   white-space: nowrap;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
+  cursor: default;
 }
 
 .skill-item:hover {
-  background-color: #ffffff;
-  box-shadow: 0 0 12px rgba(200, 255, 0, 0.738);
+  background-color: var(--skill-hover-bg);
+  box-shadow: 0 0 12px var(--skill-hover-shadow);
+  color: var(--card-text);
   cursor: pointer;
 }
 
-/* === Icon Colors (unique per skill) === */
-.skill-item:nth-child(1) .anticon { color: #0084ff; }
-.skill-item:nth-child(2) .anticon { color: #55ff00; }
-.skill-item:nth-child(3) .anticon { color: #ff000d; }
-.skill-item:nth-child(4) .anticon { color: #ff8400; }
-.skill-item:nth-child(5) .anticon { color: #6a00ff; }
-.skill-item:nth-child(6) .anticon { color: #00ffff; }
-.skill-item:nth-child(7) .anticon { color: #ff008c; }
-.skill-item:nth-child(8) .anticon { color: #002fff; }
-.skill-item:nth-child(9) .anticon { color: #b7ff00; }
+/* Icon colors for skill items, unique per position */
+.skill-item:nth-child(1) .anticon {
+  color: #0084ff;
+}
+
+.skill-item:nth-child(2) .anticon {
+  color: #55ff00;
+}
+
+.skill-item:nth-child(3) .anticon {
+  color: #ff000d;
+}
+
+.skill-item:nth-child(4) .anticon {
+  color: #ff8400;
+}
+
+.skill-item:nth-child(5) .anticon {
+  color: #6a00ff;
+}
+
+.skill-item:nth-child(6) .anticon {
+  color: #00ffff;
+}
+
+.skill-item:nth-child(7) .anticon {
+  color: #ff008c;
+}
+
+.skill-item:nth-child(8) .anticon {
+  color: #002fff;
+}
+
+.skill-item:nth-child(9) .anticon {
+  color: #b7ff00;
+}
+
+/* === Skeleton (antd default) tweaks - optional === */
+.ant-skeleton {
+  background-color: var(--card-bg);
+}
+
+.ant-skeleton-content {
+  color: var(--card-text);
+}
 
 /* === Responsive Adjustments === */
 @media (max-width: 768px) {
@@ -161,7 +253,7 @@ body.dark-mode {
   .exp-header {
     flex-direction: column;
     align-items: flex-start;
-    gap: 4px;
+    gap: 6px;
   }
 
   .exp-header h3 {
@@ -174,12 +266,12 @@ body.dark-mode {
 
   .exp-meta {
     flex-direction: column;
-    gap: 4px;
+    gap: 6px;
     font-size: 0.85rem;
   }
 
   .exp-desc {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
   }
 
   .skills {
@@ -199,7 +291,7 @@ body.dark-mode {
   }
 
   .experience-item {
-    padding: 16px;
+    padding: 16px 16px;
   }
 
   .exp-header h3 {
