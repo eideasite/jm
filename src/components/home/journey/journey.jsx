@@ -1,40 +1,11 @@
-import React, { useRef } from 'react';
-import { Carousel, Typography, Card } from 'antd';
-import './Journey.css';
+import React, { useState } from 'react';
+import { Avatar, Carousel, Col, Divider, Drawer, List, Row, Card, Button } from 'antd';
+import { CheckCircleOutlined } from '@ant-design/icons';
 
-const { Title, Paragraph } = Typography;
-
-const PrevArrow = ({ onClick, darkMode }) => (
-  <div className="custom-arrow left-arrow" onClick={onClick}>
-    <svg
-      width="30"
-      height="30"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke={darkMode ? '#40a9ff' : '#1890ff'}
-      strokeWidth="3"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <polyline points="15 17 9 12 15 6" />
-    </svg>
-  </div>
-);
-
-const NextArrow = ({ onClick, darkMode }) => (
-  <div className="custom-arrow right-arrow" onClick={onClick}>
-    <svg
-      width="30"
-      height="30"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke={darkMode ? '#40a9ff' : '#1890ff'}
-      strokeWidth="3"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <polyline points="9 17 15 12 9 6" />
-    </svg>
+const DescriptionItem = ({ title, content }) => (
+  <div className="site-description-item-profile-wrapper">
+    <p className="site-description-item-profile-p-label">{title}:</p>
+    {content}
   </div>
 );
 
@@ -228,47 +199,108 @@ const projectSummaries = [
   },
 ];
 
-const Journey = ({ darkMode = false }) => {
-  const carouselRef = useRef(null);
+const Journey = () => {
+  const [open, setOpen] = useState(false);
+  const [selectedProject, setSelectedProject] = useState(null);
+
+  const showDrawer = (item) => {
+    setSelectedProject(item);
+    setOpen(true);
+  };
+
+  const onClose = () => {
+    setOpen(false);
+    setSelectedProject(null);
+  };
 
   return (
-    <div className="journey-container">
-      <PrevArrow
-        darkMode={darkMode}
-        onClick={() => carouselRef.current?.prev()}
-      />
-      <NextArrow
-        darkMode={darkMode}
-        onClick={() => carouselRef.current?.next()}
-      />
+    <>
+      <style>{`
+        /* Green dots for carousel */
+        .ant-carousel .slick-dots li.slick-active button {
+          background-color:rgb(87, 221, 255) !important; /* dark green active dot */
+        }
+        .ant-carousel .slick-dots li button {
+          background-color:rgb(95, 196, 255) !important; /* lighter green inactive dots */
+        }
+      `}</style>
 
-      <Card bordered={false} className="journey-card">
-        <Carousel
-          ref={carouselRef}
-          autoplay
-          dots={false}
-          draggable
-          autoplaySpeed={5000}
-        >
-          {projectSummaries.map((project, index) => (
-            <div key={index}>
-              <div className="carousel-content">
-                <Title level={4} className="carousel-title">
-                  {project.title}
-                </Title>
-                <Paragraph className="carousel-tasks">
-                  {project.tasks.map((task, i) => (
-                    <div key={i} className="task-item">
-                      • {task}
-                    </div>
+      <Carousel autoplay dotPosition="bottom" style={{ padding: '32px 0' }}>
+        {projectSummaries.map((item, index) => (
+          <div key={index} style={{ padding: '0 24px' }}>
+            <Card
+              title={item.title}
+              bordered={false}
+              extra={
+                <Button type="link" onClick={() => showDrawer(item)}>
+                  View Tasks
+                </Button>
+              }
+              style={{
+                maxWidth: 900, // 🧱 Wider Card
+                minHeight: 240, // 📏 Taller Card
+                margin: 'auto',
+                textAlign: 'left',
+                borderRadius: 10,
+                padding: 16,
+                fontSize: '16px',
+                lineHeight: '1.75',
+                boxShadow: '0 4px 10px rgba(0, 0, 0, 0.08)',
+              }}
+            >
+              <List
+                size="large"
+                dataSource={item.tasks.slice(0, 3)}
+                renderItem={(task) => (
+                  <List.Item style={{ border: 'none', paddingLeft: 0 }}>
+                    <CheckCircleOutlined style={{ color: '#52c41a', marginRight: 12 }} />
+                    <span>{task}</span>
+                  </List.Item>
+                )}
+              />
+            </Card>
+          </div>
+        ))}
+      </Carousel>
+
+      <Drawer width={720} placement="right" closable={false} onClose={onClose} open={open}>
+        {selectedProject && (
+          <>
+            <p className="site-description-item-profile-p" style={{ marginBottom: 24 }}>
+              Project Overview
+            </p>
+            <Row>
+              <Col span={24}>
+                <DescriptionItem title="Project Title" content={selectedProject.title} />
+              </Col>
+            </Row>
+            <Divider />
+            <p className="site-description-item-profile-p">Detailed Tasks</p>
+            <Row>
+              <Col span={24}>
+                <ul style={{ paddingLeft: 0, listStyle: 'none' }}>
+                  {selectedProject.tasks.map((task, idx) => (
+                    <li
+                      key={idx}
+                      style={{
+                        marginBottom: 16,
+                        display: 'flex',
+                        alignItems: 'start',
+                        fontSize: 15,
+                        lineHeight: '1.7',
+                      }}
+                    >
+                      <CheckCircleOutlined style={{ color: '#1890ff', marginRight: 12, paddingTop: 4 }} />
+                      <span>{task}</span>
+                    </li>
                   ))}
-                </Paragraph>
-              </div>
-            </div>
-          ))}
-        </Carousel>
-      </Card>
-    </div>
+                </ul>
+              </Col>
+            </Row>
+          </>
+        )}
+      </Drawer>
+    </>
   );
 };
 

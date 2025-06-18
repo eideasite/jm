@@ -1,33 +1,54 @@
 import React, { useEffect } from 'react';
-import { Typography } from 'antd';
+import { Typography, Button } from 'antd';
+import { useNavigate } from 'react-router-dom';
+import { LinkedinOutlined } from '@ant-design/icons'; // Make sure this is imported
 
 const { Title, Paragraph, Text, Link } = Typography;
 
 const PrivacyPolicy = () => {
-  // Scroll to top on component mount automatically
+  const navigate = useNavigate();
+
+  // Scroll to top on mount
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
+
+  const goToHome = () => {
+    navigate('/');
+  };
 
   return (
     <div
       style={{
         color: '#e0e0e0',
         padding: '24px',
-        fontFamily: 'Segoe UI, Tahoma, Geneva, Verdana, sans-serif',
+        fontFamily: `'Times New Roman', Times, serif`,
         maxWidth: 900,
         margin: '0 auto',
+        position: 'relative',
       }}
     >
+
+      {/* Floating Home Button */}
+      <div style={{ position: 'absolute', top: 16, right: 16 }}>
+        <Button
+          type="primary"
+          onClick={goToHome}
+          style={{ backgroundColor: '#40a9ff', borderColor: '#40a9ff' }}
+        >
+          🏡  Back to Home
+        </Button>
+      </div>
+
       <Typography
         style={{
           textAlign: 'justify',
-          color: '#e0e0e0',
+          color: '#40a9ff',
           userSelect: 'text',
         }}
       >
         <Title level={3} style={{ color: '#40a9ff' }}>
-         Security & Professional Data Notice  🔐 
+          Security & Professional Data Notice 🔐
         </Title>
         <Paragraph>
           <ul>
@@ -40,7 +61,7 @@ const PrivacyPolicy = () => {
         </Paragraph>
 
         <Title level={3} style={{ color: '#40a9ff', marginTop: 32 }}>
-          Privacy Policy 📄 
+          Privacy Policy 📄
         </Title>
         <Paragraph>
           Effective Date: <Text strong>{new Date().toLocaleDateString()}</Text><br />
@@ -51,6 +72,7 @@ const PrivacyPolicy = () => {
           </Link><br />
           Mobile : <Text code>+94 754 977 449</Text><br />
           LinkedIn:{' '}
+          <LinkedinOutlined style={{ color: '#1890ff', marginRight: 8 }} />
           <Link
             href="https://linkedin.com/in/career4jm"
             target="_blank"
@@ -61,210 +83,164 @@ const PrivacyPolicy = () => {
           </Link>
         </Paragraph>
 
-        <Title level={4} style={{ color: '#40a9ff', marginTop: 24 }}>
-          • Purpose of This Policy
-        </Title>
-        <Paragraph>
-          <ul>
-            <li>Clarifies how shared professional data supports transparent career documentation.</li>
-            <li>Data is published for educational, reference, and verification purposes only.</li>
-            <li>All content aligns with voluntary, professional contributions.</li>
-          </ul>
-        </Paragraph>
-
-        <Title level={4} style={{ color: '#40a9ff' }}>
-          • What Information Is Collected
-        </Title>
-        <Paragraph>
-          <ul>
-            <li>Names, titles, emails, and professional LinkedIn URLs</li>
-            <li>Project roles, durations, responsibilities</li>
-            <li>Voluntary contact information with consent</li>
-          </ul>
-        </Paragraph>
-
-        <Title level={4} style={{ color: '#40a9ff' }}>
-          • How Information Is Used
-        </Title>
-        <Paragraph>
-          <ul>
-            <li>To authenticate project participation and technical scope</li>
-            <li>To provide verifiable details for recruiters and collaborators</li>
-            <li>To maintain an open, skill-validated digital profile</li>
-          </ul>
-        </Paragraph>
-
-        <Title level={4} style={{ color: '#40a9ff' }}>
-          • Consent and Use Policy
-        </Title>
-        <Paragraph>
-          <ul>
-            <li>Only data with prior user approval is shown</li>
-            <li>No content is used for commercial gain or marketing</li>
-            <li>Communication is permitted solely through authorized channels</li>
-          </ul>
-        </Paragraph>
-
-        <Title level={4} style={{ color: '#40a9ff' }}>
-          • Security
-        </Title>
-        <Paragraph>
-          <ul>
-            <li>No credential-based access is collected or stored</li>
-            <li>Administrative controls restrict backend access</li>
-            <li>Third-party data transfers are disallowed</li>
-          </ul>
-        </Paragraph>
-
-        <Title level={4} style={{ color: '#40a9ff' }}>
-          • Scam & Misuse Prevention
-        </Title>
-        <Paragraph>
-          <ul>
-            <li>Unauthorized data harvesting or exploitation is banned</li>
-            <li>Monitoring and legal measures apply to suspicious activities</li>
-            <li>The site operates as a curated profile display, not a public database</li>
-          </ul>
-        </Paragraph>
-
-        <Title level={4} style={{ color: '#40a9ff' }}>
-          • User Rights
-        </Title>
-        <Paragraph>
-          <ul>
-            <li>Featured individuals may request edits or removal of their data</li>
-            <li>Report any misuse or misrepresentation</li>
-            <li>Seek clarification through provided contacts</li>
-          </ul>
-        </Paragraph>
-
-        <Title level={4} style={{ color: '#40a9ff' }}>
-          • Third-Party Links
-        </Title>
-        <Paragraph>
-          <ul>
-            <li>External profile links (e.g., LinkedIn) operate under independent policies</li>
-            <li>We do not influence or track those third-party interactions</li>
-          </ul>
-        </Paragraph>
-
-        <Title level={4} style={{ color: '#40a9ff' }}>
-          • Policy Changes
-        </Title>
-        <Paragraph>
-          <ul>
-            <li>Policy modifications will be transparently updated</li>
-            <li>All amendments will be version-controlled for review</li>
-          </ul>
-        </Paragraph>
-
-        <Title level={4} style={{ color: '#40a9ff' }}>
-          • Information Collection
-        </Title>
-        <Paragraph>
-          <ul>
-            <li>Personal information, including names, email contacts, and professional affiliations, is collected to curate a verified portfolio environment.</li>
-            <li>The scope of data remains minimal and purpose-specific to prevent overreach.</li>
-            <li>This ensures the dual goals of transparency and individual privacy protection.</li>
-          </ul>
-        </Paragraph>
-
-        <Title level={4} style={{ color: '#40a9ff' }}>
-          • Use of Information
-        </Title>
-        <Paragraph>
-          <ul>
-            <li>Collected data is utilized strictly for showcasing documented competencies and contributions.</li>
-            <li>The intention is to support career validation, industry recognition, and technical authorship.</li>
-            <li>No data is exploited for commercial profiling or behavioral tracking.</li>
-          </ul>
-        </Paragraph>
-
-        <Title level={4} style={{ color: '#40a9ff' }}>
-          • Data Sharing and Disclosure
-        </Title>
-        <Paragraph>
-          <ul>
-            <li>We do not commercialize personal data nor expose it to unsolicited entities.</li>
-            <li>Data sharing occurs only under controlled, trust-based operational needs.</li>
-            <li>Such protocols ensure ethical treatment and uphold reputational integrity.</li>
-          </ul>
-        </Paragraph>
-
-        <Title level={4} style={{ color: '#40a9ff' }}>
-          • Data Security
-        </Title>
-        <Paragraph>
-          <ul>
-            <li>Security is enforced via backend authorization and encrypted management layers.</li>
-            <li>No personal logins, passwords, or user submissions are processed or stored.</li>
-            <li>Access is limited to maintainers directly responsible for platform oversight.</li>
-          </ul>
-        </Paragraph>
-
-        <Title level={4} style={{ color: '#40a9ff' }}>
-          • User Rights and Control
-        </Title>
-        <Paragraph>
-          <ul>
-            <li>Users may request their content be updated, removed, or clarified at any time.</li>
-            <li>This process guarantees personal control over professional representation.</li>
-            <li>Support for such requests is provided without delay through direct channels.</li>
-          </ul>
-        </Paragraph>
-
-        <Title level={4} style={{ color: '#40a9ff' }}>
-          • Cookies and Tracking Technologies
-        </Title>
-        <Paragraph>
-          <ul>
-            <li>This platform employs only essential technical cookies, avoiding invasive tracking.</li>
-            <li>Cookies serve to ensure minimal operability and platform responsiveness.</li>
-            <li>Users retain full discretion to disable such mechanisms through browser settings.</li>
-          </ul>
-        </Paragraph>
-
-        <Title level={4} style={{ color: '#40a9ff' }}>
-          • Third-Party Services
-        </Title>
-        <Paragraph>
-          <ul>
-            <li>Any reference to third-party platforms (e.g., LinkedIn) is made via passive links.</li>
-            <li>Our system does not monitor or extract data from external sources.</li>
-            <li>Third-party compliance is verified prior to integration.</li>
-          </ul>
-        </Paragraph>
-
-        <Title level={4} style={{ color: '#40a9ff' }}>
-          • Policy Updates
-        </Title>
-        <Paragraph>
-          <ul>
-            <li>Privacy provisions may evolve in accordance with updated regulations or platform features.</li>
-            <li>All major amendments will be publicly announced and time-stamped.</li>
-            <li>Historical versions are archived for review.</li>
-          </ul>
-        </Paragraph>
-
-        <Title level={4} style={{ color: '#40a9ff' }}>
-          • Contact Information
-        </Title>
-        <Paragraph>
-          For questions, clarifications, or to request data adjustments, please contact:<br />
-          <Link href="mailto:career.in.jm@gmail.com" style={{ color: '#1890ff' }}>
-            career.in.jm@gmail.com
-          </Link><br />
-          Mobile: <Text code>+94 754 977 449</Text><br />
-          LinkedIn:{' '}
-          <Link
-            href="https://linkedin.com/in/career4jm"
-            target="_blank"
-            rel="noreferrer"
-            style={{ color: '#1890ff' }}
-          >
-            linkedin.com/in/career4jm
-          </Link>
-        </Paragraph>
+        {[
+          {
+            title: '• Purpose of This Policy',
+            items: [
+              'Clarifies how shared professional data supports transparent career documentation.',
+              'Data is published for educational, reference, and verification purposes only.',
+              'All content aligns with voluntary, professional contributions.',
+            ],
+          },
+          {
+            title: '• What Information Is Collected',
+            items: [
+              'Names, titles, emails, and professional LinkedIn URLs',
+              'Project roles, durations, responsibilities',
+              'Voluntary contact information with consent',
+            ],
+          },
+          {
+            title: '• How Information Is Used',
+            items: [
+              'To authenticate project participation and technical scope',
+              'To provide verifiable details for recruiters and collaborators',
+              'To maintain an open, skill-validated digital profile',
+            ],
+          },
+          {
+            title: '• Consent and Use Policy',
+            items: [
+              'Only data with prior user approval is shown',
+              'No content is used for commercial gain or marketing',
+              'Communication is permitted solely through authorized channels',
+            ],
+          },
+          {
+            title: '• Security',
+            items: [
+              'No credential-based access is collected or stored',
+              'Administrative controls restrict backend access',
+              'Third-party data transfers are disallowed',
+            ],
+          },
+          {
+            title: '• Scam & Misuse Prevention',
+            items: [
+              'Unauthorized data harvesting or exploitation is banned',
+              'Monitoring and legal measures apply to suspicious activities',
+              'The site operates as a curated profile display, not a public database',
+            ],
+          },
+          {
+            title: '• User Rights',
+            items: [
+              'Featured individuals may request edits or removal of their data',
+              'Report any misuse or misrepresentation',
+              'Seek clarification through provided contacts',
+            ],
+          },
+          {
+            title: '• Third-Party Links',
+            items: [
+              'External profile links (e.g., LinkedIn) operate under independent policies',
+              'We do not influence or track those third-party interactions',
+            ],
+          },
+          {
+            title: '• Policy Changes',
+            items: [
+              'Policy modifications will be transparently updated',
+              'All amendments will be version-controlled for review',
+            ],
+          },
+          {
+            title: '• Information Collection',
+            items: [
+              'Personal information, including names, email contacts, and professional affiliations, is collected to curate a verified portfolio environment.',
+              'The scope of data remains minimal and purpose-specific to prevent overreach.',
+              'This ensures the dual goals of transparency and individual privacy protection.',
+            ],
+          },
+          {
+            title: '• Use of Information',
+            items: [
+              'Collected data is utilized strictly for showcasing documented competencies and contributions.',
+              'The intention is to support career validation, industry recognition, and technical authorship.',
+              'No data is exploited for commercial profiling or behavioral tracking.',
+            ],
+          },
+          {
+            title: '• Data Sharing and Disclosure',
+            items: [
+              'We do not commercialize personal data nor expose it to unsolicited entities.',
+              'Data sharing occurs only under controlled, trust-based operational needs.',
+              'Such protocols ensure ethical treatment and uphold reputational integrity.',
+            ],
+          },
+          {
+            title: '• Data Security',
+            items: [
+              'Security is enforced via backend authorization and encrypted management layers.',
+              'No personal logins, passwords, or user submissions are processed or stored.',
+              'Access is limited to maintainers directly responsible for platform oversight.',
+            ],
+          },
+          {
+            title: '• User Rights and Control',
+            items: [
+              'Users may request their content be updated, removed, or clarified at any time.',
+              'This process guarantees personal control over professional representation.',
+              'Support for such requests is provided without delay through direct channels.',
+            ],
+          },
+          {
+            title: '• Cookies and Tracking Technologies',
+            items: [
+              'This platform employs only essential technical cookies, avoiding invasive tracking.',
+              'Cookies serve to ensure minimal operability and platform responsiveness.',
+              'Users retain full discretion to disable such mechanisms through browser settings.',
+            ],
+          },
+          {
+            title: '• Third-Party Services',
+            items: [
+              'Any reference to third-party platforms (e.g., LinkedIn) is made via passive links.',
+              'Our system does not monitor or extract data from external sources.',
+              'Third-party compliance is verified prior to integration.',
+            ],
+          },
+          {
+            title: '• Policy Updates',
+            items: [
+              'Privacy provisions may evolve in accordance with updated regulations or platform features.',
+              'All major amendments will be publicly announced and time-stamped.',
+              'Historical versions are archived for review.',
+            ],
+          },
+          {
+            title: '• Contact Information',
+            items: [
+              'For questions, clarifications, or to request data adjustments, please contact:',
+              'Email: career.in.jm@gmail.com',
+              'Mobile: +94 754 977 449',
+              'LinkedIn: https://linkedin.com/in/career4jm',
+            ],
+          },
+        ].map(({ title, items }, index) => (
+          <React.Fragment key={index}>
+            <Title level={4} style={{ color: '#40a9ff' }}>
+              {title}
+            </Title>
+            <Paragraph>
+              <ul>
+                {items.map((item, idx) => (
+                  <li key={idx}>{item}</li>
+                ))}
+              </ul>
+            </Paragraph>
+          </React.Fragment>
+        ))}
       </Typography>
     </div>
   );

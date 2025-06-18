@@ -1,9 +1,9 @@
-import React, { useState, Suspense, lazy } from 'react';
-import { Button, Tooltip, Row, Col, Spin } from 'antd';
+import React, { useEffect, useState, Suspense, lazy, useRef } from 'react';
+import { Button, Tooltip, Row, Col, Spin, Skeleton } from 'antd';
 import { DownOutlined, UpOutlined } from '@ant-design/icons';
 
-// 1. Lazy load project components
-const projects = [
+// Lazy load all 20 project components
+const projectComponents = [
   lazy(() => import('./projectinfo/Project1')),
   lazy(() => import('./projectinfo/Project2')),
   lazy(() => import('./projectinfo/Project3')),
@@ -26,91 +26,143 @@ const projects = [
   lazy(() => import('./projectinfo/Project20')),
 ];
 
-const Project = () => {
-  // 2. Manage state for show/hide toggle
-  const [showAll, setShowAll] = useState(false);
+// ErrorBoundary component to catch loading errors
+class ErrorBoundary extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false };
+  }
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+  componentDidCatch(error, info) {
+    console.error('Project loading error:', error, info);
+  }
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div style={{ color: 'red', padding: 16, textAlign: 'center' }}>
+          Failed to load this project.
+        </div>
+      );
+    }
+    return this.props.children;
+  }
+}
 
-  // 3. Control visible projects: 4 by default, all on toggle
-  const visibleProjects = showAll ? projects : projects.slice(0, 4);
+// Component that shows skeleton for 1s then Suspense fallback spinner while lazy loading project
+const ProjectWithSkeletonAndSpin = ({ Component }) => {
+  const [showSkeleton, setShowSkeleton] = useState(true);
 
-  // 4. Toggle handler
-  const toggleShowAll = () => setShowAll(prev => !prev);
+  useEffect(() => {
+    const timer = setTimeout(() => setShowSkeleton(false), 1000); // 1s skeleton
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (showSkeleton) {
+    return (
+      <Skeleton
+        active
+        paragraph={{ rows: 4 }}
+        style={{ borderRadius: 8, marginBottom: 16 }}
+      />
+    );
+  }
 
   return (
-    <div
-      className="projects-section"
-      style={{
-        padding: '24px',
-        maxWidth: '900px',  // constrain width here
-        margin: '0 auto',   // center horizontally
-      }}
+    <Suspense
+      fallback={
+        <div style={{ textAlign: 'center', padding: 20 }}>
+          <Spin size="large" tip="Loading..." />
+        </div>
+      }
     >
-      {/* 5. Title */}
+      <Component />
+    </Suspense>
+  );
+};
+
+const Project = () => {
+  const [visibleCount, setVisibleCount] = useState(1);
+  const [showAll, setShowAll] = useState(false);
+  const timeoutRef = useRef(null);
+
+  // Initially load 1 to 4 projects progressively every 2 seconds
+  useEffect(() => {
+    let count = 1;
+    const loadInitialProjects = () => {
+      setVisibleCount(count);
+      count++;
+      if (count <= 4) {
+        timeoutRef.current = setTimeout(loadInitialProjects, 2000);
+      }
+    };
+    loadInitialProjects();
+
+    return () => clearTimeout(timeoutRef.current);
+  }, []);
+
+  // Recursive function to show all projects progressively every 4 seconds
+  const showMoreProjects = (start) => {
+    if (start > projectComponents.length) return;
+    setVisibleCount(start);
+    timeoutRef.current = setTimeout(() => {
+      showMoreProjects(start + 1);
+    }, 4000);
+  };
+
+  // Button click handler toggling showAll and progressive reveal/hide
+  const handleToggle = () => {
+    clearTimeout(timeoutRef.current);
+
+    if (!showAll) {
+      // Show all projects progressively from current visibleCount + 1
+      showMoreProjects(visibleCount + 1);
+    } else {
+      // Show less: reset to 4 projects only
+      setVisibleCount(4);
+    }
+    setShowAll(!showAll);
+  };
+
+  return (
+    <div style={{ padding: 24, maxWidth: 900, margin: '0 auto' }}>
       <div style={{ textAlign: 'center', marginBottom: 24 }}>
         <h2>Projects</h2>
       </div>
 
-      <div className="projects-container">
-        {/* 6. Suspense wraps project list for lazy loading */}
-        <Suspense
-          fallback={
-            <div style={{ textAlign: 'center', padding: '40px' }}>
-              <Spin size="large" tip="Loading Projects..." />
-            </div>
-          }
-        >
-          {/* 7. Responsive grid with gutter */}
-          <Row gutter={[24, 24]}>
-            {visibleProjects.map((Component, idx) => (
-              <Col
-                key={`${showAll ? 'all' : 'partial'}-${idx}`}  // unique key with context
-                xs={24}
-                sm={24}
-                md={12}
-                lg={12}
-              >
-                <div className="project-card" style={{ height: '100%' }}>
-                  <Component />
-                </div>
-              </Col>
-            ))}
-          </Row>
-        </Suspense>
+      <Row gutter={[24, 24]}>
+        {projectComponents.slice(0, visibleCount).map((Component, idx) => (
+          <Col key={`project-${idx}`} xs={24} sm={24} md={12} lg={12}>
+            <ErrorBoundary>
+              <ProjectWithSkeletonAndSpin Component={Component} />
+            </ErrorBoundary>
+          </Col>
+        ))}
+      </Row>
 
-        {/* 8. Show More / Show Less Button */}
-        <div
-          style={{
-            width: '100%',
-            marginTop: '32px',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <Tooltip title="There are more than 20 projects done in last career">
-            <Button
-              type="default"
-              onClick={toggleShowAll}
-              icon={showAll ? <UpOutlined /> : <DownOutlined />}
-              style={{
-                backgroundColor: '#000',
-                color: '#fff',
-                borderColor: '#000',
-                borderRadius: '6px',
-                padding: '0 20px',
-                height: '40px',
-                fontWeight: 500,
-                transition: 'all 0.3s ease',
-              }}
-            >
-              {showAll ? ' Show Less' : ' Show More'}
-            </Button>
-          </Tooltip>
-        </div>
+      <div style={{ marginTop: 32, textAlign: 'center' }}>
+        <Tooltip title="There are more than 20 projects done in last career">
+          <Button
+            type="default"
+            icon={showAll ? <UpOutlined /> : <DownOutlined />}
+            onClick={handleToggle}
+            style={{
+              backgroundColor: '#000',
+              color: '#fff',
+              borderColor: '#000',
+              borderRadius: 6,
+              padding: '0 20px',
+              height: 40,
+              fontWeight: 500,
+            }}
+          >
+            {showAll ? 'Show Less' : 'Show More'}
+          </Button>
+        </Tooltip>
       </div>
     </div>
   );
 };
 
 export default Project;
-  

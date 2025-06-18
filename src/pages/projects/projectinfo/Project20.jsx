@@ -1,15 +1,6 @@
 import React from 'react';
-import {
-  Card,
-  Typography,
-  Space,
-  Divider,
-  Collapse,
-} from 'antd';
-import {
-  MobileOutlined,
-  TeamOutlined,
-} from '@ant-design/icons';
+import { Card, Typography, Collapse } from 'antd';
+import { MobileOutlined, TeamOutlined } from '@ant-design/icons';
 
 const { Text } = Typography;
 const { Panel } = Collapse;
@@ -59,82 +50,89 @@ const Project20 = () => {
 
   return (
     <Card
+      className="project-card"
       hoverable
       bordered
-      // Removed dark background, borderColor and text color styles
+      style={{ borderRadius: 12, boxShadow: '0 4px 16px rgba(0,0,0,0.1)' }}
       title={
-        <div>
-          <MobileOutlined style={{ marginRight: 8, color: '#1890ff' }} />
-          <Text strong>{project.name}</Text>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
+          <MobileOutlined style={{ marginTop: 3, color: '#1890ff' }} />
+          <Text strong style={{ fontSize: 16, whiteSpace: 'normal', wordBreak: 'break-word' }}>
+            {project.name}
+          </Text>
         </div>
       }
     >
-      <Space direction="vertical" size="middle" style={{ width: '100%' }}>
+      <Collapse accordion>
+        <Panel header="🌍 Country" key="1">
+          <ul><li>{project.country}</li></ul>
+        </Panel>
 
-        {/* Basic Info - Collapsible */}
-        <Collapse expandIconPosition="right" bordered>
-          <Panel header={<span>🌍 Country</span>} key="1">
-            <ul><li>{project.country}</li></ul>
-          </Panel>
-          <Panel header={<span>🏢 Sector</span>} key="2">
-            <ul><li>{project.sector}</li></ul>
-          </Panel>
-          <Panel header={<span>👥 Client</span>} key="3">
-            <ul>{project.client.map((c, i) => <li key={i}>{c}</li>)}</ul>
-          </Panel>
-          <Panel header={<span>👤 Role</span>} key="4">
-            <ul>{project.role.map((r, i) => <li key={i}>{r}</li>)}</ul>
-          </Panel>
-          <Panel header={<span>📝 Overview / Purpose</span>} key="5">
-            <ul>{project.purpose.map((p, i) => <li key={i}>{p}</li>)}</ul>
-          </Panel>
-        </Collapse>
+        <Panel header="💻 Sector" key="2">
+          <ul><li>{project.sector}</li></ul>
+        </Panel>
 
-        <Divider />
+        <Panel header="🏢 Client" key="3">
+          <ul>{project.client.map((c, i) => <li key={i}>{c}</li>)}</ul>
+        </Panel>
 
-        {/* Tech & Experience */}
-        <Collapse expandIconPosition="right" bordered>
-          <Panel header={<span>🧪 Technologies & Tools</span>} key="6">
-            <ul>{project.technologies.map((tech, i) => <li key={i}>{tech}</li>)}</ul>
-          </Panel>
-          <Panel header={<span>📘 Key Responsibilities</span>} key="7">
-            <ul>{project.experience.map((exp, i) => <li key={i}>{exp}</li>)}</ul>
-          </Panel>
-          <Panel header={<span>📄 Documentation / Deliverables</span>} key="8">
-            <ul>{project.document.map((doc, i) => <li key={i}>{doc}</li>)}</ul>
-          </Panel>
-          <Panel header={<span>📦 Project Scope</span>} key="9">
-            <ul>{project.scope.map((s, i) => <li key={i}>{s}</li>)}</ul>
-          </Panel>
-          <Panel header={<span>☁️ Deployment</span>} key="10">
-            <Text>{project.cloudDeployment}</Text>
-          </Panel>
-        </Collapse>
+        <Panel header="🔧 Role" key="4">
+          <ul>{project.role.map((r, i) => <li key={i}>{r}</li>)}</ul>
+        </Panel>
 
-        <Divider dashed />
+        <Panel header="📝 Overview / Purpose" key="5">
+          <ul>{project.purpose.map((p, i) => <li key={i}>{p}</li>)}</ul>
+        </Panel>
 
-        {/* Team Info */}
-        <Collapse expandIconPosition="right" bordered>
-          <Panel header={<span>👥 Team Members</span>} key="11">
+        <Panel header="🧪 Technologies & Tools" key="6">
+          <ul>{project.technologies.map((tech, i) => <li key={i}>{tech}</li>)}</ul>
+        </Panel>
+
+        <Panel header="📘 Key Responsibilities (Experience Gained)" key="7">
+          <ul>{project.experience.map((exp, i) => <li key={i}>{exp}</li>)}</ul>
+        </Panel>
+
+        <Panel header="📄 Documentation / Deliverables" key="8">
+          <ul>{project.document.map((doc, i) => <li key={i}>{doc}</li>)}</ul>
+        </Panel>
+
+        <Panel header="📦 Project Scope" key="9">
+          <ul>{project.scope.map((s, i) => <li key={i}>{s}</li>)}</ul>
+        </Panel>
+
+        <Panel header="☁️ Deployment" key="10">
+          <Text>{project.cloudDeployment}</Text>
+        </Panel>
+
+        <Panel header="🔗 URLs" key="11">
+          {project.urls.length === 0 ? (
+            <Text>N/A</Text>
+          ) : (
             <ul>
-              {project.teamMembers.map((member, i) => (
+              {project.urls.map((url, i) => (
                 <li key={i}>
-                  <TeamOutlined style={{ marginRight: 8, color: '#52c41a' }} />
-                  <Text>{member.name} ({member.icon})</Text>
+                  <a href={url} target="_blank" rel="noopener noreferrer">{url}</a>
                 </li>
               ))}
             </ul>
-          </Panel>
-          <Panel header={<span>💼 Job Roles</span>} key="12">
-            <ul>
-              {project.teamMembers.map((member, i) => (
-                <li key={i}>– {member.role}</li>
-              ))}
-            </ul>
-          </Panel>
-        </Collapse>
+          )}
+        </Panel>
 
-      </Space>
+        <Panel header="👥 Team Members" key="12">
+          <ul>
+            {project.teamMembers.map((member, i) => (
+              <li key={i} style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                <TeamOutlined style={{ color: '#52c41a' }} />
+                <Text>{member.name} ({member.icon})</Text>
+              </li>
+            ))}
+          </ul>
+        </Panel>
+
+        <Panel header="💼 Job Roles" key="13">
+          <ul>{project.teamMembers.map((member, i) => <li key={i}>– {member.role}</li>)}</ul>
+        </Panel>
+      </Collapse>
     </Card>
   );
 };

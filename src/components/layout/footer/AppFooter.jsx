@@ -184,20 +184,20 @@ const AppFooter = ({ darkMode = true }) => {
               display: "block",
             }}
           >
-            Reason why working harder? Customer need satisfy get happened.
+       "Reason why working harder? Creativity never dies when negativity always pushes your limits."
           </Text>
 
           {/* 📬 Contact */}
           <Text style={{ color: themeColors.secondary, fontSize: 11 }}>
             Contact us:{" "}
             <Link
-              href="https://jeyamohan.vercel.app/"
+              href="https://jeyamohanme.vercel.app/"
               target="_blank"
               rel="noopener noreferrer"
               style={{ color: "#3b82f6", wordBreak: "break-word" }}
               copyable
             >
-              https://jeyamohan.vercel.app/
+              https://jeyamohanme.vercel.app/
             </Link>
           </Text>
 

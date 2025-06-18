@@ -16,7 +16,7 @@ const Project14 = () => {
   const project = {
     name: 'Pizza Da Valter – Web and Mobile App (iOS & Android)',
     country: 'United Kingdom',
-    sector: 'Restaurant / Hospitality Tech',
+    sector: 'Restaurant',
     client: ['Pizza Da Valter'],
     role: [
       'Business Analyst',

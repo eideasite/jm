@@ -1,41 +1,51 @@
 import React from 'react';
-import { Card, Typography, Collapse, Divider } from 'antd';
-import { ProjectOutlined, TeamOutlined } from '@ant-design/icons';
+import {
+  Card,
+  Typography,
+  Collapse,
+} from 'antd';
+import {
+  ProjectOutlined,
+  TeamOutlined,
+} from '@ant-design/icons';
 
 const { Text, Link } = Typography;
 const { Panel } = Collapse;
 
 const Project1 = () => {
-  // Project data
   const project = {
     name: 'Website WordPress Plugin Enhancement',
     country: 'UK (Remote)',
     sector: 'Web Development / IT',
     client: ['From IYKONS'],
     role: ['Web Developer', 'IT Team Member', 'Beginner'],
-    purpose: 'Website modernization and plugin enhancements',
+    purpose: 'Website modernization and plugin enhancements.',
     technologies: ['WordPress', 'Plugins', 'cPanel'],
+    tools: ['WordPress Admin', 'Google Docs', 'Plugin Repositories', 'Theme Customizer'],
     experience: [
       'Beginner web technology learning',
       'Plugin usage',
       'UX improvements',
       'cPanel handling',
     ],
-    tools: ['WordPress Admin', 'Google Docs', 'Plugin Repositories', 'Theme Customizer'],
-    document: 'WordPress Web Journey & UX Upgrade Report',
-    url: {
-      label: 'Project Links',
-      links: [
-        'https://gatesinstitute.org',
-        'https://iykons.com',
-        'https://singambay.co.uk',
-        'https://www.flavoursfoods.co.uk',
-      ],
-    },
+    document: ['WordPress Web Journey & UX Upgrade Report'],
+    scope: [
+      'Improved WordPress plugin configurations',
+      'Theme customization updates',
+      'UX refinement for public visitors',
+    ],
+    cloudDeployment: 'Shared Hosting (cPanel)',
+    urls: [
+      'https://gatesinstitute.org',
+      'https://iykons.com',
+      'https://singambay.co.uk',
+      'https://www.flavoursfoods.co.uk',
+    ],
     teamMembers: [
       {
         name: 'Sathiyaseelan Sajeenthiran',
         role: 'Mobile App Developer, Team Coordinator',
+        icon: '📱',
         email: 'sasajeenthiran@gmail.com',
         linkedin: 'https://www.linkedin.com/in/sathiyaseelan-sajeenthiran-42566aaa',
         technology: 'Flutter (iOS / Android)',
@@ -48,146 +58,97 @@ const Project1 = () => {
       className="project-card"
       hoverable
       bordered
-      style={{
-        borderRadius: 12,
-        boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
-        padding: 24,
-      }}
       title={
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: 8,
-            flexWrap: 'wrap',
-          }}
-        >
-          <ProjectOutlined style={{ fontSize: 18 }} />
-          <Text strong style={{ fontSize: 18, wordBreak: 'break-word', margin: 0 }}>
+        <div style={{ display: 'flex', alignItems: 'flex-start', gap: 8, flexWrap: 'wrap' }}>
+          <ProjectOutlined style={{ marginTop: 3 }} />
+          <Text strong style={{ fontSize: 16, whiteSpace: 'normal', wordBreak: 'break-word' }}>
             {project.name}
           </Text>
         </div>
       }
     >
-      {/* General Project Info */}
-      <Collapse ghost bordered={false} expandIconPosition="end">
-        <Panel header="🌍 Country" key="country">
-          <ul>
-            <li>{project.country}</li>
-          </ul>
+      <Collapse accordion>
+        <Panel header="🌍 Country" key="1">
+          <ul><li>{project.country}</li></ul>
         </Panel>
-        <Panel header="💻 Sector" key="sector">
-          <ul>
-            <li>{project.sector}</li>
-          </ul>
+
+        <Panel header="💻 Sector" key="2">
+          <ul><li>{project.sector}</li></ul>
         </Panel>
-        <Panel header="🏢 Client" key="client">
-          <ul>
-            {project.client.map((c, i) => (
-              <li key={i}>{c}</li>
-            ))}
-          </ul>
+
+        <Panel header="🏢 Client" key="3">
+          <ul>{project.client.map((c, i) => <li key={i}>{c}</li>)}</ul>
         </Panel>
-        <Panel header="🔧 Role" key="role">
-          <ul>
-            {project.role.map((r, i) => (
-              <li key={i}>{r}</li>
-            ))}
-          </ul>
+
+        <Panel header="🔧 Role" key="4">
+          <ul>{project.role.map((r, i) => <li key={i}>{r}</li>)}</ul>
         </Panel>
-        <Panel header="🎯 Purpose" key="purpose">
+
+        <Panel header="🎯 Purpose" key="5">
           <Text>{project.purpose}</Text>
         </Panel>
-      </Collapse>
 
-      <Divider style={{ margin: '16px 0', borderColor: '#ddd' }} />
+        <Panel header="🧪 Key Technologies Used" key="6">
+          <ul>{project.technologies.map((tech, i) => <li key={i}>{tech}</li>)}</ul>
+        </Panel>
 
-      {/* Technical Info */}
-      <Collapse ghost bordered={false} expandIconPosition="end">
-        <Panel header="🔧 Key Technologies Used" key="technologies">
-          <ul>
-            {project.technologies.map((t, i) => (
-              <li key={i}>{t}</li>
-            ))}
-          </ul>
+        <Panel header="📘 Experience Gained" key="7">
+          <ul>{project.experience.map((exp, i) => <li key={i}>{exp}</li>)}</ul>
         </Panel>
-        <Panel header="📘 Experience Gained" key="experience">
-          <ul>
-            {project.experience.map((e, i) => (
-              <li key={i}>{e}</li>
-            ))}
-          </ul>
+
+        <Panel header="🛠 Tools Used" key="8">
+          <ul>{project.tools.map((tool, i) => <li key={i}>{tool}</li>)}</ul>
         </Panel>
-        <Panel header="🛠 Tools Used" key="tools">
-          <ul>
-            {project.tools.map((tool, i) => (
-              <li key={i}>{tool}</li>
-            ))}
-          </ul>
+
+        <Panel header="📄 Documentation" key="9">
+          <ul>{project.document.map((doc, i) => <li key={i}>{doc}</li>)}</ul>
         </Panel>
-        <Panel header="📄 Documentation" key="documentation">
-          <Text>{project.document}</Text>
+
+        <Panel header="📦 Project Scope" key="10">
+          <ul>{project.scope.map((s, i) => <li key={i}>{s}</li>)}</ul>
         </Panel>
-        <Panel header="🔗 Project Links" key="links">
+
+        <Panel header="☁️ Cloud Deployment" key="11">
+          <Text>{project.cloudDeployment}</Text>
+        </Panel>
+
+        <Panel header="🔗 URLs" key="12">
           <ul>
-            {project.url.links.map((link, index) => (
-              <li key={index}>
-                <Link href={link} target="_blank" rel="noopener noreferrer">
-                  {link}
+            {project.urls.map((url, i) => (
+              <li key={i}>
+                <Link href={url} target="_blank" rel="noopener noreferrer">
+                  {url}
                 </Link>
               </li>
             ))}
           </ul>
         </Panel>
-      </Collapse>
 
-      <Divider dashed style={{ margin: '16px 0', borderColor: '#ccc' }} />
-
-      {/* Team Info */}
-      <Collapse ghost bordered={false} expandIconPosition="end">
-        <Panel header="🧑‍🤝‍🧑 Team Member" key="members">
+        <Panel header="🧑‍🤝‍🧑 Team Members" key="13">
           <ul>
             {project.teamMembers.map((member, i) => (
-              <li key={i} style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-                <TeamOutlined />
-                {member.name}
+              <li key={i} style={{ display: 'flex', alignItems: 'center' }}>
+                <TeamOutlined style={{ marginRight: 6 }} />
+                <Text>{member.name} ({member.icon})</Text>
               </li>
             ))}
           </ul>
         </Panel>
-        <Panel header="💼 Job Role" key="roles">
-          <ul>
-            {project.teamMembers.map((m, i) => (
-              <li key={i}>{m.role}</li>
-            ))}
-          </ul>
+
+        <Panel header="💼 Job Role" key="14">
+          <ul>{project.teamMembers.map((member, i) => <li key={i}>– {member.role}</li>)}</ul>
         </Panel>
-        <Panel header="🧰 Technology" key="technology">
-          <ul>
-            {project.teamMembers.map((m, i) => (
-              <li key={i}>{m.technology}</li>
-            ))}
-          </ul>
-        </Panel>
-        <Panel header="🔗 LinkedIn" key="linkedin">
-          <ul>
-            {project.teamMembers.map((m, i) => (
-              <li key={i}>
-                <Link href={m.linkedin} target="_blank" rel="noopener noreferrer">
-                  {m.linkedin}
+
+        <Panel header="🔗 LinkedIn" key="15">
+          <ul>{project.teamMembers.map((member, i) => (
+            <li key={i}>
+              {member.linkedin !== 'N/A' ? (
+                <Link href={member.linkedin} target="_blank" rel="noopener noreferrer">
+                  {member.linkedin}
                 </Link>
-              </li>
-            ))}
-          </ul>
-        </Panel>
-        <Panel header="✉️ Email" key="email">
-          <ul>
-            {project.teamMembers.map((m, i) => (
-              <li key={i}>
-                <Link href={`mailto:${m.email}`}>{m.email}</Link>
-              </li>
-            ))}
-          </ul>
+              ) : 'N/A'}
+            </li>
+          ))}</ul>
         </Panel>
       </Collapse>
     </Card>
