@@ -135,9 +135,12 @@ const Project5 = () => {
           </ul>
         </Panel>
 
-        <Panel header="🎯 Purpose" key="5">
-          <Text>{project.purpose}</Text>
-        </Panel>
+<Panel header="🎯 Purpose" key="5">
+  <ul style={ulStyle}>
+    <li>{project.purpose}</li>
+  </ul>
+</Panel>
+
 
         <Panel header="🧪 Key Technologies Used" key="6">
           <ul style={ulStyle}>

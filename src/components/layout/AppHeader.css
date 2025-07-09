@@ -253,3 +253,12 @@
 .app-drawer .search-input {
   width: 100% !important;
 }
+.search-input.dark {
+  background-color: #1f1f1f;
+  color: #fff;
+}
+
+.search-input.light {
+  background-color: #fff;
+  color: #000;
+}

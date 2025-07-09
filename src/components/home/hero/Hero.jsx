@@ -8,34 +8,34 @@ const { Title, Text } = Typography;
 const user = {
   name: 'Jeyamohan Manoharan',
   title:
-    'Tech-Savvy Solution Analyst | Business Analyst | Software Project Coordinator specialize in project planning, resource allocation, and timely product delivery.',
+    ' BSc. (Hons) in Information and Communication Technology. University of Jaffna 2019–2023 | Research : Body Shaming Phrase Detection System using AI for OTT Platforms.',
   imageUrl: '/assets/images/4.jpg',
 };
 
 // Shared "About" content card
 const AboutCard = () => (
-<Card
-  bordered={false}
-  style={{
-    marginTop: 20,
-    background: 'var(--light-bg)',
-    padding: 24,
-  }}
-  className="about-card"
->
-  <h2>T shaped Professional | Tech-Savvy | Business Analyst | Software Project Coordinator | Solution Analyst</h2>
+  <Card
+    bordered={false}
+    style={{
+      marginTop: 20,
+      background: 'var(--light-bg)',
+      padding: 24,
+    }}
+    className="about-card"
+  >
+    <h2>T shaped Professional | Tech-Savvy | Business Analyst | Software Project Coordinator | Solution Analyst</h2>
 
-  <h1>I BELIEVE IN MY TALENTS.</h1>
+    <h1>I BELIEVE IN MY TALENTS.</h1>
 
-  <h3>
-    I am JM — a tech-savvy Solution Analyst, Business Analyst, and Software Project Coordinator — skilled in leveraging
-    modern technologies to drive innovation in scalable software solutions. I specialize in project planning, resource
-    allocation, and ensuring timely product delivery while applying strategic thinking, analytical problem-solving,
-    and risk management. My expertise includes user story mapping, wireframe modeling, functional prototyping, and
-    workflow optimization. With strong client communication and cross-team collaboration skills, I am prepared to
-    contribute effectively to impactful projects in the modern IT sector.
-  </h3>
-</Card>
+    <h3>
+      I am JM — a tech-savvy Solution Analyst, Business Analyst, and Software Project Coordinator — skilled in leveraging
+      modern technologies to drive innovation in scalable software solutions. I specialize in project planning, resource
+      allocation, and ensuring timely product delivery while applying strategic thinking, analytical problem-solving,
+      and risk management. My expertise includes user story mapping, wireframe modeling, functional prototyping, and
+      workflow optimization. With strong client communication and cross-team collaboration skills, I am prepared to
+      contribute effectively to impactful projects in the modern IT sector.
+    </h3>
+  </Card>
 
 );
 

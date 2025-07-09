@@ -14,33 +14,36 @@ const { Panel } = Collapse;
 
 const Project3 = () => {
   const project = {
-    name: 'E-Commerce Web Application',
-    country: 'USA Based (Remote)',
-    sector: 'E-Commerce',
-    client: ['ABC Retailers'],
+    name: 'IYCONNECT',
+    country: 'Colombo',
+    sector: 'Fintech Application',
+    client: ['IYKONS'],
     role: ['Frontend Developer (JM)'],
-    purpose: 'Develop a scalable e-commerce platform',
-    technologies: ['React', 'Redux', 'Node.js', 'Express', 'MongoDB'],
-    experience: ['Implemented responsive UI components', 'Optimized API integration'],
+    purpose: 'Develop a scalable financial application platform',
+    technologies: ['React', 'Redux', 'TypeScript', '.NET API', 'MS SQL DBMS'],
+    experience: [
+      'Implemented functionality and responsive UI components',
+      'Optimized API integration',
+    ],
     tools: ['Visual Studio Code', 'Postman', 'Git'],
-    document: ['E-Commerce System Requirement Document'],
-    urls: ['https://abc-retailers.com'],
+    document: ['IYCONNECT System Requirement Document'],
+    urls: ['https://iykons.com'],
     teamMembers: [
       {
-        name: 'Alice Johnson',
+        name: 'Shihara',
         role: 'Project Manager',
         icon: '👩‍💼',
-        email: 'alice.johnson@abcretailers.com',
-        linkedin: 'https://www.linkedin.com/in/alicejohnson',
+        email: 'N/A',
+        linkedin: 'N/A',
         technology: 'Project Management, Scrum',
       },
       {
-        name: 'Bob Smith',
-        role: 'Backend Developer',
+        name: 'Ashan',
+        role: 'Front-End Developer',
         icon: '🖥️',
-        email: 'bob.smith@abcretailers.com',
-        linkedin: 'https://www.linkedin.com/in/bobsmith',
-        technology: 'Node.js, Express, MongoDB',
+        email: 'N/A',
+        linkedin: 'N/A',
+        technology: 'React, TypeScript, Front-End technologies',
       },
     ],
   };
@@ -79,7 +82,7 @@ const Project3 = () => {
         </Panel>
 
         <Panel header="🎯 Purpose" key="5">
-          <Text>{project.purpose}</Text>
+          <ul style={ulStyle}><li>{project.purpose}</li></ul>
         </Panel>
 
         <Panel header="🧪 Key Technologies Used" key="6">

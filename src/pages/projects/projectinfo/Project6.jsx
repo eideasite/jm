@@ -98,9 +98,14 @@ const Project6 = () => {
           </ul>
         </Panel>
 
-        <Panel header="🎯 Purpose" key="5">
-          <Text>{project.purpose}</Text>
-        </Panel>
+<Panel header="🎯 Purpose" key="5">
+  <ul style={ulStyle}>
+    {project.purpose.map((r, i) => (
+      <li key={i}>{r}</li>
+    ))}
+  </ul>
+</Panel>
+
 
         <Panel header="🧪 Key Technologies Used" key="6">
           <ul style={ulStyle}>

@@ -1,3 +1,4 @@
+// AppHeader.jsx
 import React, { useState, useEffect } from 'react';
 import './AppHeader.css';
 import {
@@ -49,11 +50,30 @@ const AppHeader = ({ darkMode, setDarkMode }) => {
     if (target) target.scrollIntoView({ behavior: 'smooth' });
   };
 
-  const handleSearchChange = (e) => setSearchQuery(e.target.value);
+  const handleSearchChange = (e) => {
+    setSearchQuery(e.target.value);
+  };
 
   const handleSearch = (value) => {
-    const trimmed = value.trim();
-    if (trimmed) window.open(`https://www.google.com/search?q=${encodeURIComponent(trimmed)}`, '_blank');
+    const trimmed = value.trim().toLowerCase();
+    if (!trimmed) return;
+
+    const localContent = [
+      { title: 'React Basics', url: '/learn/react' },
+      { title: 'SEO Strategy', url: '/seo' },
+      { title: 'Business Analyst Guide', url: '/business-analyst' },
+    ];
+
+    const match = localContent.find(item =>
+      item.title.toLowerCase().includes(trimmed)
+    );
+
+    if (match) {
+      window.location.href = match.url;
+    } else {
+      const googleQuery = `site:${window.location.hostname} ${trimmed}`;
+      window.open(`https://www.google.com/search?q=${encodeURIComponent(googleQuery)}`, '_blank');
+    }
   };
 
   return (
@@ -90,6 +110,7 @@ const AppHeader = ({ darkMode, setDarkMode }) => {
           />
         </div>
 
+        {/* Desktop Search & Dark Mode Toggle */}
         {!isMobile && (
           <div
             className="header-controls"
@@ -103,7 +124,7 @@ const AppHeader = ({ darkMode, setDarkMode }) => {
               prefix={<SiGoogle color="#4285F4" size={18} />}
               allowClear
               className={`search-input ${darkMode ? 'dark' : 'light'}`}
-              aria-label="Google Search"
+              aria-label="Business Analyst Job Search"
               style={{ width: 200 }}
             />
             <Switch
@@ -120,7 +141,7 @@ const AppHeader = ({ darkMode, setDarkMode }) => {
         )}
       </div>
 
-      {/* Mobile drawer */}
+      {/* Mobile Drawer */}
       <Drawer
         title="Menu"
         placement="right"
@@ -129,6 +150,7 @@ const AppHeader = ({ darkMode, setDarkMode }) => {
         className={`app-drawer ${darkMode ? 'dark' : 'light'}`}
         bodyStyle={{ padding: 0 }}
       >
+        {/* Navigation List */}
         <Menu
           onClick={handleMenuClick}
           selectedKeys={[current]}
@@ -137,41 +159,66 @@ const AppHeader = ({ darkMode, setDarkMode }) => {
           theme={darkMode ? 'dark' : 'light'}
         />
 
-        {/* Centered controls inside drawer */}
+        {/* Search Bar in Mobile Drawer */}
+        <div
+          style={{
+            padding: '12px 16px',
+            borderTop: darkMode ? '1px solid #444' : '1px solid #eee',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            gap: 8,
+            backgroundColor: darkMode ? '#1f1f1f' : '#fff',
+          }}
+        >
+          <Input
+            placeholder="Search..."
+            value={searchQuery}
+            onChange={handleSearchChange}
+            onPressEnter={(e) => handleSearch(e.target.value)}
+            prefix={<SiGoogle color="#4285F4" size={16} />}
+            allowClear
+            style={{
+              flex: 1,
+              minWidth: 0,
+              height: 32,
+              fontSize: 14,
+            }}
+            className={`search-input ${darkMode ? 'dark' : 'light'}`}
+            aria-label="Google Search"
+          />
+          <Button
+            type="primary"
+            size="small"
+            onClick={() => handleSearch(searchQuery)}
+            aria-label="Search"
+            style={{ height: 32, padding: '0 12px' }}
+          >
+            Go
+          </Button>
+        </div>
+
+        {/* Dark Mode Toggle */}
         <div
           style={{
             padding: '16px',
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            gap: '12px',
+            gap: 12,
             borderTop: darkMode ? '1px solid #444' : '1px solid #eee',
           }}
         >
-          <Input
-            value={searchQuery}
-            onChange={handleSearchChange}
-            onPressEnter={(e) => handleSearch(e.target.value)}
-            placeholder="Search with Google..."
-            prefix={<SiGoogle color="#4285F4" size={18} />}
-            allowClear
-            className={`search-input ${darkMode ? 'dark' : 'light'}`}
-            style={{ width: '100%' }}
-            aria-label="Google Search"
+          <Switch
+            checked={darkMode}
+            onChange={() => setDarkMode(!darkMode)}
+            checkedChildren={<MoonOutlined />}
+            unCheckedChildren={<SunOutlined />}
+            aria-label="Toggle Dark Mode"
           />
-
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <Switch
-              checked={darkMode}
-              onChange={() => setDarkMode(!darkMode)}
-              checkedChildren={<MoonOutlined />}
-              unCheckedChildren={<SunOutlined />}
-              aria-label="Toggle Dark Mode"
-            />
-            <span className="mode-label" aria-live="polite" style={{ marginTop: 8 }}>
-              {darkMode ? 'Dark Mode' : 'Light Mode'}
-            </span>
-          </div>
+          <span className="mode-label" aria-live="polite">
+            {darkMode ? 'Dark Mode' : 'Light Mode'}
+          </span>
         </div>
       </Drawer>
     </Layout.Header>

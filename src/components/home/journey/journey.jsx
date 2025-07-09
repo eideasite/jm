@@ -1,6 +1,19 @@
-import React, { useState } from 'react';
-import { Avatar, Carousel, Col, Divider, Drawer, List, Row, Card, Button } from 'antd';
-import { CheckCircleOutlined } from '@ant-design/icons';
+import React, { useState, useEffect } from 'react';
+import {
+  Avatar,
+  Carousel,
+  Col,
+  Divider,
+  Drawer,
+  List,
+  Row,
+  Card,
+  Button,
+} from 'antd';
+import {
+  CheckCircleOutlined,
+  CloseOutlined,
+} from '@ant-design/icons';
 
 const DescriptionItem = ({ title, content }) => (
   <div className="site-description-item-profile-wrapper">
@@ -9,41 +22,8 @@ const DescriptionItem = ({ title, content }) => (
   </div>
 );
 
+
 const projectSummaries = [
-  {
-    title: 'IYCONNECT – Web Product',
-    tasks: [
-      'Developed frontend using React and TypeScript.',
-      'Participated in Agile development using Jira.',
-      'Facilitated Scrum meetings.',
-      'Coordinated team workflows and task assignments.',
-    ],
-  },
-  {
-    title: 'IYKONS – Website Rebuild',
-    tasks: [
-      'Redesigned website with HTML5, CSS3, and React.',
-      'Improved UI/UX components.',
-      'Addressed and resolved UI-related issues.',
-    ],
-  },
-  {
-    title: 'BA Training – UK Business',
-    tasks: [
-      'Conducted stakeholder meetings for requirements.',
-      'Created wireframes and user flow documentation.',
-      'Documented requirements and system design.',
-      'Managed client communications.',
-    ],
-  },
-  {
-    title: 'Backend – Job Recruitment Platform',
-    tasks: [
-      'Integrated backend APIs.',
-      'Defined backend logic and data flow.',
-      'Documented technical implementation.',
-    ],
-  },
   {
     title: 'WordPress Website Analysis',
     tasks: [
@@ -53,9 +33,47 @@ const projectSummaries = [
     ],
   },
   {
+    title: 'IYKONS – Website Rebuild',
+    tasks: [
+      'WordPress website troubleshooted.',
+      'Create website in React.',
+      'HTML, CSS, React JS.',
+      'Addressed and resolved UI-related issues.',
+    ],
+  },
+  {
+    title: 'IYCONNECT – Web Product',
+    tasks: [
+      'Developed frontend using React and TypeScript.',
+      'Participated in Agile development using Jira.',
+      'Facilitated Scrum meetings.',
+      'Participated in team workflows and task assignments.',
+    ],
+  },
+  {
+    title: 'UK Business Profile',
+    tasks: [
+      'Conducted stakeholder meetings for requirements.',
+      'BA Training',
+      'Created wireframes and user flow documentation.',
+      'Documented requirements and system design.',
+      'Managed client communications via emails.',
+    ],
+  },
+  {
+    title: 'Backend – Job Recruitment Platform',
+    tasks: [
+      'Integrated backend APIs.',
+      'Study the requirement of API and SRS documentation.',
+      'Defined backend logic and data flow.',
+      'Handled backend database and SQL.',
+    ],
+  },
+  {
     title: 'Stat Scout System',
     tasks: [
-      'Performed system analysis.',
+      'Stakeholder communication, SRS and BRD documentation implementation.',
+      'Project management and system design architecture purpose.',
       'Created cloud-based workflows using MVC.',
       'Coordinated with team for documentation and flow.',
     ],
@@ -65,16 +83,8 @@ const projectSummaries = [
     tasks: [
       'Gathered and documented requirements.',
       'Created workflow diagrams.',
+      'Client meeting and requirement gathering.',
       'Communicated proposals to clients.',
-    ],
-  },
-  {
-    title: 'IYCONNECT – Financial Web App',
-    tasks: [
-      'Built financial dashboard with React.',
-      'Integrated APIs for live data.',
-      'Facilitated Scrum practices.',
-      'Led team coordination activities.',
     ],
   },
   {
@@ -86,19 +96,28 @@ const projectSummaries = [
     ],
   },
   {
-    title: 'IYCONNECT – Mobile Enhancements',
-    tasks: [
-      'Developed UI enhancements using Flutter.',
-      'Solved UX and responsiveness issues.',
-      'Coordinated documentation process.',
-    ],
-  },
-  {
     title: 'Allie Bhavan – E-Commerce',
     tasks: [
       'Integrated e-commerce platform using Shopify and Flutter.',
       'Conducted quality assurance documentation.',
       'Led frontend development and issue tracking.',
+    ],
+  },
+  {
+    title: 'IYCONNECT – Financial Web App',
+    tasks: [
+      'Built financial dashboard with UX.',
+      'Task progress implementation support.',
+      'Facilitated Scrum practices.',
+      'Led team coordination activities.',
+    ],
+  },
+  {
+    title: 'IYCONNECT – Mobile Enhancements',
+    tasks: [
+      'Developed UI enhancements using Flutter.',
+      'Solved UX and responsiveness issues.',
+      'Coordinated documentation process.',
     ],
   },
   {
@@ -159,6 +178,7 @@ const projectSummaries = [
       'Integrated APIs for tax data processing.',
       'Performed testing and system analysis.',
       'Documented user and system level interactions.',
+      'Sandbox data validation testing with API user and system level interactions.',
     ],
   },
   {
@@ -171,7 +191,7 @@ const projectSummaries = [
     ],
   },
   {
-    title: 'Austrian UX/UI Modernization',
+    title: 'FAT CHEF System Austrian UX/UI Modernization',
     tasks: [
       'Designed UX wireframes.',
       'Led system and UI analysis.',
@@ -199,9 +219,12 @@ const projectSummaries = [
   },
 ];
 
+
 const Journey = () => {
   const [open, setOpen] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
+  const [drawerWidth, setDrawerWidth] = useState(720);
+  const [drawerPlacement, setDrawerPlacement] = useState('right');
 
   const showDrawer = (item) => {
     setSelectedProject(item);
@@ -213,17 +236,61 @@ const Journey = () => {
     setSelectedProject(null);
   };
 
+  useEffect(() => {
+    const handleResize = () => {
+      const width = window.innerWidth;
+      if (width <= 768) {
+        setDrawerWidth('100%');
+        setDrawerPlacement('bottom'); // or 'right' if you prefer
+      } else {
+        setDrawerWidth(720);
+        setDrawerPlacement('right');
+      }
+    };
+
+    handleResize(); // initial call
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
     <>
       <style>{`
-        /* Green dots for carousel */
-        .ant-carousel .slick-dots li.slick-active button {
-          background-color:rgb(87, 221, 255) !important; /* dark green active dot */
-        }
-        .ant-carousel .slick-dots li button {
-          background-color:rgb(95, 196, 255) !important; /* lighter green inactive dots */
-        }
-      `}</style>
+  .ant-carousel .slick-dots li.slick-active button {
+    background-color: rgb(87, 221, 255) !important;
+  }
+  .ant-carousel .slick-dots li button {
+    background-color: rgb(95, 196, 255) !important;
+  }
+
+  @media (max-width: 768px) {
+    .ant-drawer-bottom .ant-drawer-content {
+      border-top-left-radius: 16px;
+      border-top-right-radius: 16px;
+      box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .ant-drawer-bottom .ant-drawer-body {
+      padding: 16px 20px 40px;
+      max-height: 80vh;
+      overflow-y: auto;
+    }
+
+    .ant-drawer-bottom .ant-btn {
+      position: absolute !important;
+      top: 12px !important;
+      left: 12px !important;
+      background: none;
+      box-shadow: none;
+    }
+
+    .site-description-item-profile-p {
+      font-size: 16px;
+      margin-top: 32px;
+    }
+  }
+`}</style>
+
 
       <Carousel autoplay dotPosition="bottom" style={{ padding: '32px 0' }}>
         {projectSummaries.map((item, index) => (
@@ -237,8 +304,8 @@ const Journey = () => {
                 </Button>
               }
               style={{
-                maxWidth: 900, // 🧱 Wider Card
-                minHeight: 240, // 📏 Taller Card
+                maxWidth: 900,
+                minHeight: 240,
                 margin: 'auto',
                 textAlign: 'left',
                 borderRadius: 10,
@@ -263,10 +330,31 @@ const Journey = () => {
         ))}
       </Carousel>
 
-      <Drawer width={720} placement="right" closable={false} onClose={onClose} open={open}>
+      <Drawer
+        width={drawerWidth}
+        placement={drawerPlacement}
+        closable={false}
+        onClose={onClose}
+        open={open}
+        bodyStyle={{ padding: 24 }}
+      >
         {selectedProject && (
           <>
-            <p className="site-description-item-profile-p" style={{ marginBottom: 24 }}>
+            <Button
+              type="text"
+              onClick={onClose}
+              icon={<CloseOutlined />}
+              style={{
+                position: 'absolute',
+                top: 16,
+                left: 16,
+                zIndex: 1000,
+                fontSize: 20,
+                color: '#ff4d4f',
+              }}
+            />
+
+            <p className="site-description-item-profile-p" style={{ marginBottom: 24, paddingTop: 40 }}>
               Project Overview
             </p>
             <Row>

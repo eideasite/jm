@@ -224,3 +224,32 @@ body.dark-mode {
     font-size: 16px;
   }
 }
+@media (max-width: 768px) {
+  /* 🧱 Drawer body style tweak */
+  .ant-drawer-bottom .ant-drawer-content {
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.2);
+  }
+
+  .ant-drawer-bottom .ant-drawer-body {
+    padding: 16px 20px 40px;
+    max-height: 80vh; /* prevents full screen takeover */
+    overflow-y: auto;
+  }
+
+  /* 🔘 Close button better position */
+  .ant-drawer-bottom .ant-btn {
+    position: absolute !important;
+    top: 12px !important;
+    left: 12px !important;
+    background: none;
+    box-shadow: none;
+  }
+
+  /* 🎯 Heading spacing for mobile */
+  .site-description-item-profile-p {
+    font-size: 16px;
+    margin-top: 32px;
+  }
+}
