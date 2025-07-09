@@ -160,43 +160,47 @@ const AppHeader = ({ darkMode, setDarkMode }) => {
         />
 
         {/* Search Bar in Mobile Drawer */}
-        <div
-          style={{
-            padding: '12px 16px',
-            borderTop: darkMode ? '1px solid #444' : '1px solid #eee',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            gap: 8,
-            backgroundColor: darkMode ? '#1f1f1f' : '#fff',
-          }}
-        >
-          <Input
-            placeholder="Search..."
-            value={searchQuery}
-            onChange={handleSearchChange}
-            onPressEnter={(e) => handleSearch(e.target.value)}
-            prefix={<SiGoogle color="#4285F4" size={16} />}
-            allowClear
-            style={{
-              flex: 1,
-              minWidth: 0,
-              height: 32,
-              fontSize: 14,
-            }}
-            className={`search-input ${darkMode ? 'dark' : 'light'}`}
-            aria-label="Google Search"
-          />
-          <Button
-            type="primary"
-            size="small"
-            onClick={() => handleSearch(searchQuery)}
-            aria-label="Search"
-            style={{ height: 32, padding: '0 12px' }}
-          >
-            Go
-          </Button>
-        </div>
+{/* Search Bar in Mobile Drawer */}
+<div
+  className={`drawer-search-container`}
+  style={{
+    padding: '12px 16px',
+    borderTop: darkMode ? '1px solid #444' : '1px solid #eee',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    gap: 8,
+    backgroundColor: darkMode ? '#1f1f1f' : '#fff',
+    flexWrap: 'wrap',
+  }}
+>
+  <Input
+    placeholder="Search..."
+    value={searchQuery}
+    onChange={handleSearchChange}
+    onPressEnter={(e) => handleSearch(e.target.value)}
+    prefix={<SiGoogle color="#4285F4" size={16} />}
+    allowClear
+    style={{
+      flex: 1,
+      minWidth: 0,
+      height: 32,
+      fontSize: 14,
+    }}
+    className={`search-input ${darkMode ? 'dark' : 'light'}`}
+    aria-label="Google Search"
+  />
+  <Button
+    type="primary"
+    size="small"
+    onClick={() => handleSearch(searchQuery)}
+    aria-label="Search"
+    style={{ height: 32, padding: '0 12px' }}
+  >
+    Go
+  </Button>
+</div>
+
 
         {/* Dark Mode Toggle */}
         <div
