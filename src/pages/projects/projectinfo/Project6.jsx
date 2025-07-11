@@ -7,15 +7,31 @@ const { Panel } = Collapse;
 
 const ulStyle = { paddingLeft: 24, marginBottom: 0 };
 
+// 🔁 Utility for list panels
+const renderList = (items = []) =>
+  items.map((item, i) => <li key={`item-${i}`}>{item}</li>);
+
+// 👤 Utility for team member details
+const renderTeamMemberInfo = (members = []) =>
+  members.map((member, i) => (
+    <li
+      key={`member-${i}`}
+      style={{ display: 'flex', alignItems: 'center', gap: 6, flexWrap: 'wrap' }}
+    >
+      <TeamOutlined />
+      <Text style={{ whiteSpace: 'normal', wordBreak: 'break-word' }}>{member.name}</Text>
+    </li>
+  ));
+
 const Project6 = () => {
   const project = {
     name: 'Sports Management System',
-    country: 'Australia', // line ~10
-    sector: 'Sports Management', // line ~11
-    client: ['Domain Client (statscout.au.com)'], // line ~12
-    role: ['Intern Business Analyst', 'Coordinator / Project Manager Sprint Planner'], // line ~13
-    purpose: 'Sports Management website and system', // line ~14
-    technologies: ['MVC', 'API', '.NET', 'C# (Web)'], // line ~15
+    country: 'Australia',
+    sector: 'Sports Management',
+    client: ['Domain Client (statscout.au.com)'],
+    role: ['Intern Business Analyst', 'Coordinator / Project Manager Sprint Planner'],
+    purpose: ['Sports Management website and system'],
+    technologies: ['MVC', 'API', '.NET', 'C# (Web)'],
     experience: [
       'Requirement analysis',
       'Developer documentation',
@@ -23,20 +39,22 @@ const Project6 = () => {
       'Cloud deployment (AWS Elastic Beanstalk)',
       'Project coordination',
       'Wireframe creation',
-    ], // line ~16-22
-    tools: ['Balsamiq', 'Google Docs', 'Microsoft Teams', 'Draw.io'], // line ~23
+    ],
+    tools: ['Balsamiq', 'Google Docs', 'Microsoft Teams', 'Draw.io'],
     document: [
       'Software documentation, client email, communication, presentation, and confirmation reports',
-    ], // line ~24
-    scope: 'Sports club system: club, coach, team, player communication; player, club, coach registration; admin & parent verification, chat, email integration; scalable app design', // line ~25
-    cloudDeployment: 'AWS Elastic Beanstalk', // line ~26
+    ],
+    scope:
+      'Sports club system: club, coach, team, player communication; player, club, coach registration; admin & parent verification, chat, email integration; scalable app design',
+    cloudDeployment: 'AWS Elastic Beanstalk',
     teamMembers: [
       {
-        name: 'Krishnarajah Thusanthan', // line ~27
-        role: 'Full Stack Developer', // line ~28
-        linkedin: 'https://www.linkedin.com/in/thusanthan-krishnarajah?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BaV0dOo1LRgSUixfo438fzA%3D%3D', // line ~29
-        email: 'N/A', // line ~30
-        technology: 'N/A', // line ~31
+        name: 'Krishnarajah Thusanthan',
+        role: 'Full Stack Developer',
+        linkedin:
+          'https://www.linkedin.com/in/thusanthan-krishnarajah',
+        email: 'N/A',
+        technology: 'N/A',
       },
     ],
   };
@@ -47,96 +65,47 @@ const Project6 = () => {
       hoverable
       bordered
       title={
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'flex-start',
-            gap: 8,
-            flexWrap: 'wrap',
-          }}
-        >
+        <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
           <ProjectOutlined style={{ marginTop: 3 }} />
-          <Text
-            strong
-            style={{
-              fontSize: 16,
-              whiteSpace: 'normal',
-              wordBreak: 'break-word',
-            }}
-          >
-            {project.name}
-          </Text>
+          <Text strong style={{ fontSize: 16 }}>{project.name}</Text>
         </div>
       }
     >
       <Collapse accordion>
         <Panel header="🌍 Country" key="1">
-          <ul style={ulStyle}>
-            <li>{project.country}</li>
-          </ul>
+          <ul style={ulStyle}>{renderList([project.country])}</ul>
         </Panel>
 
         <Panel header="💻 Sector" key="2">
-          <ul style={ulStyle}>
-            <li>{project.sector}</li>
-          </ul>
+          <ul style={ulStyle}>{renderList([project.sector])}</ul>
         </Panel>
 
         <Panel header="🏢 Client" key="3">
-          <ul style={ulStyle}>
-            {project.client.map((c, i) => (
-              <li key={i}>{c}</li>
-            ))}
-          </ul>
+          <ul style={ulStyle}>{renderList(project.client)}</ul>
         </Panel>
 
         <Panel header="🔧 Role" key="4">
-          <ul style={ulStyle}>
-            {project.role.map((r, i) => (
-              <li key={i}>{r}</li>
-            ))}
-          </ul>
+          <ul style={ulStyle}>{renderList(project.role)}</ul>
         </Panel>
 
-<Panel header="🎯 Purpose" key="5">
-  <ul style={ulStyle}>
-    {project.purpose.map((r, i) => (
-      <li key={i}>{r}</li>
-    ))}
-  </ul>
-</Panel>
-
+        <Panel header="🎯 Purpose" key="5">
+          <ul style={ulStyle}>{renderList(project.purpose)}</ul>
+        </Panel>
 
         <Panel header="🧪 Key Technologies Used" key="6">
-          <ul style={ulStyle}>
-            {project.technologies.map((tech, i) => (
-              <li key={i}>{tech}</li>
-            ))}
-          </ul>
+          <ul style={ulStyle}>{renderList(project.technologies)}</ul>
         </Panel>
 
         <Panel header="📘 Experience Gained" key="7">
-          <ul style={ulStyle}>
-            {project.experience.map((exp, i) => (
-              <li key={i}>{exp}</li>
-            ))}
-          </ul>
+          <ul style={ulStyle}>{renderList(project.experience)}</ul>
         </Panel>
 
         <Panel header="🛠 Tools Used" key="8">
-          <ul style={ulStyle}>
-            {project.tools.map((tool, i) => (
-              <li key={i}>{tool}</li>
-            ))}
-          </ul>
+          <ul style={ulStyle}>{renderList(project.tools)}</ul>
         </Panel>
 
         <Panel header="📄 Documentation" key="9">
-          <ul style={ulStyle}>
-            {project.document.map((doc, i) => (
-              <li key={i}>{doc}</li>
-            ))}
-          </ul>
+          <ul style={ulStyle}>{renderList(project.document)}</ul>
         </Panel>
 
         <Panel header="📦 Project Scope" key="10">
@@ -148,50 +117,20 @@ const Project6 = () => {
         </Panel>
 
         <Panel header="🧑‍🤝‍🧑 Team Members" key="12">
-          <ul style={ulStyle}>
-            {project.teamMembers.map((member, i) => (
-              <li
-                key={i}
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: 6,
-                  flexWrap: 'wrap',
-                }}
-              >
-                <TeamOutlined />
-                <Text
-                  style={{
-                    whiteSpace: 'normal',
-                    wordBreak: 'break-word',
-                  }}
-                >
-                  {member.name}
-                </Text>
-              </li>
-            ))}
-          </ul>
+          <ul style={ulStyle}>{renderTeamMemberInfo(project.teamMembers)}</ul>
         </Panel>
 
         <Panel header="💼 Job Role" key="13">
-          <ul style={ulStyle}>
-            {project.teamMembers.map((member, i) => (
-              <li key={i}>{member.role}</li>
-            ))}
-          </ul>
+          <ul style={ulStyle}>{renderList(project.teamMembers.map(m => m.role))}</ul>
         </Panel>
 
         <Panel header="🔗 LinkedIn" key="14">
           <ul style={ulStyle}>
-            {project.teamMembers.map((member, i) => (
-              <li key={i}>
-                {member.linkedin !== 'N/A' ? (
-                  <Link
-                    href={member.linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {member.linkedin}
+            {project.teamMembers.map((m, i) => (
+              <li key={`linkedin-${i}`}>
+                {m.linkedin !== 'N/A' ? (
+                  <Link href={m.linkedin} target="_blank" rel="noopener noreferrer">
+                    {m.linkedin}
                   </Link>
                 ) : (
                   'N/A'
@@ -203,10 +142,10 @@ const Project6 = () => {
 
         <Panel header="✉️ Email" key="15">
           <ul style={ulStyle}>
-            {project.teamMembers.map((member, i) => (
-              <li key={i}>
-                {member.email !== 'N/A' ? (
-                  <Link href={`mailto:${member.email}`}>{member.email}</Link>
+            {project.teamMembers.map((m, i) => (
+              <li key={`email-${i}`}>
+                {m.email !== 'N/A' ? (
+                  <Link href={`mailto:${m.email}`}>{m.email}</Link>
                 ) : (
                   'N/A'
                 )}
@@ -216,11 +155,7 @@ const Project6 = () => {
         </Panel>
 
         <Panel header="🧪 Technology" key="16">
-          <ul style={ulStyle}>
-            {project.teamMembers.map((member, i) => (
-              <li key={i}>{member.technology}</li>
-            ))}
-          </ul>
+          <ul style={ulStyle}>{renderList(project.teamMembers.map(m => m.technology))}</ul>
         </Panel>
       </Collapse>
     </Card>

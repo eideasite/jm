@@ -19,7 +19,12 @@ const Project1 = () => {
     sector: 'Web Development / IT',
     client: ['From IYKONS'],
     role: ['Web Developer', 'IT Team Member', 'Beginner'],
-    purpose: 'Website modernization and plugin enhancements.',
+purpose: [
+  'Website modernization',
+  'Plugin enhancements',
+  'Focus on UX and performance improvements',
+],
+
     technologies: ['WordPress', 'Plugins', 'cPanel'],
     tools: ['WordPress Admin', 'Google Docs', 'Plugin Repositories', 'Theme Customizer'],
     experience: [
@@ -84,9 +89,14 @@ const Project1 = () => {
           <ul>{project.role.map((r, i) => <li key={i}>{r}</li>)}</ul>
         </Panel>
 
-        <Panel header="🎯 Purpose" key="5">
-          <Text>{project.purpose}</Text>
-        </Panel>
+<Panel header="🎯 Purpose" key="5">
+  <ul>
+    {project.purpose.map((item, index) => (
+      <li key={index}>{item}</li>
+    ))}
+  </ul>
+</Panel>
+
 
         <Panel header="🧪 Key Technologies Used" key="6">
           <ul>{project.technologies.map((tech, i) => <li key={i}>{tech}</li>)}</ul>

@@ -26,9 +26,14 @@ const AppHeader = ({ darkMode, setDarkMode }) => {
   const [drawerVisible, setDrawerVisible] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  const [isTinyScreen, setIsTinyScreen] = useState(window.innerWidth < 428);
 
   useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 428 );
+      setIsTinyScreen(window.innerWidth < 428);
+    };
+    handleResize();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
@@ -121,7 +126,7 @@ const AppHeader = ({ darkMode, setDarkMode }) => {
               onChange={handleSearchChange}
               onPressEnter={(e) => handleSearch(e.target.value)}
               placeholder="Search with Google..."
-              prefix={<SiGoogle color="#4285F4" size={18} />}
+              prefix={<SiGoogle color="#4285F4" size={20} />}
               allowClear
               className={`search-input ${darkMode ? 'dark' : 'light'}`}
               aria-label="Business Analyst Job Search"
@@ -160,47 +165,50 @@ const AppHeader = ({ darkMode, setDarkMode }) => {
         />
 
         {/* Search Bar in Mobile Drawer */}
-{/* Search Bar in Mobile Drawer */}
-<div
-  className={`drawer-search-container`}
-  style={{
-    padding: '12px 16px',
-    borderTop: darkMode ? '1px solid #444' : '1px solid #eee',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    gap: 8,
-    backgroundColor: darkMode ? '#1f1f1f' : '#fff',
-    flexWrap: 'wrap',
-  }}
->
-  <Input
-    placeholder="Search..."
-    value={searchQuery}
-    onChange={handleSearchChange}
-    onPressEnter={(e) => handleSearch(e.target.value)}
-    prefix={<SiGoogle color="#4285F4" size={16} />}
-    allowClear
-    style={{
-      flex: 1,
-      minWidth: 0,
-      height: 32,
-      fontSize: 14,
-    }}
-    className={`search-input ${darkMode ? 'dark' : 'light'}`}
-    aria-label="Google Search"
-  />
-  <Button
-    type="primary"
-    size="small"
-    onClick={() => handleSearch(searchQuery)}
-    aria-label="Search"
-    style={{ height: 32, padding: '0 12px' }}
-  >
-    Go
-  </Button>
-</div>
-
+        <div
+          className="drawer-search-container"
+          style={{
+            padding: isTinyScreen ? '8px 12px' : '12px 16px',
+            borderTop: darkMode ? '1px solid #444' : '1px solid #eee',
+            display: 'flex',
+            flexDirection: isTinyScreen ? 'column' : 'row',
+            alignItems: 'center',
+            justifyContent: isTinyScreen ? 'center' : 'space-between',
+            gap: isTinyScreen ? 6 : 8,
+            backgroundColor: darkMode ? '#1f1f1f' : '#fff',
+          }}
+        >
+          <Input
+            placeholder="Search..."
+            value={searchQuery}
+            onChange={handleSearchChange}
+            onPressEnter={(e) => handleSearch(e.target.value)}
+            prefix={<SiGoogle color="#4285F4" size={16} />}
+            allowClear
+            style={{
+              flex: 1,
+              width: isTinyScreen ? '100%' : 'auto',
+              minWidth: 0,
+              height: isTinyScreen ? 30 : 32,
+              fontSize: isTinyScreen ? 13 : 14,
+            }}
+            className={`search-input ${darkMode ? 'dark' : 'light'}`}
+            aria-label="Google Search"
+          />
+          <Button
+            type="primary"
+            size="small"
+            onClick={() => handleSearch(searchQuery)}
+            aria-label="Search"
+            style={{
+              height: isTinyScreen ? 30 : 32,
+              padding: '0 12px',
+              width: isTinyScreen ? '100%' : 'auto',
+            }}
+          >
+            Go
+          </Button>
+        </div>
 
         {/* Dark Mode Toggle */}
         <div

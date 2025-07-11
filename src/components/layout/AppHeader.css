@@ -243,39 +243,3 @@
   background-color: #fff;
   color: #000;
 }
-
-/* Remove menu border on drawer */
-.app-drawer .ant-menu {
-  border-right: none;
-}
-
-/* Fix input full width inside drawer */
-.app-drawer .search-input {
-  width: 100% !important;
-}
-.search-input.dark {
-  background-color: #1f1f1f;
-  color: #fff;
-}
-
-.search-input.light {
-  background-color: #fff;
-  color: #000;
-}
-@media (max-width: 400px) {
-  .search-input {
-    font-size: 12px !important;
-    height: 28px !important;
-  }
-
-  .drawer-search-container {
-    padding: 8px 12px !important;
-    flex-direction: column !important;
-    gap: 6px !important;
-  }
-
-  .drawer-search-container button {
-    width: 100% !important;
-    height: 30px !important;
-  }
-}

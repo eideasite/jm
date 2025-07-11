@@ -36,7 +36,7 @@ class ErrorBoundary extends React.Component {
     return { hasError: true };
   }
   componentDidCatch(error, info) {
-    console.error('Project loading error:', error, info);
+    console.error('Node Server not responding 404 . Project loading error:', error, info);
   }
   render() {
     if (this.state.hasError) {
@@ -55,7 +55,7 @@ const ProjectWithSkeletonAndSpin = ({ Component }) => {
   const [showSkeleton, setShowSkeleton] = useState(true);
 
   useEffect(() => {
-    const timer = setTimeout(() => setShowSkeleton(false), 1000); // 1s skeleton
+    const timer = setTimeout(() => setShowSkeleton(false), 100); // 1s skeleton
     return () => clearTimeout(timer);
   }, []);
 
@@ -108,7 +108,7 @@ const Project = () => {
     setVisibleCount(start);
     timeoutRef.current = setTimeout(() => {
       showMoreProjects(start + 1);
-    }, 4000);
+    }, 300);
   };
 
   // Button click handler toggling showAll and progressive reveal/hide

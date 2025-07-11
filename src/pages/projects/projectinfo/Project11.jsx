@@ -7,12 +7,25 @@ const { Panel } = Collapse;
 
 const ulStyle = { paddingLeft: 24, marginBottom: 0 };
 
+// 🧩 Helper to render generic lists
+const renderList = (items = [], prefix = 'item') =>
+  items.map((item, i) => <li key={`${prefix}-${i}`}>{item}</li>);
+
+// 👥 Helper to render team member details
+const renderTeamMembers = (members = []) =>
+  members.map((member, i) => (
+    <li key={`member-${i}`} style={{ display: 'flex', alignItems: 'center', gap: 6, flexWrap: 'wrap' }}>
+      <Text>{member.icon}</Text>
+      <Text style={{ wordBreak: 'break-word' }}>{member.name}</Text>
+    </li>
+  ));
+
 const Project11 = () => {
   const project = {
     name: 'Smart Money Exchange – Mobile & Web App Analysis',
     country: 'United Kingdom',
     sector: 'Finance / Currency Exchange',
-    client: [], // no client info provided
+    client: ['Smartmoney Exchange Global Exchange'],
     role: ['Business Analyst / UAT & Workflow Analyst'],
     purpose: [
       'Analyze outdated mobile app features',
@@ -68,115 +81,63 @@ const Project11 = () => {
       hoverable
       bordered
       title={
-        <div style={{ display: 'flex', alignItems: 'flex-start', gap: 8, flexWrap: 'wrap' }}>
+        <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
           <ProjectOutlined style={{ marginTop: 3 }} />
-          <Text strong style={{ fontSize: 16, whiteSpace: 'normal', wordBreak: 'break-word' }}>
-            {project.name}
-          </Text>
+          <Text strong style={{ fontSize: 16 }}>{project.name}</Text>
         </div>
       }
     >
       <Collapse accordion>
         <Panel header="🌍 Country" key="1">
-          <ul style={ulStyle}>
-            <li>{project.country}</li>
-          </ul>
+          <ul style={ulStyle}>{renderList([project.country])}</ul>
         </Panel>
 
         <Panel header="💻 Sector" key="2">
-          <ul style={ulStyle}>
-            <li>{project.sector}</li>
-          </ul>
+          <ul style={ulStyle}>{renderList([project.sector])}</ul>
         </Panel>
 
         {project.client.length > 0 && (
           <Panel header="🏢 Client" key="3">
-            <ul style={ulStyle}>
-              {project.client.map((c, i) => (
-                <li key={i}>{c}</li>
-              ))}
-            </ul>
+            <ul style={ulStyle}>{renderList(project.client, 'client')}</ul>
           </Panel>
         )}
 
         <Panel header="🔧 Role" key="4">
-          <ul style={ulStyle}>
-            {project.role.map((r, i) => (
-              <li key={i}>{r}</li>
-            ))}
-          </ul>
+          <ul style={ulStyle}>{renderList(project.role, 'role')}</ul>
         </Panel>
 
         <Panel header="🎯 Purpose" key="5">
-          <ul style={ulStyle}>
-            {project.purpose.map((p, i) => (
-              <li key={i}>{p}</li>
-            ))}
-          </ul>
+          <ul style={ulStyle}>{renderList(project.purpose, 'purpose')}</ul>
         </Panel>
 
         <Panel header="🧪 Key Technologies Used" key="6">
-          <ul style={ulStyle}>
-            {project.technologies.map((tech, i) => (
-              <li key={i}>{tech}</li>
-            ))}
-          </ul>
+          <ul style={ulStyle}>{renderList(project.technologies, 'tech')}</ul>
         </Panel>
 
         <Panel header="🛠 Tools Used" key="7">
-          <ul style={ulStyle}>
-            {project.tools.map((tool, i) => (
-              <li key={i}>{tool}</li>
-            ))}
-          </ul>
+          <ul style={ulStyle}>{renderList(project.tools, 'tool')}</ul>
         </Panel>
 
         <Panel header="📘 Experience Gained" key="8">
-          <ul style={ulStyle}>
-            {project.experience.map((exp, i) => (
-              <li key={i}>{exp}</li>
-            ))}
-          </ul>
+          <ul style={ulStyle}>{renderList(project.experience, 'exp')}</ul>
         </Panel>
 
         <Panel header="📄 Documentation" key="9">
-          <ul style={ulStyle}>
-            {project.document.map((doc, i) => (
-              <li key={i}>{doc}</li>
-            ))}
-          </ul>
+          <ul style={ulStyle}>{renderList(project.document, 'doc')}</ul>
         </Panel>
 
         <Panel header="📦 Project Scope" key="10">
-          <ul style={ulStyle}>
-            {project.scope.map((sc, i) => (
-              <li key={i}>{sc}</li>
-            ))}
-          </ul>
+          <ul style={ulStyle}>{renderList(project.scope, 'scope')}</ul>
         </Panel>
 
-        <Panel
-          header={
-            <span>
-              <CloudOutlined />  Cloud Deployment
-            </span>
-          }
-          key="11"
-        >
+        <Panel header={<><CloudOutlined /> Cloud Deployment</>} key="11">
           <Text>{project.cloudDeployment}</Text>
         </Panel>
 
-        <Panel
-          header={
-            <span>
-              <LinkOutlined /> 🔗 URLs
-            </span>
-          }
-          key="12"
-        >
+        <Panel header={<><LinkOutlined /> 🔗 URLs</>} key="12">
           <ul style={ulStyle}>
             {project.urls.map((url, i) => (
-              <li key={i}>
+              <li key={`url-${i}`}>
                 <Link href={url} target="_blank" rel="noopener noreferrer">
                   {url}
                 </Link>
@@ -186,32 +147,11 @@ const Project11 = () => {
         </Panel>
 
         <Panel header="🧑‍🤝‍🧑 Team Members" key="13">
-          <ul style={ulStyle}>
-            {project.teamMembers.map((member, i) => (
-              <li
-                key={i}
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: 6,
-                  flexWrap: 'wrap',
-                }}
-              >
-                <Text>{member.icon}</Text>
-                <Text style={{ whiteSpace: 'normal', wordBreak: 'break-word' }}>
-                  {member.name}
-                </Text>
-              </li>
-            ))}
-          </ul>
+          <ul style={ulStyle}>{renderTeamMembers(project.teamMembers)}</ul>
         </Panel>
 
         <Panel header="💼 Job Role" key="14">
-          <ul style={ulStyle}>
-            {project.teamMembers.map((member, i) => (
-              <li key={i}>{member.role}</li>
-            ))}
-          </ul>
+          <ul style={ulStyle}>{renderList(project.teamMembers.map(m => m.role), 'job')}</ul>
         </Panel>
       </Collapse>
     </Card>

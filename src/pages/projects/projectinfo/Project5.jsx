@@ -3,20 +3,25 @@ import { Card, Typography, Collapse } from 'antd';
 import {
   ProjectOutlined,
   TeamOutlined,
-  EnvironmentOutlined,
-  AppstoreOutlined,
-  UserOutlined,
-  ToolOutlined,
-  ExperimentOutlined,
-  FileTextOutlined,
-  LinkOutlined,
-  MailOutlined,
 } from '@ant-design/icons';
 
 const { Text, Link } = Typography;
 const { Panel } = Collapse;
 
 const ulStyle = { paddingLeft: 24, marginBottom: 0 };
+
+// 🔧 List rendering helper
+const renderList = (items = []) =>
+  items.map((item, i) => <li key={`item-${i}`}>{item}</li>);
+
+// 👤 Team member rendering helper
+const renderTeamInfo = (members = []) =>
+  members.map((member, i) => (
+    <li key={`member-${i}`} style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
+      <TeamOutlined />
+      <Text>{member.name}</Text>
+    </li>
+  ));
 
 const Project5 = () => {
   const project = {
@@ -27,11 +32,7 @@ const Project5 = () => {
     role: ['Intern Business Analyst', 'QA Coordinator'],
     purpose:
       'Develop a food ordering system with mobile app and web admin panel fully integrated with Shopify for real-time operations.',
-    technologies: [
-      'Mobile App (Android/iOS)',
-      'Web Admin Panel',
-      'Shopify API Integration',
-    ],
+    technologies: ['Mobile App (Android/iOS)', 'Web Admin Panel', 'Shopify API Integration'],
     experience: [
       'Stakeholder communication',
       'Documentation handling and QA coordination',
@@ -84,94 +85,47 @@ const Project5 = () => {
       hoverable
       bordered
       title={
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'flex-start',
-            gap: 8,
-            flexWrap: 'wrap',
-          }}
-        >
+        <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
           <ProjectOutlined style={{ marginTop: 3 }} />
-          <Text
-            strong
-            style={{
-              fontSize: 16,
-              whiteSpace: 'normal',
-              wordBreak: 'break-word',
-            }}
-          >
-            {project.name}
-          </Text>
+          <Text strong style={{ fontSize: 16 }}>{project.name}</Text>
         </div>
       }
     >
       <Collapse accordion>
         <Panel header="🌍 Country" key="1">
-          <ul style={ulStyle}>
-            <li>{project.country}</li>
-          </ul>
+          <ul style={ulStyle}>{renderList([project.country])}</ul>
         </Panel>
 
         <Panel header="💻 Sector" key="2">
-          <ul style={ulStyle}>
-            <li>{project.sector}</li>
-          </ul>
+          <ul style={ulStyle}>{renderList([project.sector])}</ul>
         </Panel>
 
         <Panel header="🏢 Client" key="3">
-          <ul style={ulStyle}>
-            {project.client.map((c, i) => (
-              <li key={i}>{c}</li>
-            ))}
-          </ul>
+          <ul style={ulStyle}>{renderList(project.client)}</ul>
         </Panel>
 
         <Panel header="🔧 Role" key="4">
-          <ul style={ulStyle}>
-            {project.role.map((r, i) => (
-              <li key={i}>{r}</li>
-            ))}
-          </ul>
+          <ul style={ulStyle}>{renderList(project.role)}</ul>
         </Panel>
 
-<Panel header="🎯 Purpose" key="5">
-  <ul style={ulStyle}>
-    <li>{project.purpose}</li>
-  </ul>
-</Panel>
-
+        <Panel header="🎯 Purpose" key="5">
+          <ul style={ulStyle}>{renderList([project.purpose])}</ul>
+        </Panel>
 
         <Panel header="🧪 Key Technologies Used" key="6">
-          <ul style={ulStyle}>
-            {project.technologies.map((tech, i) => (
-              <li key={i}>{tech}</li>
-            ))}
-          </ul>
+          <ul style={ulStyle}>{renderList(project.technologies)}</ul>
         </Panel>
 
         <Panel header="📘 Experience Gained" key="7">
-          <ul style={ulStyle}>
-            {project.experience.map((exp, i) => (
-              <li key={i}>{exp}</li>
-            ))}
-          </ul>
+          <ul style={ulStyle}>{renderList(project.experience)}</ul>
         </Panel>
 
         <Panel header="🛠 Tools Used" key="8">
-          <ul style={ulStyle}>
-            {project.tools.map((tool, i) => (
-              <li key={i}>{tool}</li>
-            ))}
-          </ul>
+          <ul style={ulStyle}>{renderList(project.tools)}</ul>
         </Panel>
 
         <Panel header="📄 Documentation" key="9">
-          <ul style={ulStyle}>
-            {project.document.map((doc, i) => (
-              <li key={i}>{doc}</li>
-            ))}
-          </ul>
+          <ul style={ulStyle}>{renderList(project.document)}</ul>
         </Panel>
 
         <Panel header="🔗 Project Link" key="10">
@@ -180,7 +134,7 @@ const Project5 = () => {
               <li>N/A</li>
             ) : (
               project.urls.map((url, i) => (
-                <li key={i}>
+                <li key={`url-${i}`}>
                   <Link href={url} target="_blank" rel="noopener noreferrer">
                     {url}
                   </Link>
@@ -191,58 +145,24 @@ const Project5 = () => {
         </Panel>
 
         <Panel header="🧑‍🤝‍🧑 Team Members" key="11">
-          <ul style={ulStyle}>
-            {project.teamMembers.map((member, i) => (
-              <li
-                key={i}
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: 6,
-                  flexWrap: 'wrap',
-                }}
-              >
-                <TeamOutlined />
-                <Text
-                  style={{
-                    whiteSpace: 'normal',
-                    wordBreak: 'break-word',
-                  }}
-                >
-                  {member.name}
-                </Text>
-              </li>
-            ))}
-          </ul>
+          <ul style={ulStyle}>{renderTeamInfo(project.teamMembers)}</ul>
         </Panel>
 
         <Panel header="💼 Job Role" key="12">
-          <ul style={ulStyle}>
-            {project.teamMembers.map((member, i) => (
-              <li key={i}>{member.role}</li>
-            ))}
-          </ul>
+          <ul style={ulStyle}>{renderList(project.teamMembers.map(m => m.role))}</ul>
         </Panel>
 
         <Panel header="🧪 Technology" key="13">
-          <ul style={ulStyle}>
-            {project.teamMembers.map((member, i) => (
-              <li key={i}>{member.technology}</li>
-            ))}
-          </ul>
+          <ul style={ulStyle}>{renderList(project.teamMembers.map(m => m.technology))}</ul>
         </Panel>
 
         <Panel header="🔗 LinkedIn" key="14">
           <ul style={ulStyle}>
-            {project.teamMembers.map((member, i) => (
-              <li key={i}>
-                {member.linkedin !== 'N/A' ? (
-                  <Link
-                    href={member.linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {member.linkedin}
+            {project.teamMembers.map((m, i) => (
+              <li key={`linkedin-${i}`}>
+                {m.linkedin !== 'N/A' ? (
+                  <Link href={m.linkedin} target="_blank" rel="noopener noreferrer">
+                    {m.linkedin}
                   </Link>
                 ) : (
                   'N/A'
@@ -254,10 +174,10 @@ const Project5 = () => {
 
         <Panel header="✉️ Email" key="15">
           <ul style={ulStyle}>
-            {project.teamMembers.map((member, i) => (
-              <li key={i}>
-                {member.email !== 'N/A' ? (
-                  <Link href={`mailto:${member.email}`}>{member.email}</Link>
+            {project.teamMembers.map((m, i) => (
+              <li key={`email-${i}`}>
+                {m.email !== 'N/A' ? (
+                  <Link href={`mailto:${m.email}`}>{m.email}</Link>
                 ) : (
                   'N/A'
                 )}
