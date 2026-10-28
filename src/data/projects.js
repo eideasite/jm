@@ -53,7 +53,6 @@ export default [
       {
         "name": "Sathiyaseelan Sajeenthiran",
         "role": "Mobile App Developer, Team Coordinator",
-        "icon": "📱",
         "email": "sasajeenthiran@gmail.com",
         "linkedin": "https://www.linkedin.com/in/sathiyaseelan-sajeenthiran-42566aaa",
         "technology": "Flutter (iOS / Android)"
@@ -94,7 +93,6 @@ export default [
       {
         "name": "Sathiyaseelan Sajeenthiran",
         "role": "Team Coordinator & Mobile App Developer",
-        "icon": "📱",
         "email": "sasajeenthiran@gmail.com",
         "linkedin": "https://www.linkedin.com/in/sathiyaseelan-sajeenthiran-42566aaa",
         "technology": ".NET API, C#, Entity Core"
@@ -102,7 +100,6 @@ export default [
       {
         "name": "Thulirshan Kumaravel",
         "role": "Intern Backend Developer",
-        "icon": "💻",
         "email": "1998thulir@gmail.com",
         "linkedin": "https://www.linkedin.com/in/thulirshan-kumaravel-a236b1207",
         "technology": ".NET API, C#, Entity Core"
@@ -147,7 +144,6 @@ export default [
       {
         "name": "Shihara",
         "role": "Project Manager",
-        "icon": "👩‍💼",
         "email": "N/A",
         "linkedin": "N/A",
         "technology": "Project Management, Scrum"
@@ -155,7 +151,6 @@ export default [
       {
         "name": "Ashan",
         "role": "Front-End Developer",
-        "icon": "🖥️",
         "email": "N/A",
         "linkedin": "N/A",
         "technology": "React, TypeScript, Front-End technologies"
@@ -323,7 +318,7 @@ export default [
   },
   {
     "id": 7,
-    "name": "BPH – Bridge Park Hotel London",
+    "name": "Bridge Park Hotel",
     "country": "UK",
     "sector": "Hotel Services / Web Development",
     "client": [
@@ -335,7 +330,8 @@ export default [
     ],
     "purpose": [
       "Client requirement gathering",
-      "Siteminder technology documentation",
+      "Website project coordination and updates",
+      "SiteMinder integration documentation",
       "Stakeholder engagement and coordination",
       "Booking engine integration",
       "Developer coordination and project leadership",
@@ -343,6 +339,20 @@ export default [
       "UI/UX enhancement using Figma",
       "Backlog grooming and sprint planning",
       "Team coordination and project tracking"
+    ],
+    "urls": [
+      {
+        "label": "Old website",
+        "href": "https://www.bridgeparkhotellondon.co.uk/"
+      },
+      {
+        "label": "New website",
+        "href": "https://www.bridgeparkhotel.co.uk/"
+      },
+      {
+        "label": "SiteMinder",
+        "href": "https://www.siteminder.com/"
+      }
     ],
     "technologies": [
       "ReactJS",
@@ -651,17 +661,14 @@ export default [
       {
         "name": "JM (You)",
         "role": "Business Analyst / UAT & Workflow Analyst",
-        "icon": "🧑‍💼"
       },
       {
         "name": "Mobile App Developer",
         "role": "Feature Implementation & APK Build",
-        "icon": "📱"
       },
       {
         "name": "Product Manager",
         "role": "Business Requirement Alignment",
-        "icon": "📊"
       }
     ]
   },
@@ -721,25 +728,21 @@ export default [
       {
         "name": "JM (You)",
         "role": "Business Analyst",
-        "icon": "🧑‍💼",
         "technology": "Analysis and Coordination"
       },
       {
         "name": "Product Manager",
         "role": "Project Lead",
-        "icon": "👔",
         "technology": "Management and Planning"
       },
       {
         "name": "UX/UI Designer",
         "role": "Design",
-        "icon": "🎨",
         "technology": "Figma & Wireframes"
       },
       {
         "name": "Development Team",
         "role": "Frontend & Backend",
-        "icon": "💻",
         "technology": "React + Backend"
       }
     ]
@@ -792,7 +795,6 @@ export default [
       {
         "name": "JM (You)",
         "role": "Business Analyst / Feature Coordinator",
-        "icon": "🧑‍💼",
         "email": "N/A",
         "linkedin": "N/A",
         "technology": "Feature analysis & coordination"
@@ -800,7 +802,6 @@ export default [
       {
         "name": "Product Manager",
         "role": "Product Strategy Lead",
-        "icon": "📊",
         "email": "N/A",
         "linkedin": "N/A",
         "technology": "Product strategy and planning"
@@ -808,7 +809,6 @@ export default [
       {
         "name": "QA Analyst",
         "role": "Testing and Quality Assurance",
-        "icon": "🔍",
         "email": "N/A",
         "linkedin": "N/A",
         "technology": "Quality control and testing"
@@ -816,7 +816,6 @@ export default [
       {
         "name": "Developer",
         "role": "Feature Development",
-        "icon": "💻",
         "email": "N/A",
         "linkedin": "N/A",
         "technology": "Software development"
@@ -883,7 +882,6 @@ export default [
       {
         "name": "JM (You)",
         "role": "Business Analyst / Team Coordinator / Project Manager / Project Lead",
-        "icon": "🧑‍💼",
         "email": "N/A",
         "linkedin": null,
         "technology": "Leadership, Analysis & Coordination"
@@ -891,7 +889,6 @@ export default [
       {
         "name": "Yasindu Weerakkody",
         "role": "UX/UI Lead",
-        "icon": "🎨",
         "email": "N/A",
         "linkedin": "https://linkedin.com/in/yasinduweerakkody",
         "technology": "UX/UI Design Leadership"
@@ -899,7 +896,6 @@ export default [
       {
         "name": "Jessy",
         "role": "Associate UX/UI Designer",
-        "icon": "🎨",
         "email": "N/A",
         "linkedin": null,
         "technology": "UX/UI Design"
@@ -907,7 +903,6 @@ export default [
       {
         "name": "Kavi (Kavitharan K)",
         "role": "Associate Mobile App Developer",
-        "icon": "📱",
         "email": "N/A",
         "linkedin": "https://linkedin.com/in/kavitharank",
         "technology": "Flutter & Kotlin"
@@ -915,7 +910,6 @@ export default [
       {
         "name": "Thanu",
         "role": "Intern React Developer",
-        "icon": "💻",
         "email": "N/A",
         "linkedin": null,
         "technology": "React Frontend"
@@ -923,7 +917,6 @@ export default [
       {
         "name": "Gobi",
         "role": "Intern React Developer",
-        "icon": "💻",
         "email": "N/A",
         "linkedin": null,
         "technology": "React Frontend"
@@ -931,7 +924,6 @@ export default [
       {
         "name": "Thushanthan",
         "role": "Backend Developer API/DBMS",
-        "icon": "🛠️",
         "email": "N/A",
         "linkedin": null,
         "technology": "API and Database Management"
@@ -997,7 +989,6 @@ export default [
       {
         "name": "JM (You)",
         "role": "Business Analyst / Coordination Lead",
-        "icon": "🧑‍💼",
         "email": "N/A",
         "linkedin": "N/A",
         "technology": "Analysis, coordination, and leadership"
@@ -1005,7 +996,6 @@ export default [
       {
         "name": "Senior Frontend Developer",
         "role": "React Web Platform Lead (Project Lead)",
-        "icon": "💻",
         "email": "N/A",
         "linkedin": "N/A",
         "technology": "React + Vite development"
@@ -1013,7 +1003,6 @@ export default [
       {
         "name": "Product Manager (PM)",
         "role": "Product Strategy & Agile Owner",
-        "icon": "📊",
         "email": "N/A",
         "linkedin": "N/A",
         "technology": "Product backlog and agile coordination"
@@ -1021,7 +1010,6 @@ export default [
       {
         "name": "UX/UI Designer",
         "role": "UI/UX Design & Prototyping",
-        "icon": "🎨",
         "email": "N/A",
         "linkedin": "N/A",
         "technology": "Figma, Balsamiq"
@@ -1029,7 +1017,6 @@ export default [
       {
         "name": "Associate Mobile Developer",
         "role": "Flutter App Developer",
-        "icon": "📱",
         "email": "N/A",
         "linkedin": "N/A",
         "technology": "Flutter development"
@@ -1037,7 +1024,6 @@ export default [
       {
         "name": "React Intern",
         "role": "Frontend Development Support",
-        "icon": "👨‍💻",
         "email": "N/A",
         "linkedin": "N/A",
         "technology": "React.js support"
@@ -1045,7 +1031,6 @@ export default [
       {
         "name": "UX/UI Intern",
         "role": "Design Support",
-        "icon": "🎓",
         "email": "N/A",
         "linkedin": "N/A",
         "technology": "Wireframing and design assistance"
@@ -1103,17 +1088,14 @@ export default [
       {
         "name": "jm",
         "role": "Documentation Lead, Business Workflow Mapping, Dev Coordination",
-        "icon": "🧑‍💼"
       },
       {
         "name": "Associate Backend Developer",
         "role": "Development & Sandbox Testing",
-        "icon": "👨‍💻"
       },
       {
         "name": "Intern Backend Developer",
         "role": "Field Mapping & Initial Testing",
-        "icon": "👨‍🎓"
       }
     ]
   },
@@ -1167,12 +1149,10 @@ export default [
       {
         "name": "JM (You)",
         "role": "Lead Business Analyst and Documentation Head",
-        "icon": "📘"
       },
       {
         "name": "Intern Research Team",
         "role": "Data gathering and analysis",
-        "icon": "👥"
       }
     ]
   },
@@ -1222,17 +1202,14 @@ export default [
       {
         "name": "JM (You)",
         "role": "UI Coordinator & UX Documentation",
-        "icon": "📱"
       },
       {
         "name": "Mobile Developer",
         "role": "Issue Fixing & UX Review",
-        "icon": "👨‍💻"
       },
       {
         "name": "UX Designer",
         "role": "Mobile Interface Validation",
-        "icon": "🎨"
       }
     ]
   }

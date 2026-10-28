@@ -5,7 +5,8 @@ import projects from './data/projects.js';
 const siteUrl = 'https://jeyamohanme.vercel.app';
 const officialEmail = 'jeyamohan98@gmail.com';
 const isPrivacyPage = ref(window.location.pathname.replace(/\/+$/, '') === '/privacy-policy');
-const darkMode = ref(true);
+const showBackToTop = ref(window.scrollY > 320);
+const darkMode = ref(isDarkTime());
 const menuOpen = ref(false);
 const searchQuery = ref('');
 const toastMessage = ref('');
@@ -19,6 +20,26 @@ const previewDialog = ref(null);
 const projectNumbers = new Map(projects.map((project, index) => [project.id, index + 1]));
 let toastTimer;
 let downloadController = null;
+let themeBoundaryTimer;
+let themeOverrideUntil = 0;
+
+function isDarkTime(date = new Date()) {
+  const hour = date.getHours();
+  return hour >= 18 || hour < 6;
+}
+
+function getNextThemeBoundary(date = new Date()) {
+  const nextBoundary = new Date(date);
+  if (date.getHours() < 6) {
+    nextBoundary.setHours(6, 0, 0, 0);
+  } else if (date.getHours() < 18) {
+    nextBoundary.setHours(18, 0, 0, 0);
+  } else {
+    nextBoundary.setDate(nextBoundary.getDate() + 1);
+    nextBoundary.setHours(6, 0, 0, 0);
+  }
+  return nextBoundary;
+}
 
 const navItems = [
   { label: 'About', href: '#home' },
@@ -196,6 +217,15 @@ function updateRoute() {
   updatePageMetadata();
 }
 
+function updateBackToTopVisibility() {
+  showBackToTop.value = window.scrollY > 320;
+}
+
+function scrollToTop() {
+  const behavior = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
+  window.scrollTo({ top: 0, behavior });
+}
+
 function updatePageMetadata() {
   const title = isPrivacyPage.value
     ? 'Privacy Notice | Jeyamohan Manoharan'
@@ -225,10 +255,34 @@ function updateThemeChrome() {
   document.documentElement.style.colorScheme = colorScheme;
 }
 
+function updateThemeColor() {
+  document.querySelector('meta[name="theme-color"]')?.setAttribute('content', darkMode.value ? '#080a0d' : '#fbfaf6');
+}
+
+function updateAutomaticTheme() {
+  window.clearTimeout(themeBoundaryTimer);
+
+  const now = new Date();
+  if (now.getTime() >= themeOverrideUntil) {
+    themeOverrideUntil = 0;
+    darkMode.value = isDarkTime(now);
+    updateThemeChrome();
+    updateThemeColor();
+  }
+
+  const nextBoundary = getNextThemeBoundary(now);
+  themeBoundaryTimer = window.setTimeout(
+    updateAutomaticTheme,
+    Math.max(1000, nextBoundary.getTime() - now.getTime() + 50),
+  );
+}
+
 function toggleTheme() {
   darkMode.value = !darkMode.value;
   updateThemeChrome();
-  document.querySelector('meta[name="theme-color"]')?.setAttribute('content', darkMode.value ? '#080a0d' : '#fbfaf6');
+  updateThemeColor();
+  themeOverrideUntil = getNextThemeBoundary().getTime();
+  updateAutomaticTheme();
 }
 
 function openPreview(document) {
@@ -322,7 +376,11 @@ function submitContact(event) {
 
 onMounted(() => {
   updatePageMetadata();
+  updateAutomaticTheme();
   window.addEventListener('popstate', updateRoute);
+  window.addEventListener('scroll', updateBackToTopVisibility, { passive: true });
+  window.addEventListener('focus', updateAutomaticTheme);
+  document.addEventListener('visibilitychange', updateAutomaticTheme);
   if (!isPrivacyPage.value && window.location.hash) {
     requestAnimationFrame(() => {
       document.getElementById(window.location.hash.slice(1))?.scrollIntoView();
@@ -333,6 +391,10 @@ onMounted(() => {
 onUnmounted(() => {
   downloadController?.abort();
   window.removeEventListener('popstate', updateRoute);
+  window.removeEventListener('scroll', updateBackToTopVisibility);
+  window.removeEventListener('focus', updateAutomaticTheme);
+  document.removeEventListener('visibilitychange', updateAutomaticTheme);
+  window.clearTimeout(themeBoundaryTimer);
   window.clearTimeout(toastTimer);
 });
 </script>
@@ -595,8 +657,13 @@ onUnmounted(() => {
                   <div v-if="project.urls?.length" class="project-subsection">
                     <h4>Project links</h4>
                     <ul>
-                      <li v-for="url in project.urls" :key="url">
-                        <a v-if="url.startsWith('http')" :href="url" target="_blank" rel="noopener noreferrer">{{ url }} ↗</a>
+                      <li v-for="url in project.urls" :key="typeof url === 'string' ? url : url.href">
+                        <a
+                          v-if="(typeof url === 'string' ? url : url.href).startsWith('http')"
+                          :href="typeof url === 'string' ? url : url.href"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >{{ typeof url === 'string' ? url : url.label }} ↗</a>
                         <span v-else>{{ url }}</span>
                       </li>
                     </ul>
@@ -605,7 +672,7 @@ onUnmounted(() => {
                     <h4>Team &amp; collaborators</h4>
                     <div class="team-grid">
                       <article v-for="member in project.teamMembers" :key="`${member.name}-${member.role}`" class="team-card">
-                        <p class="team-name"><span>{{ member.icon || '•' }}</span>{{ member.name }}</p>
+                        <p class="team-name">{{ member.name }}</p>
                         <p>{{ member.role }}</p>
                         <p v-if="member.technology">{{ member.technology }}</p>
                         <a v-if="member.email && member.email !== 'N/A'" :href="`mailto:${member.email}`">{{ member.email }}</a>
@@ -725,6 +792,21 @@ onUnmounted(() => {
         </form>
       </dialog>
     </template>
+
+    <Transition name="back-to-top">
+      <button
+        v-if="!isPrivacyPage && showBackToTop"
+        class="back-to-top"
+        type="button"
+        aria-label="Back to top"
+        title="Back to top"
+        @click="scrollToTop"
+      >
+        <span class="back-to-top-icons" aria-hidden="true">
+          <span class="back-to-top-pen">✍️</span>
+        </span>
+      </button>
+    </Transition>
 
     <Transition name="toast">
       <div v-if="toastMessage" class="toast-message" role="status">{{ toastMessage }}</div>

@@ -561,12 +561,12 @@ summary:focus-visible {
 }
 
 .geometry-pyramid i {
-  background: var(--red);
+  background: var(--green);
   clip-path: polygon(50% 0, 50% 100%, 0 100%);
 }
 
 .geometry-pyramid b {
-  background: var(--yellow);
+  background: var(--green);
   clip-path: polygon(50% 0, 100% 100%, 50% 100%);
 }
 
@@ -1645,6 +1645,62 @@ summary:focus-visible {
   font-size: 9px;
 }
 
+.back-to-top {
+  position: fixed;
+  z-index: 25;
+  right: 24px;
+  bottom: 24px;
+  display: grid;
+  width: 60px;
+  height: 62px;
+  padding: 0;
+  place-items: center;
+  border: 0;
+  color: #fff;
+  background: var(--green);
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+  cursor: pointer;
+  transition:
+    background-color var(--motion-fast) var(--ease-fluid),
+    transform var(--motion-fast) var(--ease-fluid),
+    filter var(--motion-fast) var(--ease-fluid);
+  filter: drop-shadow(0 3px 4px rgb(0 0 0 / 28%));
+}
+
+.back-to-top:hover {
+  background: color-mix(in srgb, var(--green) 78%, var(--ink));
+  transform: translateY(-3px);
+  filter: drop-shadow(0 5px 5px rgb(0 0 0 / 30%));
+}
+
+.back-to-top-icons {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.back-to-top-pen {
+  font-size: 20px;
+  line-height: 22px;
+}
+
+.back-to-top-enter-active,
+.back-to-top-leave-active {
+  transition:
+    opacity var(--motion-smooth) var(--ease-fluid),
+    transform var(--motion-smooth) var(--ease-fluid);
+}
+
+.back-to-top-enter-from,
+.back-to-top-leave-to {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
 .preview-dialog,
 .download-dialog {
   width: min(850px, calc(100% - 28px));
@@ -1931,6 +1987,13 @@ summary:focus-visible {
     width: min(calc(100% - 40px), var(--content));
   }
 
+  .back-to-top {
+    right: 18px;
+    bottom: 20px;
+    width: 56px;
+    height: 58px;
+  }
+
   .site-header {
     width: calc(100% - 36px);
     height: 66px;
@@ -1945,14 +2008,17 @@ summary:focus-visible {
   }
 
   .header-contact {
+    display: inline-flex;
+    min-height: 44px;
     padding: 8px 11px;
+    align-items: center;
     font-size: 10px;
   }
 
   .theme-toggle,
   .menu-toggle {
-    width: 33px;
-    height: 33px;
+    width: 44px;
+    height: 44px;
   }
 
   .menu-toggle {
@@ -1973,7 +2039,10 @@ summary:focus-visible {
   }
 
   .mobile-nav a {
-    padding: 11px 3px;
+    display: flex;
+    min-height: 44px;
+    padding: 10px 3px;
+    align-items: center;
     border-bottom: 1px solid var(--line);
     color: var(--ink);
     font-size: 11px;
